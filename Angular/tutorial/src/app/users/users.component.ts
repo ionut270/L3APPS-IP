@@ -10,14 +10,15 @@ import { Observable } from 'rxjs';
 
 export class UsersComponent implements OnInit {
 
-  users$: Object;
+  public users: any[];
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
     this.data.getUsers().subscribe(
-      data => this.users$ =  data
+      (data: any[]) => { this.users =  data;} 
     );
+    
   }
 
 }
