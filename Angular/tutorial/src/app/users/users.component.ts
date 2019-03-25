@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
+
 export class UsersComponent implements OnInit {
 
   users$: Object;
