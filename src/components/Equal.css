@@ -1,0 +1,13 @@
+.equal-wrapper {
+    height: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+    font-size: 1.4em;
+    background-color: #FF8D4B;
+    background-image: linear-gradient(to right, #FF8D4B, #FF542E);
+    cursor: pointer;
+    color: white;
+    flex: 1;
+}

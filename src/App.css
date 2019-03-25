@@ -1,0 +1,37 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600,700,900,200");
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.calc-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  color: #222;
+  font-size: 1rem;
+  font-family: Source Sans Pro;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
