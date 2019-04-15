@@ -1,4 +1,4 @@
-# FiiPracticReact
+#REACT TEST
 
 EventHooks: an application which helps you to promote or find events
 
