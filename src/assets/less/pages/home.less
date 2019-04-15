@@ -1,0 +1,303 @@
+.main-content {
+    height: ~"calc(100% - 110px)";
+}
+
+.home__container {
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+
+    &-map {
+        width: 60%;
+        height: 100%;
+        border-right: 2px solid rgba(34, 36, 38, 0.15);
+    }
+
+    &-details {
+        position: relative;
+        width: 40%;
+        height: 100%;
+    }
+
+    &-actions {
+        height: 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+    }
+
+    &-title {
+        width: 100%;
+        padding: 0 0 12px 0;
+        font-size: 1.2rem;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    &-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-dashboard {
+        height: 85%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 35px;
+        overflow: auto;
+
+        .location-label {
+            display: flex;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .location-field {
+            .input {
+                width: 100%;
+            }
+            .prompt {
+                border-radius: 0.28571429rem;
+            }
+        }
+
+        .selected-location {
+            padding-top: 20px;
+        }
+
+        .event_info {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
+
+            .event-name-label {
+                display: flex;
+                font-size: 1.1rem;
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            .event-organizer-label {
+                display: flex;
+                font-size: 1.1rem;
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            &-title {
+                width: 50%;
+                padding-right: 5px;
+                .input {
+                    width: 100%;
+                }
+            }
+
+            &-organizer {
+                width: 50%;
+                padding-left: 5px;
+                .input {
+                    width: 100%;
+                }
+            }
+        }
+
+        .event_date {
+            .date-label {
+                display: flex;
+                margin-top: 30px;
+                font-size: 1.1rem;
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            .datetime-trigger {
+                display: inline-block;
+            }
+        }
+
+        .description-label {
+            display: flex;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        .description-field {
+            max-height: 120px;
+        }
+
+        .category-label {
+            display: flex;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .category-select {
+            width: 100%;
+        }
+
+        .event-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .event_item-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            border-bottom: solid 1px #c1bfbf;
+            cursor: pointer;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            &:hover {
+                background-color: #ebebeb;
+            }
+        }
+
+        .active {
+            background-color: #ebebeb;
+        }
+
+        .event_item-date {
+            &-container {
+                padding-left: 25px;
+            }
+
+            &-day {
+                padding-top: 5px;
+                font-size: 30px;
+                font-weight: 600;
+                color: #868484;
+            }
+            &-month {
+                font-size: 14px;
+                font-weight: 350;
+                color: #868484;
+            }
+        }
+
+        .event_item-info {
+            &-container {
+                width: 100%;
+                padding-left: 35px;
+            }
+            &-title {
+                font-size: 1.3rem;
+                font-weight: 300;
+            }
+            &-date {
+                padding-top: 5px;
+                font-size: 14px;
+            }
+            &-location {
+                font-size: 14px;
+            }
+            &-description {
+                padding-top: 8px;
+                display: flex;
+                align-items: flex-start;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-size: 14px;
+
+                    padding-right: 10px;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &-organizer {
+                display: flex;
+                align-items: flex-start;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-size: 14px;
+
+                    padding-right: 10px;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &-category {
+                display: flex;
+                align-items: flex-start;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-size: 14px;
+
+                    padding-right: 10px;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+            &-joined {
+                padding-bottom: 5px;
+                display: flex;
+                align-items: flex-start;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-size: 14px;
+
+                    padding-right: 10px;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .event_item-action {
+            &-container {
+                align-self: center;
+                padding-right: 10px;
+
+                .ui.button {
+                    &:hover {
+                        color: #ffffff !important;
+                        background-color: #f2711c !important;
+                    }
+                }
+            }
+        }
+        .joined-ppl-list{
+            display:flex;
+            flex-flow: column;
+        }
+        .button-list{
+            display:flex;
+            flex-flow: column;
+            align-self: center;
+        }
+        .space_in_between{
+            margin-bottom: 1em;
+        }
+    }
+}

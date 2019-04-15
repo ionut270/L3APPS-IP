@@ -1,0 +1,91 @@
+@desktop: ~"only screen and (min-width: 1000px)";
+@tablet: ~"only screen and (max-width: 999px)";
+@mobile: ~"only screen and (max-width: 500px)";
+
+.login__container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-size: cover;
+    background-position: 50%;
+    @media @desktop {
+        background-image: url("/../../images/cover_med.jpg");
+    }
+    @media @tablet {
+        background-image: url("/../../images/cover_low.jpg");
+    }
+
+    .formular__container {
+        color: #555555;
+        width: 400px;
+        min-height: 50%;
+        transition: height 400ms;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #fff;
+        @media @mobile {
+            width: 100%;
+        }
+
+        &-title {
+            font-size: 25px;
+            display: block;
+            line-height: 1.2;
+            text-align: center;
+        }
+        &-content {
+            padding: 20px 0;
+            input {
+                background-color: #f7f7f7;
+            }
+        }
+
+        .content-email {
+            font-size: 15px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+        }
+
+        .content-password {
+            font-size: 15px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+        }
+
+        .content-sign-in-btn {
+            margin: 20px 0;
+        }
+
+        .content-sign-up {
+            display: block;
+            padding: 20px 0 0 0;
+            text-align: center;
+            color: #8f8484;
+
+            span:nth-child(2) {
+                text-decoration: underline;
+                cursor: pointer;
+                padding-left: 4px;
+
+                &:hover {
+                    color: #1b1c1d;
+                }
+            }
+        }
+    }
+
+    .sign-up-active {
+        min-height: 70%;
+    }
+    .sign-with-msg {
+        min-height: 75%;
+    }
+    .sign-in-with-error {
+        min-height: 55%;
+    }
+}
