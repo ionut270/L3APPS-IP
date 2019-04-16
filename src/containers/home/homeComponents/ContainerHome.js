@@ -1,4 +1,6 @@
-import { connect } from "react-redux";
+import {
+  connect
+} from "react-redux";
 import HomeComponent from "./Home";
 import {
   getLocationOptions,
@@ -42,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
       location,
       date,
       category,
-      joined: [localStorage.getItem("userId"),]
+      joined: ["Default user!", localStorage.getItem("userId"), ]
     };
     dispatch(saveEvent(payload));
   },

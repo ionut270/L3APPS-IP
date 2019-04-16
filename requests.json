@@ -1,0 +1,80 @@
+{
+    "schema": "general",
+    "user-data": {
+        "username": "",
+        "password": "",
+        "userId": "",
+        "email": "",
+        "thumbnail": "",
+        "preferences": [{
+            "time-of-day": ""
+        }],
+        "ongoing-tasks": "",
+        "done-tasks": "",
+        "plans": [{
+            "id": ""
+        }]
+    },
+    "plan": {
+        "id": "",
+        "name": "",
+        "category": "",
+        "type":"",
+        "assigned-for": "",
+        "dificulty":"",
+        "departament": "",
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "",
+        "owners": {
+            "id": []
+        },
+        "participants": [{
+            "id": "",
+            "name": "",
+            "thumbnail": "",
+            "role": ""
+        }],
+        "deadline": "",
+        "dependencies": [{
+            "id": "",
+            "name": "",
+            "status": "",
+            "asignee": "",
+            "deadline": "",
+            "dependency-type":"parent||depends||is-child"
+        }]
+    }
+}
+
+"commit": {
+    "userId": "",
+    "changes": "",
+    "date": ""
+}
+
+"plan-sucess-add-task-post": {
+    "cookie-session": "",
+    "user-id": "",
+    "id": "",
+    "name": "",
+    "category": "planning ? diagrame ? ... cod ..",
+    "dificulty": "?/10",
+    "departament": "design/testing/et",
+    "creator": "",
+    "description": "",
+    "priority": "",
+    "status": "/complete/doing/plannig",
+    "participants": [
+        {
+            "id": ""
+        }
+    ],
+    "deadline": "",
+    "dependencies": [
+        {
+            "id": ""
+        }
+    ]
+}
