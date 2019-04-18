@@ -5,7 +5,12 @@
             "password": ""
         },
         "login-get": {
-            "status": "",
+            "status": "sucesfull/failes",
+            "errors": [
+                {
+                    "error": ""
+                }
+            ],
             "user-data": {
                 "cookieSession": "",
                 "username": "",
@@ -14,18 +19,20 @@
                 "thumbnail": "",
                 "preferences": [
                     {
-                        "time-of-day": ""
+                        "time-of-day": {
+                            "morning": "dificulty : ||relaxed||tired||focused",
+                            "afternoon": "dificulty : ||relaxed||tired||focused",
+                            "evening": "dificulty : ||relaxed||tired||focused"
+                        }
                     }
                 ],
+                "job": {
+                    "name": "",
+                    "function": "",
+                    "category": ""
+                },
                 "ongoing-tasks-number": "",
-                "done-tasks-number": "",
-                "ongoing-tasks-list": {},
-                "done-tasks-list": {},
-                "plans": [
-                    {
-                        "id": ""
-                    }
-                ]
+                "done-tasks-number": ""
             }
         }
     },
@@ -42,7 +49,7 @@
                     "dificulty": "",
                     "name": "",
                     "description": "",
-                    "deadline": "",
+                    "deadline": { "date": "", "time": "" },
                     "departament": "",
                     "participants": [
                         {
@@ -55,197 +62,6 @@
                     "post-date": ""
                 }
             ]
-        }
-    },
-
-    "old": {
-        "Your-plans": {
-            "task-list-post": {
-                "cookieSession": "",
-                "user-id": ""
-            },
-            "task-list-get": [
-                {
-                    "id": "",
-                    "type": "",
-                    "dificulty": "",
-                    "assigned-for": "",
-                    "category": "",
-                    "name": "",
-                    "description": "",
-                    "deadline": "",
-                    "departament": "",
-                    "participants": [
-                        {
-                            "thumbnail": "",
-                            "name": "",
-                            "id": ""
-                        }
-                    ],
-                    "status": "",
-                    "post-date": ""
-                }
-            ]
-        },
-        "Other-public-plans": {
-            "task-list-post": {
-                "cookieSession": "",
-                "user-id": ""
-            },
-            "task-list-get": [
-                {
-                    "id": "",
-                    "type": "",
-                    "category": "",
-                    "dificulty": "",
-                    "name": "",
-                    "description": "",
-                    "deadline": "",
-                    "departament": "",
-                    "participants": [
-                        {
-                            "thumbnail": "",
-                            "name": "",
-                            "id": ""
-                        }
-                    ],
-                    "status": "",
-                    "post-date": ""
-                }
-            ]
-        },
-        "filter-all-plans": {
-            "task-list-post": {
-                "cookieSession": "",
-                "user-id": "",
-                "category": "CAN BE UNDEFINED",
-                "type": "CAN BE UNDEFINED",
-                "sort-by": "CAN BE UNDEFINED",
-                "departament": "CAN BE UNDEFINED",
-                "deadline": "CAN BE UNDEFINED",
-                "status": "CAN BE UNDEFINED",
-                "creator": "CAN BE UNDEFINED",
-                "x-takes-part": "CAN BE UNDEFINED"
-            },
-            "task-list-get": [
-                {
-                    "id": "",
-                    "type": "",
-                    "category": "",
-                    "dificulty": "",
-                    "name": "",
-                    "description": "",
-                    "deadline": "",
-                    "departament": "",
-                    "participants": [
-                        {
-                            "thumbnail": "",
-                            "name": "",
-                            "id": ""
-                        }
-                    ],
-                    "status": "",
-                    "post-date": ""
-                }
-            ]
-        },
-        "plan-page-public": {
-            "plan-post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "plan-get": {
-                "id": "",
-                "name": "",
-                "type": "",
-                "category": "",
-                "dificulty": "",
-                "departament": "",
-                "creator": "",
-                "description": "",
-                "priority": "",
-                "status": "",
-                "owners": {
-                    "id": []
-                },
-                "participants": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "thumbnail": "",
-                        "role": ""
-                    }
-                ],
-                "deadline": "",
-                "dependencies": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "status": "",
-                        "dependency-type": "parent||depends||is-child",
-                        "asignee": "",
-                        "deadline": ""
-                    }
-                ],
-                "commits": [
-                    {
-                        "userId": "",
-                        "changes": "",
-                        "date": ""
-                    }
-                ]
-            }
-        },
-
-        "plan-page-personal": {
-            "plan-post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "plan-get": {
-                "id": "",
-                "name": "",
-                "type": "",
-                "category": "",
-                "dificulty": "",
-                "assigned-for": "",
-                "departament": "",
-                "creator": "",
-                "description": "",
-                "priority": "",
-                "status": "",
-                "owners": {
-                    "id": []
-                },
-                "participants": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "thumbnail": "",
-                        "role": ""
-                    }
-                ],
-                "deadline": "",
-                "dependencies": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "status": "",
-                        "dependency-type": "parent||depends||is-child",
-                        "asignee": "",
-                        "deadline": ""
-                    }
-                ],
-                "commits": [
-                    {
-                        "userId": "",
-                        "changes": "",
-                        "date": ""
-                    }
-                ]
-            }
         }
     },
 
@@ -255,7 +71,7 @@
             "user-id": ""
         },
         "create-plan-try-get": {
-            "response": "You have no right to edit this!",
+            "response": "You have no right to this!",
             "sucess": "true/false"
         },
         "create-plan-sucess-post": {
@@ -316,7 +132,7 @@
                     "id": ""
                 }
             ],
-            "deadline": "",
+            "deadline": { "date": "", "time": "" },
             "dependencies": [
                 {
                     "id": ""
@@ -356,7 +172,7 @@
                     "id": ""
                 }
             ],
-            "deadline": "",
+            "deadline": { "date": "", "time": "" },
             "dependencies": [
                 {
                     "subtask-id": ""
@@ -404,7 +220,7 @@
                     "role": "scrum master/scrum"
                 }
             ],
-            "deadline": "",
+            "deadline": { "date": "", "time": "" },
             "commit": {
                 "userId": "",
                 "changes": "",
@@ -445,7 +261,7 @@
                     "id": ""
                 }
             ],
-            "deadline": "",
+            "deadline": { "date": "", "time": "" },
             "dependencies": [
                 {
                     "id": ""
@@ -490,7 +306,7 @@
                     "id": ""
                 }
             ],
-            "deadline": "",
+            "deadline": { "date": "", "time": "" },
             "dependencies": [
                 {
                     "subtask-id": ""
@@ -517,12 +333,19 @@
             },
             "get": {
                 "response": "",
+                "obj": [
+                    {
+                        "id": "",
+                        "username": ""
+                    }
+                ],
                 "errors": [
                     {
                         "error": ""
                     }
                 ]
-            }
+            },
+            "post-userAssign": ""
         }
     },
 
@@ -540,24 +363,24 @@
                 "name": "",
                 "category": "",
                 "departament": "",
-                "deadline": "",
+                "deadline": { "date": "", "time": "" },
                 "creator": "",
                 "description": "",
                 "priority": "",
-                "status": "",
+                "status": "doing||done||todo",
                 "participants": [
                     {
                         "id": "",
                         "name": "",
                         "thumbnail": "",
-                        "role": ""
+                        "role": "scrum master||scrum"
                     }
                 ],
                 "tasks": [
                     {
                         "task-id": "",
                         "user-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": ""
                     }
@@ -584,7 +407,7 @@
                 "name": "",
                 "category": "",
                 "departament": "",
-                "deadline": "",
+                "deadline": { "date": "", "time": "" },
                 "creator": "",
                 "description": "",
                 "priority": "",
@@ -600,7 +423,7 @@
                 "sub-tasks": [
                     {
                         "subtask-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -616,7 +439,7 @@
                 "dependencies": [
                     {
                         "task-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -632,7 +455,7 @@
                 "reverse-dependencies": [
                     {
                         "task-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -666,7 +489,7 @@
                 "name": "",
                 "category": "",
                 "departament": "",
-                "deadline": "",
+                "deadline": { "date": "", "time": "" },
                 "creator": "",
                 "description": "",
                 "priority": "",
@@ -682,7 +505,7 @@
                 "sub-tasks": [
                     {
                         "subtask-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -698,7 +521,7 @@
                 "dependencies": [
                     {
                         "task-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -714,7 +537,7 @@
                 "reverse-dependencies": [
                     {
                         "task-id": "",
-                        "deadline": "",
+                        "deadline": { "date": "", "time": "" },
                         "status": "",
                         "priority": "",
                         "participants": [
@@ -768,73 +591,241 @@
         }
     },
 
-    "your-plans": {
+    "delete": {
         "post": {
-            "plan-id": "",
+            "delete-id": "",
+            "type": "plan||task||subtask",
             "cookie-session": "",
             "user-id": ""
         },
-        "get": [
-            {
-                "id": "",
-                "name": "",
-                "category": "",
-                "type": "",
-                "assigned-for": "",
-                "dificulty": "",
-                "description": "",
-                "status": "",
-                "deadline": ""
-            }
-        ]
+        "get": {
+            "response": "",
+            "errors": [
+                {
+                    "error": ""
+                }
+            ]
+        }
     },
-    "your-tasks": {
-        "post": {
-            "plan-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "get": [
-            {
-                "id": "",
-                "name": "",
-                "category": "",
-                "type": "",
-                "assigned-for": "",
-                "dificulty": "",
-                "description": "",
-                "status": "",
-                "deadline": "",
-                "is-subtask": ""
-            }
-        ]
-    },
-    "tasks-today": {
-        "post": {
-            "plan-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "get": [
-            {
-                "id": "",
-                "name": "",
-                "category": "",
-                "type": "",
-                "time-of-day": "noon||morning||afternoon||etc",
-                "dificulty": "",
-                "description": "",
-                "status": "",
-                "deadline": "",
-                "is-subtask": ""
-            }
-        ]
-    },
+
     "overview": {
-        "weekly-tasks": {},
-        "monthly-tasks": {},
-        "yearly-tasks": {},
-        "rearange-tasks": {}
+        "tasks-today": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "time-of-day": "morning||afternoon||evening",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": { "date": "", "time": "" },
+                    "is-subtask": ""
+                }
+            ]
+        },
+        "weekly-tasks": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "time-of-day": "morning||afternoon||evening",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": { "date": "", "time": "" },
+                    "is-subtask": ""
+                }
+            ]
+        },
+        "monthly-tasks": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "time-of-day": "morning||afternoon||evening",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": { "date": "", "time": "" },
+                    "is-subtask": ""
+                }
+            ]
+        },
+        "yearly-tasks": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "time-of-day": "morning||afternoon||evening",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": { "date": "", "time": "" },
+                    "is-subtask": ""
+                }
+            ]
+        },
+        "rearange-tasks": {
+            "TODO": ""
+        }
     },
-    "Profile": {}
+    "Profile": {
+        "your-plans": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "assigned-for": "",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": ""
+                }
+            ]
+        },
+        "your-tasks": {
+            "post": {
+                "plan-id": "",
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "get": [
+                {
+                    "id": "",
+                    "name": "",
+                    "category": "",
+                    "type": "",
+                    "assigned-for": "",
+                    "dificulty": "",
+                    "description": "",
+                    "status": "",
+                    "deadline": { "date": "", "time": "" },
+                    "is-subtask": ""
+                }
+            ]
+        },
+        "your-data": {
+            "get": {
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "post": {
+                "username": "",
+                "userId": "",
+                "email": "",
+                "thumbnail": "",
+                "preferences": [
+                    {
+                        "time-of-day": {
+                            "morning": "dificulty : ||relaxed||tired||focused",
+                            "afternoon": "dificulty : ||relaxed||tired||focused",
+                            "evening": "dificulty : ||relaxed||tired||focused"
+                        }
+                    }
+                ],
+                "job": {
+                    "name": "",
+                    "function": "",
+                    "category": ""
+                },
+                "profile-description": "",
+                "ongoing-tasks-number": "",
+                "done-tasks-number": ""
+            }
+        },
+        "edit-profile": {
+            "try-post": {
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "try-get": {
+                "response": "You have no right to edit this!",
+                "sucess": "true/false"
+            },
+            "succesfull-post": {
+                "cookie-session": "",
+                "user-id": "",
+                "username": "",
+                "userId": "",
+                "email": "",
+                "thumbnail": "",
+                "job": {
+                    "name": "",
+                    "function": "",
+                    "category": ""
+                },
+                "profile-description": ""
+            },
+            "sucessfull-get": {
+                "response": "",
+                "errors": [
+                    {
+                        "error": ""
+                    }
+                ]
+            }
+        },
+        "edit-preferences": {
+            "try-post": {
+                "cookie-session": "",
+                "user-id": ""
+            },
+            "try-get": {
+                "response": "You have no right to edit this!",
+                "sucess": "true/false"
+            },
+            "sucessfull-post": {
+                "cookie-session": "",
+                "user-id": "",
+                "time-of-day": {
+                    "morning": "dificulty : ||relaxed||tired||focused",
+                    "afternoon": "dificulty : ||relaxed||tired||focused",
+                    "evening": "dificulty : ||relaxed||tired||focused"
+                }
+            },
+            "sucessfull-get": {
+                "response": "",
+                "errors": [
+                    {
+                        "error": ""
+                    }
+                ]
+            }
+        }
+    }
 }

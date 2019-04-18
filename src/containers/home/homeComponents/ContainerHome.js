@@ -1,6 +1,4 @@
-import {
-  connect
-} from "react-redux";
+import { connect } from "react-redux";
 import HomeComponent from "./Home";
 import {
   getLocationOptions,
@@ -11,13 +9,13 @@ import {
   getEventList
 } from "../ActionsHome";
 
-const mapStateProps = (state) => ({
+const mapStateProps = state => ({
   home: Object.assign({}, state.home),
   login: Object.assign({}, state.login)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGetLocationOptions: (suggestion) => {
+const mapDispatchToProps = dispatch => ({
+  onGetLocationOptions: suggestion => {
     dispatch(getLocationOptions(suggestion));
   },
   onUpdateFormState: (propPath, payload) => {
@@ -26,7 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
   onRemoveSelectedLocation: () => {
     dispatch(removeSelectedLocation());
   },
-  onSaveEvent: (props) => {
+  onSaveEvent: props => {
     const {
       title,
       organizer,
@@ -44,7 +42,7 @@ const mapDispatchToProps = (dispatch) => ({
       location,
       date,
       category,
-      joined: ["Default user!", localStorage.getItem("userId"), ]
+      joined: ["Default user!", localStorage.getItem("userId")]
     };
     dispatch(saveEvent(payload));
   },
