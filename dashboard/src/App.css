@@ -1,0 +1,38 @@
+img{
+     width: 100px;
+ }  
+ .mybutton{
+     padding-left: 70%;
+ }
+ @media only screen and (max-width: 1440px) {
+    .mybutton{
+        padding-left: 67%;
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    .mybutton{
+        padding-left: 45%;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .mybutton{
+        padding-left: 30%;
+    }
+    li{
+        padding-left: 37%;
+    }
+    form{
+        padding-right: 2%;
+    }
+
+  }
+  @media only screen and (max-width: 380px) {
+    form{
+        width: 150px;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    form{
+        width: 100px;
+    }
+  }
