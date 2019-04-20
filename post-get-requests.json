@@ -1,831 +1,982 @@
 {
-    "auth": {
-        "login-post": {
-            "username": "",
-            "password": ""
-        },
-        "login-get": {
-            "status": "sucesfull/failes",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ],
-            "user-data": {
-                "cookieSession": "",
-                "username": "",
-                "userId": "",
-                "email": "",
-                "thumbnail": "",
-                "preferences": [
-                    {
-                        "time-of-day": {
-                            "morning": "dificulty : ||relaxed||tired||focused",
-                            "afternoon": "dificulty : ||relaxed||tired||focused",
-                            "evening": "dificulty : ||relaxed||tired||focused"
-                        }
-                    }
-                ],
-                "job": {
-                    "name": "",
-                    "function": "",
-                    "category": ""
-                },
-                "ongoing-tasks-number": "",
-                "done-tasks-number": ""
+  "auth": {
+    "login": {
+      "login-post": {
+        "username": "",
+        "password": ""
+      },
+      "login-get": {
+        "status": "sucesfull/failes",
+        "errors": [
+          {
+            "error": ""
+          }
+        ],
+        "user-data": {
+          "cookieSession": "",
+          "username": "",
+          "userId": "",
+          "email": "",
+          "thumbnail": "",
+          "preferences": [
+            {
+              "time-of-day": {
+                "morning": "dificulty : ||relaxed||tired||focused",
+                "afternoon": "dificulty : ||relaxed||tired||focused",
+                "evening": "dificulty : ||relaxed||tired||focused"
+              }
             }
-        }
-    },
-    "Header": {
-        "search-post": {
-            "data": ""
-        },
-        "search-get": {
-            "obj": [
-                {
-                    "id": "",
-                    "type": "",
-                    "category": "",
-                    "dificulty": "",
-                    "name": "",
-                    "description": "",
-                    "deadline": { "date": "", "time": "" },
-                    "departament": "",
-                    "participants": [
-                        {
-                            "thumbnail": "",
-                            "name": "",
-                            "id": ""
-                        }
-                    ],
-                    "status": "",
-                    "post-date": ""
-                }
-            ]
-        }
-    },
-
-    "create": {
-        "create-plan-try-post": {
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "create-plan-try-get": {
-            "response": "You have no right to this!",
-            "sucess": "true/false"
-        },
-        "create-plan-sucess-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
+          ],
+          "job": {
             "name": "",
-            "category": "",
-            "departament": "",
-            "creator": "",
-            "description": "",
-            "priority": "",
-            "status": "",
-            "owners": [
-                {
-                    "id": "IDUL CELUI CARE E RESP DE PROIECT"
+            "function": "",
+            "category": ""
+          },
+          "ongoing-tasks-number": "",
+          "done-tasks-number": "",
+          "underling": [
+            {
+              "id": "id of the underling..",
+              "job": "",
+              "username": "",
+              "thumbnail": "",
+              "curent-task": {
+                "id": "id of the task he has in progres",
+                "progres": "how much has been done in %",
+                "project-coleagues": {
+                  "id": "id of the underling..",
+                  "job": "",
+                  "username": "",
+                  "thumbnail": ""
                 }
-            ],
-            "participants": [
-                {
-                    "id": "",
-                    "role": "scrum master/scrum"
-                }
-            ],
-            "deadline": ""
-        },
-        "create-plan-sucess-get": {
-            "response": "Sucess",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        },
-        "plan-try-add-task-post": {
-            "plan-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "plan-try-add-task-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false"
-        },
-        "plan-sucess-add-task-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
-            "name": "",
-            "category": "planning ? diagrame ? ... cod ..",
-            "dificulty": "?/10",
-            "departament": "design/testing/et",
-            "creator": "",
-            "description": "",
-            "priority": "",
-            "status": "/complete/doing/plannig",
-            "participants": [
-                {
-                    "id": ""
-                }
-            ],
-            "deadline": { "date": "", "time": "" },
-            "dependencies": [
-                {
-                    "id": ""
-                }
-            ]
-        },
-        "plan-sucess-add-task-get": {
-            "response": "",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        },
-        "plan-try-add-subtask-post": {
-            "task-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "plan-try-add-subtask-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false"
-        },
-        "plan-sucess-add-subtask-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
-            "name": "",
-            "category": "",
-            "dificulty": "?/10 //mai mica ca dif taskului",
-            "creator": "",
-            "description": "",
-            "priority": "minor/must/etc",
-            "status": "/complete/doing/plannig",
-            "participants": [
-                {
-                    "id": ""
-                }
-            ],
-            "deadline": { "date": "", "time": "" },
-            "dependencies": [
-                {
-                    "subtask-id": ""
-                }
-            ]
-        },
-        "plan-sucess-add-subtask-get": {
-            "response": "",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
+              }
+            }
+          ]
         }
+      }
     },
-
-    "edit": {
-        "edit-plan-try-post": {
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "edit-plan-try-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false"
-        },
-        "edit-plan-sucess-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
+    "signup": {
+      "post": {
+        "username": "",
+        "userId": "",
+        "email": ""
+      },
+      "get": {
+        "status": "sucesfull/failes",
+        "errors": [
+          {
+            "error": ""
+          }
+        ],
+        "user-data": {
+          "cookieSession": "",
+          "username": "",
+          "userId": "",
+          "email": "",
+          "thumbnail": "",
+          "preferences": [
+            {
+              "time-of-day": {
+                "morning": "dificulty : ||relaxed||tired||focused",
+                "afternoon": "dificulty : ||relaxed||tired||focused",
+                "evening": "dificulty : ||relaxed||tired||focused"
+              }
+            }
+          ],
+          "job": {
             "name": "",
-            "category": "",
-            "departament": "",
-            "creator": "",
-            "description": "",
-            "priority": "",
-            "status": "",
-            "owners": [
-                {
-                    "id": "IDUL CELUI CARE E RESP DE PROIECT"
+            "function": "",
+            "category": ""
+          },
+          "ongoing-tasks-number": "",
+          "done-tasks-number": "",
+          "underling": [
+            {
+              "id": "id of the underling..",
+              "job": "",
+              "username": "",
+              "thumbnail": "",
+              "curent-task": {
+                "id": "id of the task he has in progres",
+                "progres": "how much has been done in %",
+                "project-coleagues": {
+                  "id": "id of the underling..",
+                  "job": "",
+                  "username": "",
+                  "thumbnail": ""
                 }
-            ],
-            "participants": [
-                {
-                    "id": "",
-                    "role": "scrum master/scrum"
-                }
-            ],
-            "deadline": { "date": "", "time": "" },
-            "commit": {
-                "userId": "",
-                "changes": "",
-                "date": ""
+              }
             }
-        },
-        "edit-plan-sucess-get": {
-            "response": "Sucess",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        },
-        "plan-try-edit-task-post": {
-            "plan-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "plan-try-edit-task-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false"
-        },
-        "plan-sucess-edit-task-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
-            "name": "",
-            "category": "planning ? diagrame ? ... cod ..",
-            "dificulty": "?/10",
-            "departament": "design/testing/et",
-            "creator": "",
-            "description": "",
-            "priority": "",
-            "status": "/complete/doing/plannig",
-            "participants": [
-                {
-                    "id": ""
-                }
-            ],
-            "deadline": { "date": "", "time": "" },
-            "dependencies": [
-                {
-                    "id": ""
-                }
-            ],
-            "commit": {
-                "userId": "",
-                "changes": "",
-                "date": ""
-            }
-        },
-        "plan-sucess-edit-task-get": {
-            "response": "",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        },
-        "plan-try-edit-subtask-post": {
-            "task-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "plan-try-edit-subtask-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false"
-        },
-        "plan-sucess-edit-subtask-post": {
-            "cookie-session": "",
-            "user-id": "",
-            "id": "",
-            "name": "",
-            "category": "",
-            "dificulty": "?/10 //mai mica ca dif taskului",
-            "creator": "",
-            "description": "",
-            "priority": "minor/must/etc",
-            "status": "/complete/doing/plannig",
-            "participants": [
-                {
-                    "id": ""
-                }
-            ],
-            "deadline": { "date": "", "time": "" },
-            "dependencies": [
-                {
-                    "subtask-id": ""
-                }
-            ],
-            "commit": {
-                "userId": "",
-                "changes": "",
-                "date": ""
-            }
-        },
-        "plan-sucess-edit-subtask-get": {
-            "response": "",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        },
-        "auto-asign": {
-            "post": {
-                "id": "idul taskului sau subtaskului",
-                "type": "task||subtask"
-            },
-            "get": {
-                "response": "",
-                "obj": [
-                    {
-                        "id": "",
-                        "username": ""
-                    }
-                ],
-                "errors": [
-                    {
-                        "error": ""
-                    }
-                ]
-            },
-            "post-userAssign": ""
+          ]
         }
-    },
-
-    "view": {
-        "view-plan-try-post": {
-            "plan-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "view-plan-try-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false",
-            "obj": {
-                "id": "",
-                "name": "",
-                "category": "",
-                "departament": "",
-                "deadline": { "date": "", "time": "" },
-                "creator": "",
-                "description": "",
-                "priority": "",
-                "status": "doing||done||todo",
-                "participants": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "thumbnail": "",
-                        "role": "scrum master||scrum"
-                    }
-                ],
-                "tasks": [
-                    {
-                        "task-id": "",
-                        "user-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": ""
-                    }
-                ],
-                "commits": {
-                    "userId": "",
-                    "username": "",
-                    "changes": "",
-                    "date": ""
-                }
-            }
-        },
-
-        "view-task-try-post": {
-            "task-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "view-task-try-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false",
-            "obj": {
-                "id": "",
-                "name": "",
-                "category": "",
-                "departament": "",
-                "deadline": { "date": "", "time": "" },
-                "creator": "",
-                "description": "",
-                "priority": "",
-                "status": "",
-                "participants": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "thumbnail": "",
-                        "role": ""
-                    }
-                ],
-                "sub-tasks": [
-                    {
-                        "subtask-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "dependencies": [
-                    {
-                        "task-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "reverse-dependencies": [
-                    {
-                        "task-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "commits": {
-                    "userId": "",
-                    "username": "",
-                    "changes": "",
-                    "date": ""
-                }
-            }
-        },
-        "view-subtask-try-post": {
-            "task-id": "",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "view-subtask-try-get": {
-            "response": "You have no right to edit this!",
-            "sucess": "true/false",
-            "obj": {
-                "id": "",
-                "name": "",
-                "category": "",
-                "departament": "",
-                "deadline": { "date": "", "time": "" },
-                "creator": "",
-                "description": "",
-                "priority": "",
-                "status": "",
-                "participants": [
-                    {
-                        "id": "",
-                        "name": "",
-                        "thumbnail": "",
-                        "role": ""
-                    }
-                ],
-                "sub-tasks": [
-                    {
-                        "subtask-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "dependencies": [
-                    {
-                        "task-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "reverse-dependencies": [
-                    {
-                        "task-id": "",
-                        "deadline": { "date": "", "time": "" },
-                        "status": "",
-                        "priority": "",
-                        "participants": [
-                            {
-                                "id": "",
-                                "name": "",
-                                "thumbnail": "",
-                                "role": ""
-                            }
-                        ]
-                    }
-                ],
-                "commits": {
-                    "userId": "",
-                    "username": "",
-                    "changes": "",
-                    "date": ""
-                }
-            }
-        },
-        "add-participants": {
-            "post": {
-                "id": "idul taskului sau subtaskului",
-                "users-id": [],
-                "type": "task||subtask"
-            },
-            "get": {
-                "response": "",
-                "errors": [
-                    {
-                        "error": ""
-                    }
-                ]
-            }
-        },
-        "add-dependencies": {
-            "post": [
-                {
-                    "id": "",
-                    "type": ""
-                }
-            ],
-            "get": {
-                "response": "",
-                "errors": [
-                    {
-                        "error": ""
-                    }
-                ]
-            }
-        }
-    },
-
-    "delete": {
-        "post": {
-            "delete-id": "",
-            "type": "plan||task||subtask",
-            "cookie-session": "",
-            "user-id": ""
-        },
-        "get": {
-            "response": "",
-            "errors": [
-                {
-                    "error": ""
-                }
-            ]
-        }
-    },
-
-    "overview": {
-        "tasks-today": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "time-of-day": "morning||afternoon||evening",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": { "date": "", "time": "" },
-                    "is-subtask": ""
-                }
-            ]
-        },
-        "weekly-tasks": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "time-of-day": "morning||afternoon||evening",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": { "date": "", "time": "" },
-                    "is-subtask": ""
-                }
-            ]
-        },
-        "monthly-tasks": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "time-of-day": "morning||afternoon||evening",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": { "date": "", "time": "" },
-                    "is-subtask": ""
-                }
-            ]
-        },
-        "yearly-tasks": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "time-of-day": "morning||afternoon||evening",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": { "date": "", "time": "" },
-                    "is-subtask": ""
-                }
-            ]
-        },
-        "rearange-tasks": {
-            "TODO": ""
-        }
-    },
-    "Profile": {
-        "your-plans": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "assigned-for": "",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": ""
-                }
-            ]
-        },
-        "your-tasks": {
-            "post": {
-                "plan-id": "",
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "get": [
-                {
-                    "id": "",
-                    "name": "",
-                    "category": "",
-                    "type": "",
-                    "assigned-for": "",
-                    "dificulty": "",
-                    "description": "",
-                    "status": "",
-                    "deadline": { "date": "", "time": "" },
-                    "is-subtask": ""
-                }
-            ]
-        },
-        "your-data": {
-            "get": {
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "post": {
-                "username": "",
-                "userId": "",
-                "email": "",
-                "thumbnail": "",
-                "preferences": [
-                    {
-                        "time-of-day": {
-                            "morning": "dificulty : ||relaxed||tired||focused",
-                            "afternoon": "dificulty : ||relaxed||tired||focused",
-                            "evening": "dificulty : ||relaxed||tired||focused"
-                        }
-                    }
-                ],
-                "job": {
-                    "name": "",
-                    "function": "",
-                    "category": ""
-                },
-                "profile-description": "",
-                "ongoing-tasks-number": "",
-                "done-tasks-number": ""
-            }
-        },
-        "edit-profile": {
-            "try-post": {
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "try-get": {
-                "response": "You have no right to edit this!",
-                "sucess": "true/false"
-            },
-            "succesfull-post": {
-                "cookie-session": "",
-                "user-id": "",
-                "username": "",
-                "userId": "",
-                "email": "",
-                "thumbnail": "",
-                "job": {
-                    "name": "",
-                    "function": "",
-                    "category": ""
-                },
-                "profile-description": ""
-            },
-            "sucessfull-get": {
-                "response": "",
-                "errors": [
-                    {
-                        "error": ""
-                    }
-                ]
-            }
-        },
-        "edit-preferences": {
-            "try-post": {
-                "cookie-session": "",
-                "user-id": ""
-            },
-            "try-get": {
-                "response": "You have no right to edit this!",
-                "sucess": "true/false"
-            },
-            "sucessfull-post": {
-                "cookie-session": "",
-                "user-id": "",
-                "time-of-day": {
-                    "morning": "dificulty : ||relaxed||tired||focused",
-                    "afternoon": "dificulty : ||relaxed||tired||focused",
-                    "evening": "dificulty : ||relaxed||tired||focused"
-                }
-            },
-            "sucessfull-get": {
-                "response": "",
-                "errors": [
-                    {
-                        "error": ""
-                    }
-                ]
-            }
-        }
+      }
     }
+  },
+  "Header": {
+    "search-post": {
+      "data": ""
+    },
+    "search-get": {
+      "obj": [
+        {
+          "id": "",
+          "type": "",
+          "category": "",
+          "dificulty": "",
+          "name": "",
+          "description": "",
+          "deadline": { "date": "", "time": "" },
+          "departament": "",
+          "participants": [
+            {
+              "thumbnail": "",
+              "name": "",
+              "id": ""
+            }
+          ],
+          "status": "",
+          "post-date": ""
+        }
+      ]
+    }
+  },
+
+  "create": {
+    "create-plan-try-post": {
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "create-plan-try-get": {
+      "response": "You have no right to this!",
+      "sucess": "true/false"
+    },
+    "create-plan-sucess-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "",
+      "departament": "",
+      "creator": "",
+      "description": "",
+      "priority": "",
+      "status": "",
+      "owners": [
+        {
+          "id": "IDUL CELUI CARE E RESP DE PROIECT"
+        }
+      ],
+      "participants": [
+        {
+          "id": "",
+          "role": "scrum master/scrum"
+        }
+      ],
+      "deadline": ""
+    },
+    "create-plan-sucess-get": {
+      "response": "Sucess",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    },
+    "plan-try-add-task-post": {
+      "plan-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "plan-try-add-task-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false"
+    },
+    "plan-sucess-add-task-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "planning ? diagrame ? ... cod ..",
+      "dificulty": "?/10",
+      "departament": "design/testing/et",
+      "creator": "",
+      "description": "",
+      "priority": "",
+      "status": "/complete/doing/plannig",
+      "participants": [
+        {
+          "id": ""
+        }
+      ],
+      "deadline": { "date": "", "time": "" },
+      "dependencies": [
+        {
+          "id": ""
+        }
+      ]
+    },
+    "plan-sucess-add-task-get": {
+      "response": "",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    },
+    "plan-try-add-subtask-post": {
+      "task-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "plan-try-add-subtask-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false"
+    },
+    "plan-sucess-add-subtask-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "",
+      "dificulty": "?/10 //mai mica ca dif taskului",
+      "creator": "",
+      "description": "",
+      "priority": "minor/must/etc",
+      "status": "/complete/doing/plannig",
+      "participants": [
+        {
+          "id": ""
+        }
+      ],
+      "deadline": { "date": "", "time": "" },
+      "dependencies": [
+        {
+          "subtask-id": ""
+        }
+      ]
+    },
+    "plan-sucess-add-subtask-get": {
+      "response": "",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    }
+  },
+
+  "edit": {
+    "edit-plan-try-post": {
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "edit-plan-try-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false"
+    },
+    "edit-plan-sucess-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "",
+      "departament": "",
+      "creator": "",
+      "description": "",
+      "priority": "",
+      "status": "",
+      "owners": [
+        {
+          "id": "IDUL CELUI CARE E RESP DE PROIECT"
+        }
+      ],
+      "participants": [
+        {
+          "id": "",
+          "role": "scrum master/scrum"
+        }
+      ],
+      "deadline": { "date": "", "time": "" },
+      "commit": {
+        "userId": "",
+        "changes": "",
+        "date": ""
+      }
+    },
+    "edit-plan-sucess-get": {
+      "response": "Sucess",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    },
+    "plan-try-edit-task-post": {
+      "plan-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "plan-try-edit-task-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false"
+    },
+    "plan-sucess-edit-task-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "planning ? diagrame ? ... cod ..",
+      "dificulty": "?/10",
+      "departament": "design/testing/et",
+      "creator": "",
+      "description": "",
+      "priority": "",
+      "status": "/complete/doing/plannig",
+      "participants": [
+        {
+          "id": ""
+        }
+      ],
+      "deadline": { "date": "", "time": "" },
+      "dependencies": [
+        {
+          "id": ""
+        }
+      ],
+      "commit": {
+        "userId": "",
+        "changes": "",
+        "date": ""
+      }
+    },
+    "plan-sucess-edit-task-get": {
+      "response": "",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    },
+    "plan-try-edit-subtask-post": {
+      "task-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "plan-try-edit-subtask-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false"
+    },
+    "plan-sucess-edit-subtask-post": {
+      "cookie-session": "",
+      "user-id": "",
+      "id": "",
+      "name": "",
+      "category": "",
+      "dificulty": "?/10 //mai mica ca dif taskului",
+      "creator": "",
+      "description": "",
+      "priority": "minor/must/etc",
+      "status": "/complete/doing/plannig",
+      "participants": [
+        {
+          "id": ""
+        }
+      ],
+      "deadline": { "date": "", "time": "" },
+      "dependencies": [
+        {
+          "subtask-id": ""
+        }
+      ],
+      "commit": {
+        "userId": "",
+        "changes": "",
+        "date": ""
+      }
+    },
+    "plan-sucess-edit-subtask-get": {
+      "response": "",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    },
+    "auto-asign": {
+      "post": {
+        "id": "idul taskului sau subtaskului",
+        "type": "task||subtask"
+      },
+      "get": {
+        "response": "",
+        "obj": [
+          {
+            "id": "",
+            "username": ""
+          }
+        ],
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "post-userAssign": ""
+    }
+  },
+
+  "view": {
+    "view-plan-try-post": {
+      "plan-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "view-plan-try-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false",
+      "obj": {
+        "id": "",
+        "name": "",
+        "category": "",
+        "departament": "",
+        "deadline": { "date": "", "time": "" },
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "doing||done||todo",
+        "participants": [
+          {
+            "id": "",
+            "name": "",
+            "thumbnail": "",
+            "role": "scrum master||scrum"
+          }
+        ],
+        "tasks": [
+          {
+            "task-id": "",
+            "user-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": ""
+          }
+        ],
+        "commits": {
+          "userId": "",
+          "username": "",
+          "changes": "",
+          "date": ""
+        }
+      }
+    },
+
+    "view-task-try-post": {
+      "task-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "view-task-try-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false",
+      "obj": {
+        "id": "",
+        "name": "",
+        "category": "",
+        "departament": "",
+        "deadline": { "date": "", "time": "" },
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "",
+        "participants": [
+          {
+            "id": "",
+            "name": "",
+            "thumbnail": "",
+            "role": ""
+          }
+        ],
+        "sub-tasks": [
+          {
+            "subtask-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "dependencies": [
+          {
+            "task-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "reverse-dependencies": [
+          {
+            "task-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "commits": {
+          "userId": "",
+          "username": "",
+          "changes": "",
+          "date": ""
+        }
+      }
+    },
+    "view-subtask-try-post": {
+      "task-id": "",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "view-subtask-try-get": {
+      "response": "You have no right to edit this!",
+      "sucess": "true/false",
+      "obj": {
+        "id": "",
+        "name": "",
+        "category": "",
+        "departament": "",
+        "deadline": { "date": "", "time": "" },
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "",
+        "participants": [
+          {
+            "id": "",
+            "name": "",
+            "thumbnail": "",
+            "role": ""
+          }
+        ],
+        "sub-tasks": [
+          {
+            "subtask-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "dependencies": [
+          {
+            "task-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "reverse-dependencies": [
+          {
+            "task-id": "",
+            "deadline": { "date": "", "time": "" },
+            "status": "",
+            "priority": "",
+            "participants": [
+              {
+                "id": "",
+                "name": "",
+                "thumbnail": "",
+                "role": ""
+              }
+            ]
+          }
+        ],
+        "commits": {
+          "userId": "",
+          "username": "",
+          "changes": "",
+          "date": ""
+        }
+      }
+    },
+    "add-participants": {
+      "post": {
+        "id": "idul taskului sau subtaskului",
+        "users-id": [],
+        "type": "task||subtask"
+      },
+      "get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "add-dependencies": {
+      "post": [
+        {
+          "id": "",
+          "type": ""
+        }
+      ],
+      "get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    }
+  },
+
+  "delete": {
+    "post": {
+      "delete-id": "",
+      "type": "plan||task||subtask",
+      "cookie-session": "",
+      "user-id": ""
+    },
+    "get": {
+      "response": "",
+      "errors": [
+        {
+          "error": ""
+        }
+      ]
+    }
+  },
+
+  "overview": {
+    "tasks-today": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "time-of-day": "morning||afternoon||evening",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "weekly-tasks": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "time-of-day": "morning||afternoon||evening",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "monthly-tasks": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "time-of-day": "morning||afternoon||evening",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "yearly-tasks": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "time-of-day": "morning||afternoon||evening",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "rearange-tasks": {
+      "TODO": ""
+    }
+  },
+  "Profile": {
+    "your-plans": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "assigned-for": "",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": ""
+        }
+      ]
+    },
+    "your-tasks": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "assigned-for": "",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "your-data": {
+      "post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "get": {
+        "username": "",
+        "userId": "",
+        "email": "",
+        "thumbnail": "",
+        "preferences": [
+          {
+            "time-of-day": {
+              "morning": "dificulty : ||relaxed||tired||focused",
+              "afternoon": "dificulty : ||relaxed||tired||focused",
+              "evening": "dificulty : ||relaxed||tired||focused"
+            }
+          }
+        ],
+        "job": {
+          "name": "",
+          "function": "",
+          "category": ""
+        },
+        "underling": [
+          {
+            "id": "id of the underling..",
+            "job": "",
+            "username": "",
+            "thumbnail": "",
+            "curent-task": {
+              "id": "id of the task he has in progres",
+              "progres": "how much has been done in %",
+              "project-coleagues": {
+                "id": "id of the underling..",
+                "job": "",
+                "username": "",
+                "thumbnail": ""
+              }
+            }
+          }
+        ],
+        "profile-description": "",
+        "ongoing-tasks-number": "",
+        "done-tasks-number": ""
+      }
+    },
+    "edit-profile": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "succesfull-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "username": "",
+        "userId": "",
+        "email": "",
+        "thumbnail": "",
+        "job": {
+          "name": "",
+          "function": "",
+          "category": ""
+        },
+        "profile-description": ""
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "edit-preferences": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "sucessfull-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "time-of-day": {
+          "morning": "dificulty : ||relaxed||tired||focused",
+          "afternoon": "dificulty : ||relaxed||tired||focused",
+          "evening": "dificulty : ||relaxed||tired||focused"
+        }
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "add-underling": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "success-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "added-on": {
+          "date": "",
+          "time": ""
+        },
+        "underling": [
+          {
+            "userid": "",
+            "email": "",
+            "thumbnail": "",
+            "job": ""
+          }
+        ]
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "remove-underling": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "success-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "underlings-id": [""]
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    }
+  }
 }
