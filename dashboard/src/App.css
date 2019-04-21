@@ -5,6 +5,7 @@ img{
  }  
  .mybutton{
      padding-left: 70%;
+     outline: none;
  }
  .my-list{
    padding-right: 3%;
@@ -56,20 +57,83 @@ img{
     }
   }
 
+  /*Checkbox*/
 
-  /* Containere */
-  body{
-    background-color: #0000 !important;
+  .list-group-item {
+    user-select: none;
   }
-  .my-container{
-    border:1px solid green;
+  
+  .list-group input[type="checkbox"] {
+    display: none;
   }
-  .my-row{
-    border:3px solid red;
+  
+  .list-group input[type="checkbox"] + .list-group-item {
+    cursor: pointer;
   }
-  .my-col{
+  
+  .list-group input[type="checkbox"] + .list-group-item:before {
+    content: "\2713";
+    color: transparent;
+    font-weight: bold;
+    margin-right: 1em;
+  }
+  
+  .list-group input[type="checkbox"]:checked + .list-group-item {
+    background-color: #FF773D;
+    color: #FFF;
+  }
+  
+  .list-group input[type="checkbox"]:checked + .list-group-item:before {
+    color: inherit;
+  }
+  
+  .list-group input[type="radio"] {
+    display: none;
+  }
+  
+  .list-group input[type="radio"] + .list-group-item {
+    cursor: pointer;
+  }
+  
+  .list-group input[type="radio"] + .list-group-item:before {
+    content: "\2022";
+    color: transparent;
+    font-weight: bold;
+    margin-right: 1em;
+  }
+  
+  .list-group input[type="radio"]:checked + .list-group-item {
+    background-color: #FF773D;
+    color: #FFF;
+  }
+  
+  .list-group input[type="radio"]:checked + .list-group-item:before {
+    color: inherit;
+  }
+
+  /* Grid */
+  .grid-container {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    background-color: #343a40;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
     background-image: linear-gradient(45deg, rgb(216, 111, 66) 35%, rgb(184, 101, 101));
   }
-  .my-glyphicon{
+  .header3{
+    background: #3198dd;
+    width: 270px;
     color: #fff;
+    padding: 10px 5px;
+    margin: 0;
+    font-size: 160%;
+    text-align: center;
+    font-weight: bold;
   }

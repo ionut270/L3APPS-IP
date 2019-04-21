@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-/* import Meniu from './components/Meniu';
-import logo from './logo.png';
-import { Button } from 'react-bootstrap'; */
 import logo from './logo.png';
 import {collapse} from 'react-bootstrap';
 import './App.css';
@@ -63,28 +60,22 @@ class App extends Component {
         </div>  
           </nav>
 
-            <div className="container my-container">
-            <div className="row justify-content-around my row">
-              <div className="col-4 my-col">
-              <h2>Today</h2>
+            
 
-                  <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Nume task </a>
-                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
-                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
-                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
-                    <a href="#" class="list-group-item list-group-item-action disabled">Nume task</a>
+          <div className="grid-container">
+          <div className="grid-item">
+          <h3>Tasks</h3>
+          <div className="list-group">
+                  <input type="checkbox" name="CheckBoxInputName" value="Value1" id="CheckBox1" />
+                  <label className="list-group-item" for="CheckBox1">Task 1</label>
+                  <input type="checkbox" name="CheckBoxInputName" value="Value2" id="CheckBox2" />
+                  <label className="list-group-item" for="CheckBox2">Task 2</label>
+                   <input type="checkbox" name="CheckBoxInputName" value="Value3" id="CheckBox3" />
+                  <label className="list-group-item" for="CheckBox3">Task 3</label>
                   </div>
-                  
-              
-              </div>
-              <div className="col-4 my-col">
-              <h2>Projects related tasks</h2>
-              </div>
-              <div className="col-4 my-col">
-              <h2>Projects</h2>
-              </div>
-            </div>
+          </div>
+          <div className="grid-item">Projects related task</div>
+          <div className="grid-item">Projects</div>
           </div>
 
           </body>
