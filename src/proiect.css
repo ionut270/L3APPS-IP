@@ -1,0 +1,97 @@
+.grid-container {
+    display: grid;
+    grid-template-areas: 'timetable timetable timetable relatedtasks relatedtasks relatedtasks projects projects';
+    /* grid-template-columns: auto auto auto; */
+    grid-gap: 10px;
+    background-color: rgb(240, 240, 240);
+    padding: 1%;
+    border-radius: 5px;
+  }
+  
+  .grid-container > div {
+    background-image: linear-gradient(to bottom right, #050047, rgb(101, 133, 221));
+    border: 1px solid rgb(56, 56, 56);
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+    color: whitesmoke;
+  }
+
+.item1 {
+    grid-area: timetable;
+}
+.item2 {
+    grid-area: relatedtasks;
+}
+.item3 {
+    grid-area: projects;
+}
+
+#dayslist {
+    padding: 0.78em;
+    margin: 0.78em;
+    background-color: rgba(241, 240, 255, 0);
+    color: rgb(0, 140, 255);
+    border: 0;
+}
+
+
+option {
+    background-color: rgba(240, 248, 255, 0);
+}
+table{
+    text-align: left;
+    padding: 1%;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-collapse: collapse;
+}
+
+
+
+td, th {
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    padding: 1%;
+}
+
+.tablehead, .tablehead2 {
+    background-color: rgb(46, 46, 46);
+    padding: 0;
+    color: whitesmoke;
+    border: none;
+}
+
+.firstrow{
+    border-top: none;
+}
+
+.tablehead2 {
+    padding: 0.985em;
+    margin: 0.985em;
+    font-size: 1.3em;
+}
+
+span {
+    font-size: 10px;
+}
+
+p, span{
+    margin: 1%;
+}
+
+.blankrow {
+    font-size: 36px;
+    color: transparent;
+}
+
+.secondcolumn {
+    font-size: 15px;
+}
+
+.project {
+    padding: 1.05em;
+    margin: 1.05em;
+}
