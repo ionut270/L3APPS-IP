@@ -10,6 +10,7 @@ class App extends Component {
 
   render() {
     return (
+      <body>
        <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         
         <a className="navbar-brand" href="#Home">
@@ -27,18 +28,18 @@ class App extends Component {
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
       
-        <ul className="navbar-nav nav justify-content-center">
-        <li className="nav-item active">
-          <a className="nav-link" href="#home">Home</a>
+        <ul className="navbar-nav justify-content-center">
+        <li className="nav-item active my-list">
+          <a className="nav-link my-link" href="#home">Home</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#about">About</a>
+        <li className="nav-item my-list">
+          <a className="nav-link my-link" href="#about">About</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#home">Ceva</a>
+        <li className="nav-item my-list">
+          <a className="nav-link my-link" href="#home">Ceva</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#home">Altceva</a>
+        <li className="nav-item my-list">
+          <a className="nav-link my-link" href="#home">Altceva</a>
         </li>
         </ul>
 
@@ -59,12 +60,34 @@ class App extends Component {
             </a>
             </button>
           </div>
+        </div>  
+          </nav>
 
-    </div>  
-      </nav>
+            <div className="container my-container">
+            <div className="row justify-content-around my row">
+              <div className="col-4 my-col">
+              <h2>Today</h2>
 
+                  <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Nume task </a>
+                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
+                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
+                    <a href="#" class="list-group-item list-group-item-action">Nume task</a>
+                    <a href="#" class="list-group-item list-group-item-action disabled">Nume task</a>
+                  </div>
+                  
+              
+              </div>
+              <div className="col-4 my-col">
+              <h2>Projects related tasks</h2>
+              </div>
+              <div className="col-4 my-col">
+              <h2>Projects</h2>
+              </div>
+            </div>
+          </div>
 
-
+          </body>
     );
   }
 }
