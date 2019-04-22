@@ -1,75 +1,14 @@
-/* Navbar */
+.dashFlex {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
 
-img{
-     width: 100px;
- }  
- .mybutton{
-     padding-left: 70%;
- }
- .my-list{
-   padding-right: 3%;
-   margin-bottom: -0.5%;
- }
- .my-link{
-  
- }
- .my-link:hover{
-  color:#FF773D !important;
-  transition: 0.5s;
-  opacity: 1;
- }
+}
 
- @media only screen and (max-width: 1440px) {
-    .mybutton{
-        padding-left: 67%;
-    }
-  }
-  @media only screen and (max-width: 1024px) {
-    .mybutton{
-        padding-left: 45%;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    .mybutton{
-        padding-left: 30%;
-    }
-    li{
-        padding-left: 37%;
-    }
-    form{
-        padding-right: 2%;
-    }
-    .my-list{
-      padding-right: 0%;
-      margin-bottom: 0%;
-    }
+dash-in-list {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
 
-  }
-  @media only screen and (max-width: 380px) {
-    form{
-        width: 150px;
-    }
-  }
-  @media only screen and (max-width: 320px) {
-    form{
-        width: 100px;
-    }
-  }
-
-
-  /* Containere */
-  body{
-    background-color: #0000 !important;
-  }
-  .my-container{
-    border:1px solid green;
-  }
-  .my-row{
-    border:3px solid red;
-  }
-  .my-col{
-    background-image: linear-gradient(45deg, rgb(216, 111, 66) 35%, rgb(184, 101, 101));
-  }
-  .my-glyphicon{
-    color: #fff;
-  }
+.dash-container {}
