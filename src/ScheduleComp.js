@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import './proiect.css';
 
 export default class ScheduleComp extends Component {
+    
     render(){
         return (
                 <div className="item1">
                         <table style={{width:'100%'}} cellspacing="0">
                             <tr>
-                                <th className="tablehead" colspan="3">
+                                <th className="tablehead" colSpan="3">
                                     <select id="dayslist">
                                         <option value="today" selected>Today</option>
                                         <option value="tomorrow">Tomorrow</option>
@@ -17,7 +18,7 @@ export default class ScheduleComp extends Component {
                                 </th>
                             </tr>
                             
-                            <tr>
+                            <tr className="task">
                                 <th className="firstrow">
                                     <p>Nume task</p>
                                     <span className="difficulty">Easy</span>
@@ -39,10 +40,10 @@ export default class ScheduleComp extends Component {
                                     </select>
                                 </th>
                             </tr>
-                            <tr className="blank_row">
+                            <tr className="blank_row task">
                                 <td colspan="2" className="blankrow">No task gap</td>
                             </tr>
-                            <tr>
+                            <tr className="task">
                                 <th>
                                     <p>Nume task</p>
                                     <span className="difficulty">Easy</span>

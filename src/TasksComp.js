@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import './proiect.css';
 
-export default class TaskComp extends Component {
-    render(){
+
+export default class TasksComp extends Component {
+    isClicked(){
+        var unassignedtask, i;
+        unassignedtask = document.getElementsByClassName("unassignedtask");
+        if(this.props.clicked == true)
+            for(i=0; i<unassignedtask.length; i++)
+                unassignedtask[i].style.display = "none";
+    }
+    render(){  
         return (
                 <div className="item2">
                     <table style={{width:'100%'}} cellspacing="0">
                         <tr>
-                            <th className="tablehead2" colspan="2">Unassigned tasks/subtasks</th>
+                            <th className="tablehead2" colSpan="2">Unassigned tasks/subtasks</th>
                         </tr>
-                        <tr>
+                        <tr className="unassignedtask">
                             <th className="firstrow">
                                 <p>Nume task</p>
                                 <span className="difficulty">Easy</span>
@@ -24,7 +32,7 @@ export default class TaskComp extends Component {
                                     <span className="duedate secondcolumn">4/28/2019</span>
                             </th>
                         </tr>
-                        <tr>
+                        <tr className="unassignedtask">
                             <th>
                                 <p>Nume task</p>
                                 <span className="difficulty">Easy</span>
@@ -39,7 +47,7 @@ export default class TaskComp extends Component {
                                 <span className="duedate secondcolumn">4/28/2019</span>
                             </th>
                         </tr>
-                        <tr>
+                        <tr className="unassignedtask">
                             <th>
                                 <p>Nume task</p>
                                 <span className="difficulty">Easy</span>
