@@ -40,7 +40,8 @@ changeHandler = e => {
 
 submitHandler = e =>{
   e.preventDefault()
-
+  if(this.state.name && this.state.category && this.state.departament && this.state.description && this.state.priority && this.state.deadline)
+  {
   const create = {
       name : this.state.name,
       category : this.state.category,
@@ -48,8 +49,8 @@ submitHandler = e =>{
       description : this.state.description,
       priority : this.state.priority,
       deadline : this.state.deadline
+}
 
-  }
 
 
   axios.post('https://jsonplaceholder.typicode.com/posts',{create})
@@ -59,7 +60,11 @@ submitHandler = e =>{
   .catch(error=> {
     console.log(error)
   })
-
+}
+else
+{
+  console.log('Nu au fost introduse toate datele')
+}
 }
 
 

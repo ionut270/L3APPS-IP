@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-class CreateTaskModal extends Component {
+class EditPlanModal extends Component {
   constructor(props) {
   super(props);
   this.state = {
@@ -16,7 +16,7 @@ class CreateTaskModal extends Component {
     description: '',
     priority: '',
     deadline: '',
-    difficulty: ''
+    title: ''
   }
 }
 
@@ -49,10 +49,9 @@ submitHandler = e =>{
       departament : this.state.departament,
       description : this.state.description,
       priority : this.state.priority,
-      deadline : this.state.deadline,
-      difficulty : this.state.difficulty
+      deadline : this.state.deadline
+}
 
-  }
 
 
   axios.post('https://jsonplaceholder.typicode.com/posts',{create})
@@ -69,16 +68,23 @@ else
 }
 }
 
-
+getPlan = (e)=>{
+  e.preventDefault();
+  axios.get('https://jsonplaceholder.typicode.com/posts')
+  .then((res)=>{
+    const title=res.data[0].title;
+    console.log(title);
+  })
+}
 
   render() {
-    const { name, category, departament, description, priority,deadline, difficulty} = this.state
+    const { name, category, departament, description, priority,deadline} = this.state
     return (
-      <div className="CreateTaskModal">
-        <Button color="outline-primary" onClick={this.toggleModal.bind(this)} size="lg" block>Create Task</Button>
+      <div className="EditPlanModal">
+        <Button color="outline-primary" onClick={this.toggleModal.bind(this)}>Edit Plan</Button>
 
         <Modal size='lg' isOpen={this.state.modalIsOpen}   >
-          <ModalHeader toggle={this.toggleModal.bind(this)} >Create Task</ModalHeader>
+          <ModalHeader toggle={this.toggleModal.bind(this)} >Edit Plan</ModalHeader>
           <ModalBody>
               <Form onSubmit={this.submitHandler}>
                 <FormGroup row>
@@ -91,7 +97,7 @@ else
                 <FormGroup row>
                   <Label sm={3}>Category</Label>
                   <Col sm={9}>
-                    <Input name="category" value={category} placeholder="Add a category ..." onChange={this.changeHandler}/>
+                    <Input name="category" value={category}  placeholder="Add a category ..." onChange={this.changeHandler}/>
                   </Col>
                 </FormGroup>
 
@@ -99,25 +105,6 @@ else
                   <Label sm={3}>Departament</Label>
                   <Col sm={9}>
                     <Input name="departament" value={departament} placeholder="Add a departament ..." onChange={this.changeHandler}/>
-                  </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                  <Label sm={3}>Difficulty</Label>
-                  <Col sm={9}>
-                    <select className="browser-default custom-select" name="difficulty" value={difficulty} onChange={this.changeHandler}>
-                    <option>Choose your difficulty</option>
-                    <option value="10">10</option>
-                    <option value="9">9</option>
-                    <option value="8">8</option>
-                    <option value="7">7</option>
-                    <option value="6">6</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                    </select>
                   </Col>
                 </FormGroup>
 
@@ -163,4 +150,4 @@ else
   }
 }
 
-export default CreateTaskModal;
+export default EditPlanModal;

@@ -41,7 +41,8 @@ changeHandler = e => {
 
 submitHandler = e =>{
   e.preventDefault()
-
+if(this.state.name && this.state.category && this.state.departament && this.state.description && this.state.priority && this.state.deadline)
+{
   const create = {
       name : this.state.name,
       category : this.state.category,
@@ -62,6 +63,10 @@ submitHandler = e =>{
     console.log(error)
   })
 
+}
+else {
+  console.log('Nu au fost introduse toate datele')
+}
 }
 
 
