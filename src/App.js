@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import ReactDOM from "react-dom";
-import './style/App.css';
 
 /** */
-import Auth from "./components/auth";
+import Auth from "./components/Auth/auth";
 import Dashboard from "./components/dashboard"
 import Plan from "./components/View/plan";
 import Task from "./components/View/task";
