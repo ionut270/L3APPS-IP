@@ -1,0 +1,13 @@
+.SideNav{
+    width:100%;
+    height: 400px;
+    background-color: rgb(233, 233, 233);
+}
+
+ul li {
+    list-style-type:none;
+    padding: 10px 0px;
+}
+h1{
+    text-align: center;
+}

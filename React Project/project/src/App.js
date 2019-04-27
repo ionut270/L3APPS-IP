@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SideNav from './components/SideNav';
+import MainContent from './components/MainContent';
+import { Grid } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+  
+       <Grid columns={2} celled>
+         <Grid.Row>
+            <Grid.Column width="4">
+              <SideNav></SideNav>
+            </Grid.Column>
+            <Grid.Column width="12">
+              <MainContent></MainContent>
+            </Grid.Column>
+         </Grid.Row>
+        </Grid>
     );
   }
 }
