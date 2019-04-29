@@ -10,13 +10,13 @@ import {
   Card
 } from "semantic-ui-react";
 
-class ViewPlan extends React.Component {
+class ViewTask extends React.Component {
   render() {
     return (
-      <div className="ViewPlan">
+      <div className="ViewTask">
         <Container textAlign="justified">
           <Divider horizontal>
-            <Header as="h1">Nume Plan</Header>
+            <Header as="h1">Nume Task</Header>
           </Divider>
 
           <Segment color="yellow">
@@ -64,7 +64,30 @@ class ViewPlan extends React.Component {
 
             <Divider hidden />
             <Divider horizontal>
-              <Header as="h3">Tasks</Header>
+              <Header as="h3">Sub-Tasks</Header>
+            </Divider>
+            <Divider hidden />
+            <Card.Group>
+              <Card>
+                <Card.Content>
+                  <Card.Header>Sub-Task Name</Card.Header>
+                  <Card.Meta>Deadline</Card.Meta>
+                  <Card.Meta>Priority</Card.Meta>
+                  <Card.Meta>Status</Card.Meta>
+                </Card.Content>
+              </Card>
+              <Card>
+                <Card.Content>
+                  <Card.Header>Sub-Task Name</Card.Header>
+                  <Card.Meta>Deadline</Card.Meta>
+                  <Card.Meta>Priority</Card.Meta>
+                  <Card.Meta>Status</Card.Meta>
+                </Card.Content>
+              </Card>
+            </Card.Group>
+            <Divider hidden />
+            <Divider horizontal>
+              <Header as="h3">Depends on</Header>
             </Divider>
             <Divider hidden />
             <Card.Group>
@@ -85,9 +108,7 @@ class ViewPlan extends React.Component {
                 </Card.Content>
               </Card>
             </Card.Group>
-
             <Divider hidden />
-
             <Divider horizontal>
               <Header as="h3">Participants</Header>
             </Divider>
@@ -116,4 +137,4 @@ class ViewPlan extends React.Component {
   }
 }
 
-export default ViewPlan;
+export default ViewTask;

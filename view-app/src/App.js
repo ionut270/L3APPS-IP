@@ -1,12 +1,13 @@
-import React from 'react';
-import  ViewPlan  from './Components/ViewPlan.js';
-
+import React from "react";
+import ViewPlan from "./Components/ViewPlan.js";
+import ViewTask from "./Components/ViewTask.js";
+import ViewSubTask from "./Components/ViewSubTask.js";
 
 class App extends React.Component {
   render() {
-    return(
+    return (
       <div className="App">
-        <ViewPlan />
+        <ViewSubTask />
       </div>
     );
   }
