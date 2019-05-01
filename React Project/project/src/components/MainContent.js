@@ -6,21 +6,6 @@ class MainContent extends Component{
 
     state = { activeItem: 'profile informations' }
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-    function changeContent() {
-        var x = document.getElementsByClassName("content");
-        var y = document.getElementsByClassName("menu");
-        
-        if (y.activeItem && y.name === "profile informations") {
-          x.innerHTML = "Swapped text!";
-        } else
-        if(y.activeItem && y.name === "edit informations") {
-          x.innerHTML = "Hello";
-        }
-        else if(y.activeItem && y.name === "tasks assigned"){
-            x.innerHTML = " Hi!"
-        }
-      }
-      changeContent();
     render(){
     const { activeItem } = this.state
     return (
@@ -37,6 +22,7 @@ class MainContent extends Component{
 
         <Grid.Column stretched width={12}>
           <Container className="content">
+          text
           </Container>
         </Grid.Column>
       </Grid>

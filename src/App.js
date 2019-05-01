@@ -1,68 +1,37 @@
 import React, { Component } from 'react';
-import Header from './components/layout/Header';
-import Todos from './components/Todos';
-import AddTodo from './components/AddTodo';
-import uuid from 'uuid';
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import ReactDOM from "react-dom";
 
-import './App.css';
+/** */
+import Auth from "./components/Auth/auth";
+import Dashboard from "./components/dashboard"
+import Plan from "./components/View/plan";
+import Task from "./components/View/task";
+import Subtask from "./components/View/subtask";
+import Profile from "./components/View/profile";
+/** */
 
-class App extends Component {
-  state= {
-    todos: [
-     { id: uuid.v4(),
-      title: 'Take out the dog',
-      completed: false
-     },
-
-     { id: uuid.v4(),
-      title: 'Make dinner',
-      completed: true
-     },
-
-     { id: uuid.v4(),
-      title: 'Pick up kids',
-      completed: false
-     }
-    ]
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      isAuth:true
+    }
   }
-    // Toggle Complete(todo marks)
-    markComplete = (id) => {
-      this.setState( { todos: this.state.todos.map(todo =>{
-        if(todo.id === id){
-          todo.completed = !todo.completed
-        }
-        return todo;
-      })} );
-    }
-
-    //Detele Todo
-    delTodo= (id) =>{
-      this.setState({ todos: [...this.state.todos.filter(todo => todo.id 
-        != id)] });
-    }
-
-    //Add Todo
-    addTodo= (title) => {
-      const newTodo={
-        id: uuid.v4(),
-        title,
-        completed: false
-      }
-      this.setState({ todos: [...this.state.todos, newTodo ] })
-    }
-
   render() {
+    console.log("State is ",this.state);
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddTodo addTodo={this.addTodo} />
-          <Todos todos={this.state.todos} markComplete={this.markComplete}
-          delTodo={this.delTodo} />
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" component={Auth} value = {this.state.isAuth} />
+          <Route path="/auth" component={Auth} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/plan" component={Plan} />
+          <Route path="/task" component={Task} />
+          <Route path="/subtask" component={Subtask} />
+          <Route path="/profile" component={Profile} />
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
-
-export default App;
