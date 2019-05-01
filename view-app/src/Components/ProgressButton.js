@@ -1,13 +1,23 @@
 import React from "react";
 import { Button, Header, Divider, Progress, Modal } from "semantic-ui-react";
+import axios from "axios";
 
 class ProgressButton extends React.Component {
-  state = { modalOpen: false };
+  state = { modalOpen: false, employees: [] };
+
+  componentDidMount() {
+    axios.get("http://localhost:3000/employees").then(res => {
+      console.log(res);
+      this.setState({ employees: res.data });
+    });
+  }
 
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleClose = () => this.setState({ modalOpen: false });
+
   render() {
+    const { posts } = this.state.employees;
     return (
       <div className="ProgressButton">
         <Modal
@@ -23,7 +33,7 @@ class ProgressButton extends React.Component {
           <Modal.Content image scrolling>
             <Modal.Description>
               <Divider horizontal>
-                <Header>Nume Subordonat</Header>
+                <Header />
               </Divider>
               <Progress
                 active
