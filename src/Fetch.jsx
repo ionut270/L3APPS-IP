@@ -83,28 +83,28 @@ var linkSearchGet = "link-ul json-ului";
 
 // Request-uri AJAX Serviciu Logare
 var loginGetReq = new XMLHttpRequest();
-loginGetReq.open("GET", linkLoginGet, false);
-loginGetReq.send(null);
+loginGetReq.open("GET", linkLoginGet, true);
+loginGetReq.send();
 
 var loginPostReq = new XMLHttpRequest();
-loginPostReq.open("POST", linkLoginPost, false);
+loginPostReq.open("POST", linkLoginPost, true);
 loginPostReq.send(null);
 
 var signupGetReq = new XMLHttpRequest();
-signupGetReq.open("GET", linkSignupGet, false);
-signupGetReq.send(null);
+signupGetReq.open("GET", linkSignupGet, true);
+signupGetReq.send();
 
 var signupPostReq = new XMLHttpRequest();
-signupPostReq.open("POST", linkSignupPost, false);
+signupPostReq.open("POST", linkSignupPost, true);
 signupPostReq.send(null);
 
 var checkSessionGetReq = new XMLHttpRequest();
-checkSessionGetReq.open("GET", linkCheckSessionGet, false);
-checkGetReq.send(null);
+checkSessionGetReq.open("GET", linkCheckSessionGet, true);
+checkGetReq.send();
 
 var checkSessionPostReq = new XMLHttpRequest();
-checkSessionPostReq.open("POST", linkCheckSessionPost, false);
-checkSessionPostReq.send(null);
+checkSessionPostReq.open("POST", linkCheckSessionPost, true);
+checkSessionPostReq.send();
 
 // Functii Login
 async function loginInfo() {
@@ -132,27 +132,27 @@ async function signupInfo() {
 
 // Request-uri AJAX Serviciu Profil
 var successfulGetReq = new XMLHttpRequest();
-successfulGetReq.open("GET", linkSuccessfulGet, false);
-successfulGetReq.send(null);
+successfulGetReq.open("GET", linkSuccessfulGet, true);
+successfulGetReq.send();
 
 var successfulPostReq = new XMLHttpRequest();
-successfulPostReq.open("POST", linkSuccessfulPost, false);
+successfulPostReq.open("POST", linkSuccessfulPost, true);
 successfulPostReq.send(null);
 
 var tryGetReq = new XMLHttpRequest();
-tryGetReq.open("GET", linkTryGet, false);
-tryGetReq.send(null);
+tryGetReq.open("GET", linkTryGet, true);
+tryGetReq.send();
 
 var tryPostReq = new XMLHttpRequest();
-tryPostReq.open("POST", linkTryPost, false);
+tryPostReq.open("POST", linkTryPost, true);
 tryPostReq.send(null);
 
 var editProfiletryGetReq = new XMLHttpRequest();
-editProfiletryGetReq.open("GET", linkEditProfileTryGet, false);
-editProfiletryGetReq.send(null);
+editProfiletryGetReq.open("GET", linkEditProfileTryGet, true);
+editProfiletryGetReq.send();
 
 var editProfiletryPostReq = new XMLHttpRequest();
-editProfiletryPostReq.open("POST", linkEditProfileTryPost, false);
+editProfiletryPostReq.open("POST", linkEditProfileTryPost, true);
 editProfiletryPostReq.send(null);
 
 // Functii Profil
@@ -178,35 +178,35 @@ async function profileEditInfo(){
 
 // Request-uri AJAX Serviciu Angajati
 var emplSuccessGetReq = new XMLHttpRequest();
-emplSuccessGetReq.open("GET", linkEmplSuccessGet, false);
-emplSuccessGetReq.send(null);
+emplSuccessGetReq.open("GET", linkEmplSuccessGet, true);
+emplSuccessGetReq.send();
 
 var emplSuccessPostReq = new XMLHttpRequest();
-emplSuccessPostReq.open("POST", linkEmplSuccessPost, false);
+emplSuccessPostReq.open("POST", linkEmplSuccessPost, true);
 emplSuccessPostReq.send(null);
 
 var addUnderlingTryGetReq = new XMLHttpRequest();
-addUnderlingTryGetReq.open("GET", linkAddUnderlingTryGet, false);
-addUnderlingTryGetReq.send(null);
+addUnderlingTryGetReq.open("GET", linkAddUnderlingTryGet, true);
+addUnderlingTryGetReq.send();
 
 var addUnderlingTryPostReq = new XMLHttpRequest();
-addUnderlingTryPostReq.open("POST", linkaddUnderlingTryPost, false);
+addUnderlingTryPostReq.open("POST", linkaddUnderlingTryPost, true);
 addUnderlingTryPostReq.send(null);
 
 var removeUnderlingTryGetReq = new XMLHttpRequest();
-removeUnderlingTryGetReq.open("GET", linkRemoveUnderlingTryGet, false);
-removeUnderlingTryGetReq.send(null);
+removeUnderlingTryGetReq.open("GET", linkRemoveUnderlingTryGet, true);
+removeUnderlingTryGetReq.send();
 
 var removeUnderlingTryPostReq = new XMLHttpRequest();
-removeUnderlingTryPostReq.open("POST", linkRemoveUnderlingTryPost, false);
+removeUnderlingTryPostReq.open("POST", linkRemoveUnderlingTryPost, true);
 removeUnderlingTryPostReq.send(null);
 
 var searchGetReq = new XMLHttpRequest();
-searchGetReq.open("GET", linkSearchGet, false);
-searchGetReq.send(null);
+searchGetReq.open("GET", linkSearchGet, true);
+searchGetReq.send();
 
 var searchPostReq = new XMLHttpRequest();
-searchPostReq.open("POST", linkSearchPost, false);
+searchPostReq.open("POST", linkSearchPost, true);
 searchPostReq.send(null);
 
 //Functii Angajati
@@ -241,191 +241,191 @@ async function searchInfo(){
 // Request-uri AJAX Serviciu Task
 
 var addDepGetReq = new XMLHttpRequest();
-addDepGetReq.open("GET", linkAddDepGet, false);
-addDepGetReq.send(null);
+addDepGetReq.open("GET", linkAddDepGet, true);
+addDepGetReq.send();
 
 var addDepPostReq = new XMLHttpRequest();
-addDepPostReq.open("POST", linkAddDepPost, false);
+addDepPostReq.open("POST", linkAddDepPost, true);
 addDepPostReq.send(null);
 
 var addParticipantsGetReq = new XMLHttpRequest();
-addParticipantsGetReq.open("GET", linkAddParticipantsGet, false);
-addParticipantsGetReq.send(null);
+addParticipantsGetReq.open("GET", linkAddParticipantsGet, true);
+addParticipantsGetReq.send();
 
 var addParticipantsPostReq = new XMLHttpRequest();
-addParticipantsPostReq.open("POST", linkAddParticipantsPost, false);
+addParticipantsPostReq.open("POST", linkAddParticipantsPost, true);
 addParticipantsPostReq.send(null);
 
 var autoAssignGetReq = new XMLHttpRequest();
-autoAssignautoAssignGetReq.open("GET", linkAutoAssignGet, false);
-autoAssignGetReq.send(null);
+autoAssignautoAssignGetReq.open("GET", linkAutoAssignGet, true);
+autoAssignGetReq.send();
 
 var autoAssignPostReq = new XMLHttpRequest();
-autoAssignPostReq.open("POST", linkAutoAssignPost, false);
+autoAssignPostReq.open("POST", linkAutoAssignPost, true);
 autoAssignPostReq.send(null);
 
 var createPlanSuccessGetReq = new XMLHttpRequest();
-createPlanSuccessGetReq.open("GET", linkCreatePlanSuccessGet, false);
-createPlanSuccessGetReq.send(null);
+createPlanSuccessGetReq.open("GET", linkCreatePlanSuccessGet, true);
+createPlanSuccessGetReq.send();
 
 var createPlanSuccessPostReq = new XMLHttpRequest();
-createPlanSuccessPostReq.open("POST", CreatePlanSuccesslinkPost, false);
+createPlanSuccessPostReq.open("POST", linkCreatePlanSuccesslinkPost, true);
 createPlanSuccessPostReq.send(null);
 
 var createPlanTryGetReq = new XMLHttpRequest();
-createPlanTryGetReq.open("GET", linkCreatePlanTryGet, false);
-createPlanTryGetReq.send(null);
+createPlanTryGetReq.open("GET", linkCreatePlanTryGet, true);
+createPlanTryGetReq.send();
 
 var createPlanTryPostReq = new XMLHttpRequest();
-createPlanTryPostReq.open("POST", linkCreatePlanTryPost, false);
+createPlanTryPostReq.open("POST", linkCreatePlanTryPost, true);
 createPlanTryPostReq.send(null);
 
 var deleteGetReq = new XMLHttpRequest();
-deleteGetReq.open("GET", linkDeleteGet, false);
-deleteGetReq.send(null);
+deleteGetReq.open("GET", linkDeleteGet, true);
+deleteGetReq.send();
 
 var deletePostReq = new XMLHttpRequest();
-deletePostReq.open("POST", linkDeletePost, false);
+deletePostReq.open("POST", linkDeletePost, true);
 deletePostReq.send(null);
 
 var editPlanSuccessGetReq = new XMLHttpRequest();
-editPlanSuccessGetReq.open("GET", linkEditPlanSuccessGet, false);
-editPlanSuccessGetReq.send(null);
+editPlanSuccessGetReq.open("GET", linkEditPlanSuccessGet, true);
+editPlanSuccessGetReq.send();
 
 var editPlanSuccessPostReq = new XMLHttpRequest();
-editPlanSuccessPostReq.open("POST", linkEditPlanSuccessPost, false);
+editPlanSuccessPostReq.open("POST", linkEditPlanSuccessPost, true);
 editPlanSuccessPostReq.send(null);
 
 var editPlanTryGetReq = new XMLHttpRequest();
-editPlanTryGetReq.open("GET", linkEditPlanTryGet, false);
-editPlanTryGetReq.send(null);
+editPlanTryGetReq.open("GET", linkEditPlanTryGet, true);
+editPlanTryGetReq.send();
 
 var editPlanTryPostReq = new XMLHttpRequest();
-editPlanTryPostReq.open("POST", linkEditPlanTryPost, false);
+editPlanTryPostReq.open("POST", linkEditPlanTryPost, true);
 editPlanTryPostReq.send(null);
 
 var monthlyTasksGetReq = new XMLHttpRequest();
-monthlyTasksGetReq.open("GET", linkMonthlyTasksGet, false);
-monthlyTasksGetReq.send(null);
+monthlyTasksGetReq.open("GET", linkMonthlyTasksGet, true);
+monthlyTasksGetReq.send();
 
 var monthlyTasksPostReq = new XMLHttpRequest();
-monthlyTasksPostReq.open("POST", linkMonthlyTasksPost, false);
+monthlyTasksPostReq.open("POST", linkMonthlyTasksPost, true);
 monthlyTasksPostReq.send(null);
 
 var planSuccessAddSubtaskGetReq = new XMLHttpRequest();
-planSuccessAddSubtaskGetReq.open("GET", linkPlanSuccessAddSubtaskGet, false);
-planSuccessAddSubtaskGetReq.send(null);
+planSuccessAddSubtaskGetReq.open("GET", linkPlanSuccessAddSubtaskGet, true);
+planSuccessAddSubtaskGetReq.send();
 
 var planSuccessAddSubtaskPostReq = new XMLHttpRequest();
-planSuccessAddSubtaskPostReq.open("POST", linkPlanSuccessAddSubtaskPost, false);
+planSuccessAddSubtaskPostReq.open("POST", linkPlanSuccessAddSubtaskPost, true);
 planSuccessAddSubtaskPostReq.send(null);
 
 var planSuccessAddTaskGetReq = new XMLHttpRequest();
-planSuccessAddTaskGetReq.open("GET", linkPlanSuccessAddTaskGet, false);
-planSuccessAddTaskGetReq.send(null);
+planSuccessAddTaskGetReq.open("GET", linkPlanSuccessAddTaskGet, true);
+planSuccessAddTaskGetReq.send();
 
 var planSuccessAddTaskPostReq = new XMLHttpRequest();
-planSuccessAddTaskPostReq.open("POST", linkPlanSuccessAddTaskPost, false);
+planSuccessAddTaskPostReq.open("POST", linkPlanSuccessAddTaskPost, true);
 planSuccessAddTaskPostReq.send(null);
 
 var planSuccessEditSubtaskGetReq = new XMLHttpRequest();
-planSuccessEditSubtaskGetReq.open("GET", linkPlanSuccessEditSubtaskGet, false);
-planSuccessEditSubtaskGetReq.send(null);
+planSuccessEditSubtaskGetReq.open("GET", linkPlanSuccessEditSubtaskGet, true);
+planSuccessEditSubtaskGetReq.send();
 
 var planSuccessEditSubtaskPostReq = new XMLHttpRequest();
-planSuccessEditSubtaskPostReq.open("POST", linkPlanSuccessEditSubtaskPost, false);
+planSuccessEditSubtaskPostReq.open("POST", linkPlanSuccessEditSubtaskPost, true);
 planSuccessEditSubtaskPostReq.send(null);
 
 var planSuccessEditTaskGetReq = new XMLHttpRequest();
-planSuccessEditTaskGetReq.open("GET", linkPlanSuccessEditTaskGet, false);
-planSuccessEditTaskGetReq.send(null);
+planSuccessEditTaskGetReq.open("GET", linkPlanSuccessEditTaskGet, true);
+planSuccessEditTaskGetReq.send();
 
 var planSuccessEditTaskPostReq = new XMLHttpRequest();
-planSuccessEditTaskPostReq.open("POST", linkPlanSuccessEditTaskPost, false);
+planSuccessEditTaskPostReq.open("POST", linkPlanSuccessEditTaskPost, true);
 planSuccessEditTaskPostReq.send(null);
 
 var planTryAddSubtaskGetReq = new XMLHttpRequest();
-planTryAddSubtaskGetReq.open("GET", linkPlanTryAddSubtaskGet, false);
-planTryAddSubtaskGetReq.send(null);
+planTryAddSubtaskGetReq.open("GET", linkPlanTryAddSubtaskGet, true);
+planTryAddSubtaskGetReq.send();
 
 var planTryAddSubtaskGetPostReq = new XMLHttpRequest();
-planTryAddSubtaskPostReq.open("POST", linkPlanTryAddSubtaskPost, false);
+planTryAddSubtaskPostReq.open("POST", linkPlanTryAddSubtaskPost, true);
 planTryAddSubtaskPostReq.send(null);
 
 var planTryAddTaskGetReq = new XMLHttpRequest();
-planTryAddTaskGetReq.open("GET", linkPlanTryAddTaskGet, false);
-planTryAddTaskGetReq.send(null);
+planTryAddTaskGetReq.open("GET", linkPlanTryAddTaskGet, true);
+planTryAddTaskGetReq.send();
 
 var planTryAddTaskPostReq = new XMLHttpRequest();
-planTryAddTaskPostReq.open("POST", linkPlanTryAddTaskPost, false);
+planTryAddTaskPostReq.open("POST", linkPlanTryAddTaskPost, true);
 planTryAddTaskPostReq.send(null);
 
 var planTryEditSubtaskGetReq = new XMLHttpRequest();
-planTryEditSubtaskGetReq.open("GET", linkPlanTryEditSubtaskGet, false);
-planTryEditSubtaskGetReq.send(null);
+planTryEditSubtaskGetReq.open("GET", linkPlanTryEditSubtaskGet, true);
+planTryEditSubtaskGetReq.send();
 
 var planTryEditSubtaskPostReq = new XMLHttpRequest();
-planTryEditSubtaskPostReq.open("POST", linkPlanTryEditSubtaskPost, false);
+planTryEditSubtaskPostReq.open("POST", linkPlanTryEditSubtaskPost, true);
 planTryEditSubtaskPostReq.send(null);
 
 var planTryEditTaskGetReq = new XMLHttpRequest();
-planTryEditTaskGetReq.open("GET", linkPlanTryEditTaskGet, false);
-planTryEditTaskGetReq.send(null);
+planTryEditTaskGetReq.open("GET", linkPlanTryEditTaskGet, true);
+planTryEditTaskGetReq.send();
 
 var planTryEditTaskPostReq = new XMLHttpRequest();
-planTryEditTaskPostReq.open("POST", linkPlanTryEditTaskPost, false);
+planTryEditTaskPostReq.open("POST", linkPlanTryEditTaskPost, true);
 planTryEditTaskPostReq.send(null);
 
 var rearrangeTasksPostReq = new XMLHttpRequest();
-rearrangeTasksPostReq.open("POST", linkRearrangeTasksPost, false);
+rearrangeTasksPostReq.open("POST", linkRearrangeTasksPost, true);
 rearrangeTasksPostReq.send(null);
 
 var tasksTodayGetReq = new XMLHttpRequest();
-tasksTodayGetReq.open("GET", linkTasksTodayGet, false);
-tasksTodayGetReq.send(null);
+tasksTodayGetReq.open("GET", linkTasksTodayGet, true);
+tasksTodayGetReq.send();
 
 var tasksTodayPostReq = new XMLHttpRequest();
-tasksTodayPostReq.open("POST", linkTasksTodayPost, false);
+tasksTodayPostReq.open("POST", linkTasksTodayPost, true);
 tasksTodayPostReq.send(null);
 
 var viewPlanTryGetReq = new XMLHttpRequest();
-viewPlanTryGetReq.open("GET", linkViewPlanTryGet, false);
-viewPlanTryGetReq.send(null);
+viewPlanTryGetReq.open("GET", linkViewPlanTryGet, true);
+viewPlanTryGetReq.send();
 
 var viewPlanTryPostReq = new XMLHttpRequest();
-viewPlanTryPostReq.open("POST", linkViewPlanTryPost, false);
+viewPlanTryPostReq.open("POST", linkViewPlanTryPost, true);
 viewPlanTryPostReq.send(null);
 
 var viewSubtaskTryGetReq = new XMLHttpRequest();
-viewSubtaskTryGetReq.open("GET", linkViewSubtaskTryGet, false);
-viewSubtaskTryGetReq.send(null);
+viewSubtaskTryGetReq.open("GET", linkViewSubtaskTryGet, true);
+viewSubtaskTryGetReq.send();
 
 var viewSubtaskTryPostReq = new XMLHttpRequest();
-viewSubtaskTryPostReq.open("POST", linkViewSubtaskTryPost, false);
+viewSubtaskTryPostReq.open("POST", linkViewSubtaskTryPost, true);
 viewSubtaskTryPostReq.send(null);
 
 var viewTaskTryGetReq = new XMLHttpRequest();
-viewTaskTryGetReq.open("GET", linkViewTaskTryGet, false);
-viewTaskTryGetReq.send(null);
+viewTaskTryGetReq.open("GET", linkViewTaskTryGet, true);
+viewTaskTryGetReq.send();
 
 var viewTaskTryPostReq = new XMLHttpRequest();
-viewTaskTryPostReq.open("POST", linkViewTaskTryPost, false);
+viewTaskTryPostReq.open("POST", linkViewTaskTryPost, true);
 viewTaskTryPostReq.send(null);
 
 var weeklyTasksGetReq = new XMLHttpRequest();
-weeklyTasksGetReq.open("GET", linkWeeklyTasksGet, false);
-weeklyTasksGetReq.send(null);
+weeklyTasksGetReq.open("GET", linkWeeklyTasksGet, true);
+weeklyTasksGetReq.send();
 
 var weeklyTasksPostReq = new XMLHttpRequest();
-weeklyTasksPostReq.open("POST", linkWeeklyTasksPost, false);
+weeklyTasksPostReq.open("POST", linkWeeklyTasksPost, true);
 weeklyTasksPostReq.send(null);
 
 var yearlyTasksGetReq = new XMLHttpRequest();
-yearlyTasksGetReq.open("GET", linkYearlyTasksGet, false);
-yearlyTasksGetReq.send(null);
+yearlyTasksGetReq.open("GET", linkYearlyTasksGet, true);
+yearlyTasksGetReq.send();
 
 var yearlyTasksPostReq = new XMLHttpRequest();
-yearlyTasksPostReq.open("POST", linkYearlyTasksPost, false);
+yearlyTasksPostReq.open("POST", linkYearlyTasksPost, true);
 yearlyTasksPostReq.send(null);
 
 // Functii Task
