@@ -1,0 +1,14 @@
+.dashFlex {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+
+}
+
+dash-in-list {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
+.dash-container {}

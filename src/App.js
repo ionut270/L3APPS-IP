@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import ReactDOM from "react-dom";
 
-class App extends Component {
+/** */
+import Auth from "./components/Auth/auth";
+import Dashboard from "./components/dashboard"
+import Plan from "./components/View/plan";
+import Task from "./components/View/task";
+import Subtask from "./components/View/subtask";
+import Profile from "./components/View/profile";
+/** */
+
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      isAuth:true
+    }
+  }
   render() {
+    console.log("State is ",this.state);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" component={Auth} value = {this.state.isAuth} />
+          <Route path="/auth" component={Auth} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/plan" component={Plan} />
+          <Route path="/task" component={Task} />
+          <Route path="/subtask" component={Subtask} />
+          <Route path="/profile" component={Profile} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
-
-export default App;
