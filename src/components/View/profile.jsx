@@ -1,9 +1,7 @@
 import React , { Component } from 'react';
-import { Grid, Menu , Container } from 'semantic-ui-react';
+import { Grid, Menu , Container, Image, List } from 'semantic-ui-react';
 import { HashRouter as Router} from "react-router-dom";
-import ProfileInfo from './profileContent/ProfileInfo';
-import EditInfo from './profileContent/EditInfo';
-import TasksInfo from './profileContent/TasksInfo';
+import './profileContent/profile.css';
 
 class profile extends Component{
 
@@ -12,15 +10,17 @@ class profile extends Component{
         this.setState({ activeItem: name });
 
         console.log(name);
-        if(name === "edit informations"){
-            document.getElementById("content").innerHTML =document.getElementById("content").innerHTML = '<EditInfo></EditInfo>';
-        }
-        else if(name === "tasks assigned" ){
-            document.getElementById("content").innerHTML = '<TasksInfo></TasksInfo>';
-        }
-        else if(name === "profile informations" )
-        document.getElementById("content").innerHTML = '<ProfileInfo></ProfileInfo>';
-        }
+        // if(name === "edit informations"){
+        //     // document.getElementByClassName("content").innerHTML =document.getElementById("content").innerHTML = '<EditInfo></EditInfo>';
+        //     return (<h1>TEXT RANDOM</h1>)
+        // }
+        // else if(name === "tasks assigned" ){
+        //     document.getElementById("content").innerHTML = '<TasksInfo></TasksInfo>';
+        // }
+        // else if(name === "profile informations" )
+        // document.getElementById("content").innerHTML = '<ProfileInfo></ProfileInfo>';
+
+    }
         
     render(){
     if (this.props.location.pathname !== "/profile") {
@@ -28,11 +28,35 @@ class profile extends Component{
         }
     const { activeItem } = this.state;
 
-
+    var ChangeComponent = (props) =>{
+    if(this.state.activeItem === 'profile informations')
+    return(
+        <Grid>
+            <Grid.Column width={4}>
+            <Image src='./images/img_avatar.png'></Image>
+            </Grid.Column>
+            <Grid.Column width={8}>
+                <List>
+                    <List.Item>Full name:</List.Item>
+                    <List.Item>Age:</List.Item>
+                    <List.Item>Description:</List.Item>
+                </List>
+            </Grid.Column>
+        </Grid>
+    );
+    else if(this.state.activeItem === 'edit informations')
+    return(
+        <h1>asda</h1>
+    );
+    else if(this.state.activeItem === 'tasks assigned')
+    return(
+        <h1>asddasdaa</h1>
+    );
+    }
 
     return (
         <Router basename="/profile/">
-            <Grid>
+            <Grid className="profileContent">
                 <Grid.Column width={4}>
                     <Menu className="menu" fluid vertical tabular >
 
@@ -44,8 +68,8 @@ class profile extends Component{
         </Grid.Column>
         
         <Grid.Column stretched width={12}>
-        <Container id="content">
-
+        <Container className="content">
+        <ChangeComponent name = "profile" onClick></ChangeComponent>
         </Container>
         </Grid.Column>
         </Grid>
