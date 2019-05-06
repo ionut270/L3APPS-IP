@@ -1,0 +1,281 @@
+{
+    "Header": {
+      "search-post": {
+        "data": ""
+      }
+    },
+  
+    "create": {
+      "create-plan-try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "create-plan-sucess-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "",
+        "departament": "",
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "",
+        "owners": [
+          {
+            "id": "IDUL CELUI CARE E RESP DE PROIECT"
+          }
+        ],
+        "participants": [
+          {
+            "id": "",
+            "role": "scrum master/scrum"
+          }
+        ],
+        "deadline": ""
+      },
+      "plan-try-add-task-post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "plan-sucess-add-task-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "planning ? diagrame ? ... cod ..",
+        "dificulty": "?/10",
+        "departament": "design/testing/et",
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "/complete/doing/plannig",
+        "participants": [
+          {
+            "id": ""
+          }
+        ],
+        "deadline": { "date": "", "time": "" },
+        "dependencies": [
+          {
+            "id": ""
+          }
+        ]
+      },
+      "plan-try-add-subtask-post": {
+        "task-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "plan-sucess-add-subtask-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "",
+        "dificulty": "?/10 //mai mica ca dif taskului",
+        "creator": "",
+        "description": "",
+        "priority": "minor/must/etc",
+        "status": "/complete/doing/plannig",
+        "participants": [
+          {
+            "id": ""
+          }
+        ],
+        "deadline": { "date": "", "time": "" },
+        "dependencies": [
+          {
+            "subtask-id": ""
+          }
+        ]
+      }
+    },
+  
+    "edit": {
+      "edit-plan-try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "edit-plan-sucess-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "",
+        "departament": "",
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "",
+        "owners": [
+          {
+            "id": "IDUL CELUI CARE E RESP DE PROIECT"
+          }
+        ],
+        "participants": [
+          {
+            "id": "",
+            "role": "scrum master/scrum"
+          }
+        ],
+        "deadline": { "date": "", "time": "" },
+        "commit": {
+          "userId": "",
+          "changes": "",
+          "date": ""
+        }
+      },
+      "plan-try-edit-task-post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "plan-sucess-edit-task-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "planning ? diagrame ? ... cod ..",
+        "dificulty": "?/10",
+        "departament": "design/testing/et",
+        "creator": "",
+        "description": "",
+        "priority": "",
+        "status": "/complete/doing/plannig",
+        "participants": [
+          {
+            "id": ""
+          }
+        ],
+        "deadline": { "date": "", "time": "" },
+        "dependencies": [
+          {
+            "id": ""
+          }
+        ],
+        "commit": {
+          "userId": "",
+          "changes": "",
+          "date": ""
+        }
+      },
+      "plan-try-edit-subtask-post": {
+        "task-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "plan-sucess-edit-subtask-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "id": "",
+        "name": "",
+        "category": "",
+        "dificulty": "?/10 //mai mica ca dif taskului",
+        "creator": "",
+        "description": "",
+        "priority": "minor/must/etc",
+        "status": "/complete/doing/plannig",
+        "participants": [
+          {
+            "id": ""
+          }
+        ],
+        "deadline": { "date": "", "time": "" },
+        "dependencies": [
+          {
+            "subtask-id": ""
+          }
+        ],
+        "commit": {
+          "userId": "",
+          "changes": "",
+          "date": ""
+        }
+      },
+      "auto-asign": {
+        "post": {
+          "id": "idul taskului sau subtaskului",
+          "type": "task||subtask"
+        },
+        "post-userAssign": ""
+      }
+    },
+  
+    "view": {
+      "view-plan-try-post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "view-task-try-post": {
+        "task-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "view-subtask-try-post": {
+        "task-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "add-participants": {
+        "post": {
+          "id": "idul taskului sau subtaskului",
+          "users-id": [],
+          "type": "task||subtask"
+        }
+      },
+      "add-dependencies": {
+        "post": [
+          {
+            "id": "",
+            "type": ""
+          }
+        ]
+      }
+    },
+  
+    "delete": {
+      "post": {
+        "delete-id": "",
+        "type": "plan||task||subtask",
+        "cookie-session": "",
+        "user-id": ""
+      }
+    },
+  
+    "overview": {
+      "tasks-today": {
+        "post": {
+          "plan-id": "",
+          "cookie-session": "",
+          "user-id": ""
+        }
+      },
+      "weekly-tasks": {
+        "post": {
+          "plan-id": "",
+          "cookie-session": "",
+          "user-id": ""
+        }
+      },
+      "monthly-tasks": {
+        "post": {
+          "plan-id": "",
+          "cookie-session": "",
+          "user-id": ""
+        }
+      },
+      "yearly-tasks": {
+        "post": {
+          "plan-id": "",
+          "cookie-session": "",
+          "user-id": ""
+        }
+      },
+      "rearange-tasks": {
+        "TODO": ""
+      }
+    }
+}

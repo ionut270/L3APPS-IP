@@ -1,0 +1,132 @@
+{
+    "your-plans": {
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "assigned-for": "",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": ""
+        }
+      ]
+    },
+    "your-tasks": {
+      "get": [
+        {
+          "id": "",
+          "name": "",
+          "category": "",
+          "type": "",
+          "assigned-for": "",
+          "dificulty": "",
+          "description": "",
+          "status": "",
+          "deadline": { "date": "", "time": "" },
+          "is-subtask": ""
+        }
+      ]
+    },
+    "your-data": {
+      "get": {
+        "username": "",
+        "userId": "",
+        "email": "",
+        "thumbnail": "",
+        "preferences": [
+          {
+            "time-of-day": {
+              "morning": "dificulty : ||relaxed||tired||focused",
+              "afternoon": "dificulty : ||relaxed||tired||focused",
+              "evening": "dificulty : ||relaxed||tired||focused"
+            }
+          }
+        ],
+        "job": {
+          "name": "",
+          "function": "",
+          "category": ""
+        },
+        "underling": [
+          {
+            "id": "id of the underling..",
+            "job": "",
+            "username": "",
+            "thumbnail": "",
+            "curent-task": {
+              "id": "id of the task he has in progres",
+              "progres": "how much has been done in %",
+              "project-coleagues": {
+                "id": "id of the underling..",
+                "job": "",
+                "username": "",
+                "thumbnail": ""
+              }
+            }
+          }
+        ],
+        "profile-description": "",
+        "ongoing-tasks-number": "",
+        "done-tasks-number": ""
+      }
+    },
+    "edit-profile": {
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "edit-preferences": {
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "add-underling": {
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+    "remove-underling": {
+      "try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "sucessfull-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    }
+  }

@@ -1,0 +1,418 @@
+{
+    "Header": {
+      "search-get": {
+        "obj": [
+          {
+            "id": "",
+            "type": "",
+            "category": "",
+            "dificulty": "",
+            "name": "",
+            "description": "",
+            "deadline": { "date": "", "time": "" },
+            "departament": "",
+            "participants": [
+              {
+                "thumbnail": "",
+                "name": "",
+                "id": ""
+              }
+            ],
+            "status": "",
+            "post-date": ""
+          }
+        ]
+      }
+    },
+  
+    "create": {
+      "create-plan-try-get": {
+        "response": "You have no right to this!",
+        "sucess": "true/false"
+      },
+      "create-plan-sucess-get": {
+        "response": "Sucess",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "plan-try-add-task-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "plan-sucess-add-task-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "plan-try-add-subtask-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "plan-sucess-add-subtask-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+  
+    "edit": {
+      "edit-plan-try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "edit-plan-sucess-get": {
+        "response": "Sucess",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "plan-try-edit-task-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "plan-sucess-edit-task-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "plan-try-edit-subtask-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false"
+      },
+      "plan-sucess-edit-subtask-get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      },
+      "auto-asign": {
+        "get": {
+          "response": "",
+          "obj": [
+            {
+              "id": "",
+              "username": ""
+            }
+          ],
+          "errors": [
+            {
+              "error": ""
+            }
+          ]
+        },
+        "post-userAssign": ""
+      }
+    },
+  
+    "view": {
+      "view-plan-try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false",
+        "obj": {
+          "id": "",
+          "name": "",
+          "category": "",
+          "departament": "",
+          "deadline": { "date": "", "time": "" },
+          "creator": "",
+          "description": "",
+          "priority": "",
+          "status": "doing||done||todo",
+          "participants": [
+            {
+              "id": "",
+              "name": "",
+              "thumbnail": "",
+              "role": "scrum master||scrum"
+            }
+          ],
+          "tasks": [
+            {
+              "task-id": "",
+              "user-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": ""
+            }
+          ],
+          "commits": {
+            "userId": "",
+            "username": "",
+            "changes": "",
+            "date": ""
+          }
+        }
+      },
+      "view-task-try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false",
+        "obj": {
+          "id": "",
+          "name": "",
+          "category": "",
+          "departament": "",
+          "deadline": { "date": "", "time": "" },
+          "creator": "",
+          "description": "",
+          "priority": "",
+          "status": "",
+          "participants": [
+            {
+              "id": "",
+              "name": "",
+              "thumbnail": "",
+              "role": ""
+            }
+          ],
+          "sub-tasks": [
+            {
+              "subtask-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "dependencies": [
+            {
+              "task-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "reverse-dependencies": [
+            {
+              "task-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "commits": {
+            "userId": "",
+            "username": "",
+            "changes": "",
+            "date": ""
+          }
+        }
+      },
+      "view-subtask-try-get": {
+        "response": "You have no right to edit this!",
+        "sucess": "true/false",
+        "obj": {
+          "id": "",
+          "name": "",
+          "category": "",
+          "departament": "",
+          "deadline": { "date": "", "time": "" },
+          "creator": "",
+          "description": "",
+          "priority": "",
+          "status": "",
+          "participants": [
+            {
+              "id": "",
+              "name": "",
+              "thumbnail": "",
+              "role": ""
+            }
+          ],
+          "sub-tasks": [
+            {
+              "subtask-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "dependencies": [
+            {
+              "task-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "reverse-dependencies": [
+            {
+              "task-id": "",
+              "deadline": { "date": "", "time": "" },
+              "status": "",
+              "priority": "",
+              "participants": [
+                {
+                  "id": "",
+                  "name": "",
+                  "thumbnail": "",
+                  "role": ""
+                }
+              ]
+            }
+          ],
+          "commits": {
+            "userId": "",
+            "username": "",
+            "changes": "",
+            "date": ""
+          }
+        }
+      },
+      "add-participants": {
+        "get": {
+          "response": "",
+          "errors": [
+            {
+              "error": ""
+            }
+          ]
+        }
+      },
+      "add-dependencies": {
+        "get": {
+          "response": "",
+          "errors": [
+            {
+              "error": ""
+            }
+          ]
+        }
+      }
+    },
+  
+    "delete": {
+      "get": {
+        "response": "",
+        "errors": [
+          {
+            "error": ""
+          }
+        ]
+      }
+    },
+  
+    "overview": {
+      "tasks-today": {
+        "get": [
+          {
+            "id": "",
+            "name": "",
+            "category": "",
+            "type": "",
+            "time-of-day": "morning||afternoon||evening",
+            "dificulty": "",
+            "description": "",
+            "status": "",
+            "deadline": { "date": "", "time": "" },
+            "is-subtask": ""
+          }
+        ]
+      },
+      "weekly-tasks": {
+        "get": [
+          {
+            "id": "",
+            "name": "",
+            "category": "",
+            "type": "",
+            "time-of-day": "morning||afternoon||evening",
+            "dificulty": "",
+            "description": "",
+            "status": "",
+            "deadline": { "date": "", "time": "" },
+            "is-subtask": ""
+          }
+        ]
+      },
+      "monthly-tasks": {
+        "get": [
+          {
+            "id": "",
+            "name": "",
+            "category": "",
+            "type": "",
+            "time-of-day": "morning||afternoon||evening",
+            "dificulty": "",
+            "description": "",
+            "status": "",
+            "deadline": { "date": "", "time": "" },
+            "is-subtask": ""
+          }
+        ]
+      },
+      "yearly-tasks": {
+        "get": [
+          {
+            "id": "",
+            "name": "",
+            "category": "",
+            "type": "",
+            "time-of-day": "morning||afternoon||evening",
+            "dificulty": "",
+            "description": "",
+            "status": "",
+            "deadline": { "date": "", "time": "" },
+            "is-subtask": ""
+          }
+        ]
+      },
+      "rearange-tasks": {
+        "TODO": ""
+      }
+    }
+}

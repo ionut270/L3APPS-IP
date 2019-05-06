@@ -1,0 +1,15 @@
+{
+      "login": {
+        "login-post": {
+          "username": "",
+          "password": ""
+        }
+      },
+      "signup": {
+        "post": {
+          "username": "",
+          "userId": "",
+          "email": ""
+        }
+      }
+    }

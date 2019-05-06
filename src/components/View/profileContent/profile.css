@@ -3,5 +3,9 @@
     height: auto;
 }
 .content{
-    background-color:grey;
+    background-color:rgb(230, 230, 230);
+}
+
+.list-items{
+    padding-top: 20px;
 }

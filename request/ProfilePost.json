@@ -1,0 +1,90 @@
+{
+    "your-plans": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      }
+    },
+    "your-tasks": {
+      "post": {
+        "plan-id": "",
+        "cookie-session": "",
+        "user-id": ""
+      }
+    },
+    "your-data": {
+      "post": {
+        "cookie-session": "",
+        "user-id": ""
+      }
+    },
+    "edit-profile": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "succesfull-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "username": "",
+        "userId": "",
+        "email": "",
+        "thumbnail": "",
+        "job": {
+          "name": "",
+          "function": "",
+          "category": ""
+        },
+        "profile-description": ""
+      }
+    },
+    "edit-preferences": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "sucessfull-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "time-of-day": {
+          "morning": "dificulty : ||relaxed||tired||focused",
+          "afternoon": "dificulty : ||relaxed||tired||focused",
+          "evening": "dificulty : ||relaxed||tired||focused"
+        }
+      }
+    },
+    "add-underling": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "success-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "added-on": {
+          "date": "",
+          "time": ""
+        },
+        "underling": [
+          {
+            "userid": "",
+            "email": "",
+            "thumbnail": "",
+            "job": ""
+          }
+        ]
+      }
+    },
+    "remove-underling": {
+      "try-post": {
+        "cookie-session": "",
+        "user-id": ""
+      },
+      "success-post": {
+        "cookie-session": "",
+        "user-id": "",
+        "underlings-id": [""]
+      }
+    }
+  }

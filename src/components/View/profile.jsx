@@ -35,7 +35,7 @@ class profile extends Component{
             <Grid.Column width={4}>
             <Image src='./images/img_avatar.png'></Image>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column width={8} class="list-items">
                 <List>
                     <List.Item>Full name:</List.Item>
                     <List.Item>Age:</List.Item>
@@ -46,11 +46,32 @@ class profile extends Component{
     );
     else if(this.state.activeItem === 'edit informations')
     return(
-        <h1>asda</h1>
+        <Grid>
+        <Grid.Column width={4}>
+        <Image src='./images/img_avatar.png'></Image>
+        </Grid.Column>
+        <Grid.Column width={8} class="list-items">
+            <List>
+                <List.Item><a href=''>Change password</a></List.Item>
+                <List.Item><a href=''>Change email</a></List.Item>
+                <List.Item><a href=''>Change description</a></List.Item>
+            </List>
+        </Grid.Column>
+    </Grid>
     );
     else if(this.state.activeItem === 'tasks assigned')
     return(
-        <h1>asddasdaa</h1>
+        <Grid>
+        <Grid.Column width={4}>
+        <Image src='./images/img_avatar.png'></Image>
+        </Grid.Column>
+        <Grid.Column width={8} class="list-items">
+            <List>
+                <List.Item>Task Assigned:</List.Item>
+                <List.Item>Task deadline:</List.Item>
+            </List>
+        </Grid.Column>
+    </Grid>
     );
     }
 
