@@ -7,5 +7,16 @@ function onRequest(request, response){
     response.end();
 }
 
+
+
 server.createServer(onRequest).listen(3000);
 console.log("Server is now running");
+
+fetch('https://localhost:3000/request');
+.then(function (repsonse){
+    return response.json()
+})
+.then(function (data){
+    console.log('the data',data)
+})
+
