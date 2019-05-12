@@ -1,6 +1,7 @@
 import React from 'react';
 import SignupForm from './Auth/SignupForm'
 import LoginForm from './Auth/LoginForm'
+import Page from './Settings/Page'
 
  const styles={
   root:{
@@ -12,9 +13,10 @@ import LoginForm from './Auth/LoginForm'
 } 
 const App = () =>(
   <div>
-      <SignupForm />
+      {/* <SignupForm />
       <span> <h1>Ceva intre</h1> </span>
-      <LoginForm />
+      <LoginForm /> */}
+      <Page />
   </div>
 )
 

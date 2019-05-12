@@ -1,0 +1,43 @@
+/* .my-form{
+    background-color: rgb(26, 27, 26);
+    border-radius: 0.5em;
+}
+h2{
+    text-align: center;
+    border-bottom: 0.03em solid #00a8a8;
+    color: rgba(248, 239, 225, 0.87) !important;
+    margin-top: 10em !important;
+}
+label{
+    text-align: center;
+    padding-bottom: 2%;
+    color: rgba(248, 239, 225, 0.87) !important;
+} */
+
+/* .button{
+    background-color: rgb(26, 27, 26) !important;
+    color: #919496 !important;
+} */
+
+/* body{
+    background-color: rgb(26, 27, 26) !important;
+} */
+
+h2{
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
+    padding-bottom: 2em !important;
+    color: #919496 !important;
+}
+.grid{
+    margin-bottom: 2em !important;
+}
+Input{
+    background-color: rgb(26, 27, 26) !important;
+}
+.case{
+   background-color: rgb(26, 27, 26) !important;
+}
+div{
+
+}
