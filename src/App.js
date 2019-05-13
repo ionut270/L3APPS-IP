@@ -9,6 +9,7 @@ import Plan from "./components/View/plan";
 import Task from "./components/View/task";
 import Subtask from "./components/View/subtask";
 import Profile from "./components/View/profile";
+import Settings from "./components/Settings/Page";
 /** */
 
 export default class App extends Component {
@@ -30,6 +31,7 @@ export default class App extends Component {
           <Route path="/task" component={Task} />
           <Route path="/subtask" component={Subtask} />
           <Route path="/profile" component={Profile} />
+          <Route path="/settings" component={Settings} />
         </div>
       </BrowserRouter>
     );
