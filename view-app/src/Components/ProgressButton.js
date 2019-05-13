@@ -33,7 +33,7 @@ class ProgressButton extends React.Component {
           <Modal.Content image scrolling>
             <Modal.Description>
               <Divider horizontal>
-                <Header />
+                <Header>Nume Subordonat</Header>
               </Divider>
               <Progress
                 active

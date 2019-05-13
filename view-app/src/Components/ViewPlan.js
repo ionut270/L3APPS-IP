@@ -94,17 +94,17 @@ class ViewPlan extends React.Component {
             <Divider hidden />
             <Label.Group size="large">
               <Label as="a" color="blue" image>
-                <img src={require("./avatar.jpg")} alt="avatar" />
+                <img src={require("./avatar.png")} alt="avatar" />
                 Veronika
                 <Label.Detail>Scrum</Label.Detail>a{" "}
               </Label>
               <Label as="a" color="teal" image>
-                <img src={require("./avatar.jpg")} alt="avatar" />
+                <img src={require("./avatar.png")} alt="avatar" />
                 Veroni
                 <Label.Detail>Scrum Master</Label.Detail>
               </Label>
               <Label as="a" color="yellow" image>
-                <img src={require("./avatar.jpg")} alt="avatar" />
+                <img src={require("./avatar.png")} alt="avatar" />
                 Helen
                 <Label.Detail>Scrum</Label.Detail>
               </Label>

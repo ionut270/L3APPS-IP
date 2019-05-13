@@ -41,7 +41,7 @@ const panes = [
             <Grid.Row>
               <Grid.Column width={5} textAlign="center">
                 <Image
-                  src={require("./avatar.jpg")}
+                  src={require("./avatar.png")}
                   alt="avatar"
                   size="small"
                   centered
@@ -158,14 +158,14 @@ const panes = [
         {" "}
         <Container textAlign="justified">
           <Segment.Group>
-            <Segment color="red">
+            <Segment secondary color="red">
               <Header as="h4">Change Username:</Header>
               <div class="ui fluid icon input">
                 <i aria-hidden="true" class="users icon" />
                 <input type="text" placeholder="Change Username..." />
               </div>
             </Segment>
-            <Segment color="red">
+            <Segment secondary color="red">
               <Header as="h4">Change Email:</Header>
               <div class="ui fluid icon input">
                 <input type="text" placeholder="Change Email..." />
@@ -173,7 +173,7 @@ const panes = [
               </div>
             </Segment>
 
-            <Segment color="red">
+            <Segment secondary color="red">
               {" "}
               <Header as="h4">Change Description:</Header>
               <form class="ui form ">
