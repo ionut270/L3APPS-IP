@@ -101,7 +101,7 @@ class CreatePlanModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.submitHandler}>
                             <FormGroup row>
-                                <Label sm={3}>Name</Label>
+                                <Label className="black-text" sm={3}>Name</Label>
                                 <Col sm={9}>
                                     <Input
                                         name="name"
@@ -113,7 +113,7 @@ class CreatePlanModal extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Category</Label>
+                                <Label className="black-text" sm={3}>Category</Label>
                                 <Col sm={9}>
                                     <Input
                                         name="category"
@@ -125,7 +125,7 @@ class CreatePlanModal extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Departament</Label>
+                                <Label className="black-text" sm={3}>Departament</Label>
                                 <Col sm={9}>
                                     <Input
                                         name="departament"
@@ -137,7 +137,7 @@ class CreatePlanModal extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Description</Label>
+                                <Label className="black-text" sm={3}>Description</Label>
                                 <Col sm={9}>
                                     <textarea
                                         className="form-control"
@@ -150,7 +150,7 @@ class CreatePlanModal extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Priority</Label>
+                                <Label className="black-text" sm={3}>Priority</Label>
                                 <Col sm={9}>
                                     <select
                                         className="browser-default custom-select"
@@ -167,7 +167,7 @@ class CreatePlanModal extends Component {
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Deadline</Label>
+                                <Label className="black-text" sm={3}>Deadline</Label>
                                 <Col sm={9}>
                                     <Input
                                         name="deadline"

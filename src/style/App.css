@@ -30,3 +30,44 @@
         transform: rotate(360deg);
     }
 }
+
+.dashPlan {
+    width: 100% !important;
+}
+
+.dashTask {
+    width: 100% !important;
+}
+
+.dashSubtask {
+    width: 100% !important;
+}
+
+.row {
+    padding: 1em !important;
+}
+
+.dashFlex {
+    padding-left: 1em !important;
+}
+
+.btn {
+    width: 100% !important;
+}
+
+.my-label {
+    color: white !important;
+}
+
+.black-text {
+    color: black !important;
+}
+
+.ui.small.image,
+.ui.small.images .image,
+.ui.small.images img,
+.ui.small.images svg {
+    width: 150px;
+    height: auto !important;
+    font-size: .92857143rem;
+}

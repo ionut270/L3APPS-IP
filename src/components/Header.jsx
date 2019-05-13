@@ -17,7 +17,6 @@ export default class Header extends Component {
         super(props);
     }
     state = {};
-
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
     render() {
         const trigger = (
@@ -28,9 +27,19 @@ export default class Header extends Component {
         );
 
         const options = [
-            { key: "user", text: "Account", icon: "user" },
-            { key: "settings", text: "Settings", icon: "settings" },
-            { key: "sign-out", text: "Sign Out", icon: "sign out" }
+            { key: "user", text: "Account", icon: "user", path: "/profile" },
+            {
+                key: "settings",
+                text: "Settings",
+                icon: "settings",
+                path: "/settings"
+            },
+            {
+                key: "sign-out",
+                text: "Sign Out",
+                icon: "sign out",
+                path: "/login"
+            }
         ];
 
         const { activeItem } = this.state;
@@ -56,7 +65,9 @@ export default class Header extends Component {
                 <Menu.Item
                     name="Dashboard"
                     active={activeItem === "Dashboard"}
-                    onClick={this.handleItemClick}
+                    onClick={() => {
+                        //this.handleItemClick;
+                    }}
                 >
                     Dashboard
                 </Menu.Item>
@@ -142,6 +153,9 @@ export default class Header extends Component {
                         <Dropdown
                             trigger={trigger}
                             options={options}
+                            onClick={() => {
+                                console.log(options);
+                            }}
                             pointing="top left"
                             icon={null}
                         />
