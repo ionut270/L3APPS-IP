@@ -4,6 +4,7 @@ import logo from './logo.png';*/
 import { Button } from "react-bootstrap";
 import logo from "../style/Dashboard/logo.png";
 import { collapse } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import "../style/Dashboard/App.css";
 
 export default class Dashboard extends Component {
@@ -81,9 +82,9 @@ export default class Dashboard extends Component {
                                 type="button"
                                 className="btn navbar-btn btn-warning"
                             >
-                                <a href="#Profile">
+                                <Link to="/profile">
                                     <i className="glyphicon glyphicon-user" />
-                                </a>
+                                </Link>
                             </button>
                         </div>
                     </div>

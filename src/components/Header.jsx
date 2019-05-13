@@ -28,7 +28,7 @@ export default class Header extends Component {
         );
 
         const options = [
-            { key: "user", text: "Account", icon: "user" },
+            { key: "user", href: "/profile", text: "Account", icon: "user" },
             { key: "settings", text: "Settings", icon: "settings" },
             { key: "sign-out", text: "Sign Out", icon: "sign out" }
         ];
