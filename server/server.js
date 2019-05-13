@@ -1,22 +1,10 @@
-var server = require('http');
+var http = require('http');
 
-function onRequest(request, response){
-    console.log("A user made a request" + request.url);
-    response.writeHead(200, {"Context-Type": "text/plain"});
-    response.write("Here is your response");
+function onRequest(request,response){
+    console.log("A user made a request..." + request.url);
+    response.writeHead(200,{"Context-Type":"text/plain"});
+    response.write("Here is your data");
     response.end();
 }
-
-
-
-server.createServer(onRequest).listen(3000);
-console.log("Server is now running");
-
-fetch('https://localhost:3000/request');
-.then(function (repsonse){
-    return response.json()
-})
-.then(function (data){
-    console.log('the data',data)
-})
-
+http.createServer(onRequest).listen(8888);
+console.log("Server is now running...");
