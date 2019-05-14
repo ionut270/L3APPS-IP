@@ -17,7 +17,13 @@ export default class SignupForm extends Component {
             surname: "",
             email: "",
             password: "",
-            confirmpassword: ""
+            confirmpassword: "",
+            error: {
+                confirmpassword: false,
+                password: false,
+                email: false
+            },
+            errorMSG: ""
         };
     }
     redirectToLogin = () => {
@@ -29,8 +35,8 @@ export default class SignupForm extends Component {
     render() {
         return (
             <div className="form-container">
-                <div class="outer-div">
-                    <div class="inner-div" />
+                <div className="outer-div">
+                    <div className="inner-div" />
                 </div>
                 <Grid centered style={styles.root}>
                     <Grid.Column className="my-form">
@@ -95,10 +101,10 @@ export default class SignupForm extends Component {
                                 </label>
                                 <input
                                     type="password"
-                                    value={this.state.confirmPassword}
+                                    value={this.state.confirmpassword}
                                     onChange={e => {
                                         this.setState({
-                                            confirmPassword: e.target.value
+                                            confirmpassword: e.target.value
                                         });
                                     }}
                                     placeholder="Confirm Password here..."
@@ -114,24 +120,45 @@ export default class SignupForm extends Component {
                                 fluid
                                 type="submit"
                                 onClick={() => {
-                                    fetch(
-                                        "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
-                                            this.state.email +
-                                            "%22,password:%22" +
-                                            this.state.password +
-                                            "%22,first_name:%22" +
-                                            this.state.name +
-                                            "%22,last_name:%22" +
-                                            this.state.surname +
-                                            "%22%7D"
-                                    )
-                                        .then(function(response) {
-                                            return response.json();
-                                        })
-                                        .then(function(myJson) {
-                                            console.log(JSON.stringify(myJson));
-                                        });
-                                    this.redirectToLogin();
+                                    if (
+                                        this.state.confirmpassword ===
+                                        this.state.password
+                                    ) {
+                                        fetch(
+                                            "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
+                                                this.state.email +
+                                                "%22,password:%22" +
+                                                this.state.password +
+                                                "%22,first_name:%22" +
+                                                this.state.name +
+                                                "%22,last_name:%22" +
+                                                this.state.surname +
+                                                "%22%7D"
+                                        )
+                                            .then(function(response) {
+                                                return response.json();
+                                            })
+                                            .then(function(myJson) {
+                                                console.log(
+                                                    JSON.stringify(myJson)
+                                                );
+                                                if (myJson.error_code === 3) {
+                                                    this.state.errorMSG =
+                                                        myJson.execution_message;
+                                                }
+                                                console.log(
+                                                    myJson.execution_message
+                                                );
+                                            });
+                                        this.redirectToLogin();
+                                    } else {
+                                        console.log(
+                                            this.state.password,
+                                            "=",
+                                            this.state.confirmpassword
+                                        );
+                                        //enable error mesage
+                                    }
                                 }}
                             >
                                 Sign up

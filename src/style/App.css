@@ -67,7 +67,35 @@
 .ui.small.images .image,
 .ui.small.images img,
 .ui.small.images svg {
-    width: 150px;
-    height: auto !important;
-    font-size: .92857143rem;
+    width: 11.527375em !important;
+    height: 11.527375em !important;
+    font-size: 16px !important;
+    object-fit: cover;
+}
+
+.profileData {
+    width: 100% !important;
+}
+
+.row {
+    margin: 0 !important;
+    align-items: center !important;
+    align-content: center !important;
+    align-self: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.ui.grid>.column:not(.row),
+.ui.grid>.row>.column {
+    position: relative;
+    display: inline-block;
+    width: 6.25%;
+    padding-left: 0;
+    padding-right: 0;
+    vertical-align: top;
+}
+
+.my-form {
+    padding: 1em !important;
 }

@@ -11,21 +11,13 @@ import {
     Divider,
     Progress,
     Dropdown,
-    Modal
+    Modal,
+    Table
 } from "semantic-ui-react";
-import cookies from "universal-cookie";
+import Cookies from "universal-cookie";
 import MyHeader from "../../../Header";
 import ProgressButton from "./ProgressButton.js";
 
-function request() {
-    fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
-        .then(function(res) {
-            return res.json();
-        })
-        .then(function(resp) {
-            console.log(resp);
-        });
-}
 const selectOptions = [
     {
         key: "Relaxed",
@@ -43,55 +35,132 @@ const selectOptions = [
         value: "Tired"
     }
 ];
-const panes = [
-    {
-        menuItem: "Profile Information",
-        render: () => (
+
+class ViewProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: "",
+            name: "",
+            surname: "",
+            email: "",
+            job: "",
+            employees: []
+        };
+    }
+    componentDidMount() {
+        //get cookies
+        var cookies = new Cookies();
+        this.setState({
+            id: cookies.get("user_id")
+        });
+        console.log(this.state.id);
+        console.log(
+            "http://localhost:8081/get-profile/" + cookies.get("user_id")
+        );
+        fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
+            .then(response => {
+                return response.json();
+            })
+            .then(response => {
+                console.log("response is", response[1][0]);
+                this.setState({
+                    name: response[1][0].nume,
+                    surname: response[1][0].prenume,
+                    email: response[1][0].email
+                });
+                //il punem in state
+                fetch(
+                    "http://localhost:8081/viewUnderlings/" +
+                        cookies.get("user_id")
+                )
+                    .then(responsee => {
+                        return responsee.json();
+                    })
+                    .then(responsee => {
+                        this.setState({
+                            employees: responsee[1]
+                        });
+                        console.log("State is ", this.state);
+                    });
+            });
+    }
+    render() {
+        var listEmployees = () => {
+            if (this.state.employees != null) {
+                this.state.employees.map(function(item, i) {
+                    return (
+                        <Table.Body color="red">
+                            <Table.Row>
+                                <Table.Cell>
+                                    <Header as="h4" image>
+                                        <Image
+                                            src="https://steamuserimages-a.akamaihd.net/ugc/960838928914191885/31FF51C2135DAD7CB3BF2A2F2142DF0D2177A113/?imw=1024&imh=1024&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
+                                            rounded
+                                            size="mini"
+                                        />
+                                        <Header.Content>
+                                            Oancea Ionut Eugen
+                                        </Header.Content>
+                                    </Header>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {
+                                        JSON.stringify(item)
+                                            .split(/"position":"/)[1]
+                                            .split(/"/)[0]
+                                    }
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    );
+                });
+            }
+        };
+        return (
             <Tab.Pane>
                 <Container textAlign="justified">
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={5} textAlign="center">
                                 <Image
-                                    src={require("./avatar.jpg")}
+                                    src="https://steamuserimages-a.akamaihd.net/ugc/960838928914191885/31FF51C2135DAD7CB3BF2A2F2142DF0D2177A113/?imw=1024&imh=1024&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
                                     alt="avatar"
                                     size="small"
                                     centered
                                 />
-                                <Segment.Group>
-                                    <Segment>
-                                        <Header as="h4">Ongoing tasks:</Header>
-                                    </Segment>
-                                    <Segment>
-                                        <Header as="h4">Done tasks:</Header>
-                                    </Segment>
-                                </Segment.Group>
                             </Grid.Column>
 
-                            <Grid.Column width={11}>
-                                <Divider hidden />
+                            <Grid.Column className="profileData">
+                                {/* <Divider hidden /> */}
                                 <Segment.Group>
                                     <Segment>
-                                        <Header as="h4">Username :</Header>
-                                    </Segment>
-                                    <Segment>
-                                        <Header as="h4">UserID:</Header>
-                                    </Segment>
-                                    <Segment>
-                                        <Header as="h4">Email:</Header>
+                                        <Header as="h4">
+                                            Name : {this.state.name}
+                                        </Header>
                                     </Segment>
                                     <Segment>
                                         <Header as="h4">
-                                            Profile Description:
+                                            Surname: {this.state.surname}
+                                        </Header>
+                                    </Segment>
+                                    <Segment>
+                                        <Header as="h4">
+                                            Email : {this.state.email}
+                                        </Header>
+                                    </Segment>
+                                    <Segment>
+                                        <Header as="h4">
+                                            Job : {this.state.job}{" "}
                                         </Header>
                                     </Segment>
                                 </Segment.Group>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={16}>
+                            <Grid.Column>
                                 <Header as="h4" attached="top">
-                                    Your Plans
+                                    Your Tasks
                                 </Header>
                                 <Segment color="red" secondary attached>
                                     Planurile tale
@@ -100,68 +169,25 @@ const panes = [
                         </Grid.Row>
 
                         <Grid.Row>
-                            <Grid.Column width={5}>
+                            <Grid.Column>
                                 <Header as="h4" attached="top">
-                                    Job
+                                    Preferences
                                 </Header>
-                                <Segment color="red" secondary attached>
-                                    <List divided relaxed>
+                                <Segment color="green" secondary attached>
+                                    <List horizontal divided relaxed>
                                         <List.Item>
                                             <List.Content>
-                                                <List.Header>
-                                                    Job Name
-                                                </List.Header>
-                                                Nume aici
+                                                Morning: Focused
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <List.Header>
-                                                    Function
-                                                </List.Header>
-                                                Functie aici
+                                                Evening: Tired
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <List.Header>
-                                                    Category
-                                                </List.Header>
-                                                Categorie aici
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </Grid.Column>
-                            <Grid.Column width={11}>
-                                {" "}
-                                <Header as="h4" attached="top">
-                                    Difficulty
-                                </Header>
-                                <Segment color="red" secondary attached>
-                                    <List divided relaxed>
-                                        <List.Item>
-                                            <List.Content>
-                                                <List.Header>
-                                                    Morning
-                                                </List.Header>
-                                                Focused
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <List.Header>
-                                                    Afternoon
-                                                </List.Header>
-                                                Tired
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <List.Header>
-                                                    Evening
-                                                </List.Header>
-                                                Relaxed
+                                                Noon: Relaxed
                                             </List.Content>
                                         </List.Item>
                                     </List>
@@ -169,26 +195,36 @@ const panes = [
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={2}>
-                                <ProgressButton />
-                            </Grid.Column>
+                            <Table color="teal" key="teal">
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell>
+                                            Employee
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>Job</Table.HeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                                {listEmployees}
+                            </Table>
                         </Grid.Row>
                     </Grid>
                 </Container>
             </Tab.Pane>
-        )
-    },
-    {
-        menuItem: "Edit Information",
-        render: () => (
+        );
+    }
+}
+
+class EditProfile extends React.Component {
+    render() {
+        return (
             <Tab.Pane>
                 {" "}
                 <Container textAlign="justified">
                     <Segment.Group>
                         <Segment color="red">
                             <Header as="h4">Change Username:</Header>
-                            <div class="ui fluid icon input">
-                                <i aria-hidden="true" class="users icon" />
+                            <div className="ui fluid icon input">
+                                <i aria-hidden="true" className="users icon" />
                                 <input
                                     type="text"
                                     placeholder="Change Username..."
@@ -197,19 +233,19 @@ const panes = [
                         </Segment>
                         <Segment color="red">
                             <Header as="h4">Change Email:</Header>
-                            <div class="ui fluid icon input">
+                            <div className="ui fluid icon input">
                                 <input
                                     type="text"
                                     placeholder="Change Email..."
                                 />
-                                <i aria-hidden="true" class="mail icon" />
+                                <i aria-hidden="true" className="mail icon" />
                             </div>
                         </Segment>
 
                         <Segment color="red">
                             {" "}
                             <Header as="h4">Change Description:</Header>
-                            <form class="ui form ">
+                            <form className="ui form ">
                                 <textarea
                                     placeholder="Change Description..."
                                     rows="3"
@@ -278,7 +314,7 @@ const panes = [
                                                     <List.Header>
                                                         Job Name
                                                     </List.Header>
-                                                    <div class="ui fluid icon input">
+                                                    <div className="ui fluid icon input">
                                                         <input
                                                             type="text"
                                                             placeholder="Change Job Name..."
@@ -291,7 +327,7 @@ const panes = [
                                                     <List.Header>
                                                         Function
                                                     </List.Header>
-                                                    <div class="ui fluid icon input">
+                                                    <div className="ui fluid icon input">
                                                         <input
                                                             type="text"
                                                             placeholder="Change Function..."
@@ -304,7 +340,7 @@ const panes = [
                                                     <List.Header>
                                                         Category
                                                     </List.Header>
-                                                    <div class="ui fluid icon input">
+                                                    <div className="ui fluid icon input">
                                                         <input
                                                             type="text"
                                                             placeholder="Change Category..."
@@ -320,20 +356,38 @@ const panes = [
                     </Segment.Group>
                 </Container>
             </Tab.Pane>
-        )
+        );
     }
-];
+}
+
 class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
-            <div className="Profile">
+            <div
+                className="Profile"
+                onLoad={() => {
+                    console.log("Profile");
+                }}
+            >
                 <MyHeader />
                 <Divider hidden />
                 <Container textAlign="justified">
                     <Segment color="red">
                         <Tab
                             menu={{ secondary: true, pointing: true }}
-                            panes={panes}
+                            panes={[
+                                {
+                                    menuItem: "Profile Information",
+                                    render: () => <ViewProfile />
+                                },
+                                {
+                                    menuItem: "Edit Information",
+                                    render: () => <EditProfile />
+                                }
+                            ]}
                         />
                     </Segment>
                 </Container>

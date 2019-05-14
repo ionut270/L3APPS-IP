@@ -49,7 +49,7 @@ export default class Header extends Component {
                 <Menu.Item>
                     <img src=".\logo.png" />
                 </Menu.Item>
-                <Menu.Menu position="leftt">
+                <Menu.Menu position="left">
                     <div className="ui left aligned category search item">
                         <div className="ui transparent icon input">
                             <input
@@ -95,44 +95,16 @@ export default class Header extends Component {
                     >
                         <Dropdown icon="add large">
                             <Dropdown.Menu>
-                                <Dropdown.Item
-                                    label={{
-                                        color: "red",
-                                        empty: true,
-                                        circular: true
-                                    }}
-                                    text="Plan"
-                                >
+                                <Dropdown.Item>
                                     <CreatePlanModal />
                                 </Dropdown.Item>
-                                <Dropdown.Item
-                                    label={{
-                                        color: "blue",
-                                        empty: true,
-                                        circular: true
-                                    }}
-                                    text="Task"
-                                >
+                                <Dropdown.Item>
                                     <CreateTaskModal />
                                 </Dropdown.Item>
-                                <Dropdown.Item
-                                    label={{
-                                        color: "black",
-                                        empty: true,
-                                        circular: true
-                                    }}
-                                    text="Subtask"
-                                >
+                                <Dropdown.Item>
                                     <CreateSubTaskModal />
                                 </Dropdown.Item>
-                                <Dropdown.Item
-                                    label={{
-                                        color: "green",
-                                        empty: true,
-                                        circular: true
-                                    }}
-                                    text="Edit plan"
-                                >
+                                <Dropdown.Item>
                                     <EditPlan />
                                 </Dropdown.Item>
                             </Dropdown.Menu>
@@ -143,7 +115,7 @@ export default class Header extends Component {
                         active={activeItem === "gamepad"}
                         onClick={this.handleItemClick}
                     >
-                        <Icon name="mail large" />
+                        <Icon className="mail large" />
                     </Menu.Item>
                     <Menu.Item
                         name="User"

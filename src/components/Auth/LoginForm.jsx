@@ -28,8 +28,8 @@ export default class SignupForm extends Component {
     render() {
         return (
             <div className="form-container">
-                <div class="outer-div">
-                    <div class="inner-div" />
+                <div className="outer-div">
+                    <div className="inner-div" />
                 </div>
                 <Grid centered style={styles.root}>
                     <Grid.Column className="my-form">
@@ -93,10 +93,11 @@ export default class SignupForm extends Component {
                                             "%22%7D"
                                     )
                                         .then(function(res) {
+                                            console.log(res);
                                             return res.json();
                                         })
                                         .then(function(data) {
-                                            console.log(data);
+                                            console.log("Data is", data);
                                             if (
                                                 data.execution_message ===
                                                 "Succes"
@@ -109,15 +110,15 @@ export default class SignupForm extends Component {
                                                         path: "/"
                                                     }
                                                 );
-                                                var cookies = new Cookies();
+                                                cookies = new Cookies();
                                                 cookies.set(
-                                                    " user_id",
+                                                    "user_id",
                                                     data.user_id,
                                                     {
                                                         path: "/"
                                                     }
                                                 );
-                                                
+
                                                 //this.redirectToProfile();
                                             }
                                         })
