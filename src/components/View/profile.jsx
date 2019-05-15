@@ -1,7 +1,12 @@
 import React , { Component } from 'react';
-import { Grid, Menu , Container, Image, List } from 'semantic-ui-react';
+import { Grid, Menu , Container } from 'semantic-ui-react';
 import { HashRouter as Router} from "react-router-dom";
-import './profileContent/profile.css';
+// import ProfileInfo from './profileContent/ProfileInfo';
+// import EditInfo from './profileContent/EditInfo';
+// import TasksInfo from './profileContent/TasksInfo';
+import ProfileInfo from './profileContent/ProfileInfo'
+import EditInfo from './profileContent/EditInfo'
+import TasksInfo from './profileContent/TasksInfo'
 
 class profile extends Component{
 
@@ -10,17 +15,15 @@ class profile extends Component{
         this.setState({ activeItem: name });
 
         console.log(name);
-        // if(name === "edit informations"){
-        //     // document.getElementByClassName("content").innerHTML =document.getElementById("content").innerHTML = '<EditInfo></EditInfo>';
-        //     return (<h1>TEXT RANDOM</h1>)
-        // }
-        // else if(name === "tasks assigned" ){
-        //     document.getElementById("content").innerHTML = '<TasksInfo></TasksInfo>';
-        // }
-        // else if(name === "profile informations" )
-        // document.getElementById("content").innerHTML = '<ProfileInfo></ProfileInfo>';
-
-    }
+        if(name === "edit informations"){
+            document.getElementById("content").innerHTML =document.getElementById("content").innerHTML = '<EditInfo></EditInfo>';
+        }
+        else if(name === "tasks assigned" ){
+            document.getElementById("content").innerHTML = '<TasksInfo></TasksInfo>';
+        }
+        else if(name === "profile informations" )
+        document.getElementById("content").innerHTML = '<ProfileInfo></ProfileInfo>';
+        }
         
     render(){
     if (this.props.location.pathname !== "/profile") {
@@ -28,56 +31,11 @@ class profile extends Component{
         }
     const { activeItem } = this.state;
 
-    var ChangeComponent = (props) =>{
-    if(this.state.activeItem === 'profile informations')
-    return(
-        <Grid>
-            <Grid.Column width={4}>
-            <Image src='./images/img_avatar.png'></Image>
-            </Grid.Column>
-            <Grid.Column width={8} class="list-items">
-                <List>
-                    <List.Item>Full name:</List.Item>
-                    <List.Item>Age:</List.Item>
-                    <List.Item>Description:</List.Item>
-                </List>
-            </Grid.Column>
-        </Grid>
-    );
-    else if(this.state.activeItem === 'edit informations')
-    return(
-        <Grid>
-        <Grid.Column width={4}>
-        <Image src='./images/img_avatar.png'></Image>
-        </Grid.Column>
-        <Grid.Column width={8} class="list-items">
-            <List>
-                <List.Item><a href=''>Change password</a></List.Item>
-                <List.Item><a href=''>Change email</a></List.Item>
-                <List.Item><a href=''>Change description</a></List.Item>
-            </List>
-        </Grid.Column>
-    </Grid>
-    );
-    else if(this.state.activeItem === 'tasks assigned')
-    return(
-        <Grid>
-        <Grid.Column width={4}>
-        <Image src='./images/img_avatar.png'></Image>
-        </Grid.Column>
-        <Grid.Column width={8} class="list-items">
-            <List>
-                <List.Item>Task Assigned:</List.Item>
-                <List.Item>Task deadline:</List.Item>
-            </List>
-        </Grid.Column>
-    </Grid>
-    );
-    }
+
 
     return (
         <Router basename="/profile/">
-            <Grid className="profileContent">
+            <Grid>
                 <Grid.Column width={4}>
                     <Menu className="menu" fluid vertical tabular >
 
@@ -89,8 +47,8 @@ class profile extends Component{
         </Grid.Column>
         
         <Grid.Column stretched width={12}>
-        <Container className="content">
-        <ChangeComponent name = "profile" onClick></ChangeComponent>
+        <Container id="content">
+
         </Container>
         </Grid.Column>
         </Grid>
