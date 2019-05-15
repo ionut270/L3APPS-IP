@@ -1,0 +1,16 @@
+h3{
+    color:grey !important;
+}
+p{
+    color:grey !important;
+}
+Container{
+    align-items: center;
+}
+.buttons{
+    width:100%;
+    height: auto;
+}
+#cardTitle{
+    color:white !important;
+}

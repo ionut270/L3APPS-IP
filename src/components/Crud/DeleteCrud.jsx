@@ -4,17 +4,17 @@ import { Grid, Container, Segment, Button, Divider, Modal, Header, ButtonGroup }
 class DeleteCrud extends Component{
     state = { open: false }
 
-    show = dimmer => () => this.setState({ dimmer, open: true })
+    show1 = dimmer1 => () => this.setState({ dimmer1, open: true })
     close = () => this.setState({ open: false })
     render(){
-        const { open, dimmer } = this.state
+        const { open, dimmer1 } = this.state
         return(
             <div>
 
 
             <div>
 
-            <Modal dimmer={dimmer} open={open} onClose={this.close}>
+            <Modal dimmer={dimmer1} open={open} onClose={this.close}>
                 <Modal.Header>DELETE</Modal.Header>
                 <Modal.Content image>
             <Modal.Description>
@@ -37,7 +37,7 @@ class DeleteCrud extends Component{
             </Modal>
         </div>
 
-        <Button onClick={this.show('blurring')} color="black">
+        <Button onClick={this.show1('blurring')} color="black" size="tiny">
         DELETE
         </Button>
         </div>

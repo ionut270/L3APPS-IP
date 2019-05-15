@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { Grid, Container, Segment, Button, Divider, Modal, Header,Label, Progress } from 'semantic-ui-react';
 
 import DeleteCrud from './DeleteCrud';
+import './ReadCrud.css';
 class ReadCrud extends Component{
     state = { open: false }
 
@@ -27,7 +28,7 @@ class ReadCrud extends Component{
             <Modal dimmer={dimmer} open={open} onClose={this.close} >
                 <Modal.Header>Informations</Modal.Header>
             <Modal.Description>
-                <Header>Title</Header>
+                <Header >Title</Header>
                 <p>Description</p>
                 <p>Members</p>
                 <div>
@@ -66,15 +67,17 @@ class ReadCrud extends Component{
             </Modal>
         </div>
 
-        <Button onClick={this.show('blurring')} >
-        <Segment>
-                                <h2>Title</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <Button onClick={this.show('blurring')} color="red"  >
+    
+                                <p id="cardTitle">Title</p>
+                                
                                 <Button.Group>
                                     <DeleteCrud></DeleteCrud>
 
                                 </Button.Group>
-                            </Segment></Button>
+                             
+                            </Button>
+                           
 </div>
         );
     }
