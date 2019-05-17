@@ -14,7 +14,7 @@ class DeleteCrud extends Component{
 
             <div>
 
-            <Modal dimmer={dimmer1} open={open} onClose={this.close}>
+            <Modal dimmer={dimmer1} open={open} onClose={this.close} >
                 <Modal.Header>DELETE</Modal.Header>
                 <Modal.Content image>
             <Modal.Description>

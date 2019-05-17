@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import SignUpForm from "./pages/SignUpForm";
-import SignInForm from "./pages/SignInForm";
+import SignUpForm from "../Auth old/pages/SignUpForm";
+import SignInForm from "../Auth old/pages/SignInForm";
 
 import "../../style/Auth/App.css";
 

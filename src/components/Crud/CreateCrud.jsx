@@ -1,9 +1,9 @@
+import _ from 'lodash';
 import React , { Component } from 'react';
-import { Grid, Container, Segment, Button, Divider, Modal, Header,Label, Progress } from 'semantic-ui-react';
+import { Grid, Container, Segment, Button, Divider, Modal, Header,Label, Form, TextArea, Transition, List, Image } from 'semantic-ui-react';
 
-import DeleteCrud from './DeleteCrud';
-import './ReadCrud.css';
-class ReadCrud extends Component{
+const users = ['ade', 'chris', 'christian', 'daniel', 'elliot', 'helen']
+class CreateCrud extends Component{
     state = { open: false }
 
     show = dimmer => () => this.setState({ dimmer, open: true })
@@ -15,9 +15,16 @@ class ReadCrud extends Component{
       this.setState(prevState => ({
         percent: prevState.percent >= 100 ? 0 : prevState.percent + 20,
       }))
+
+    state2 = { items: users.slice(0, 3) }
+
+      handleAdd = () => this.setState(prevState => ({ items: users.slice(0, prevState.items.length + 1) }))
+    
+      handleRemove = () => this.setState(prevState => ({ items: prevState.items.slice(0, -1) }))
     render(){
         const { open, dimmer } = this.state
 
+        const { items } = this.state2
 
         return(
             <div>
@@ -30,7 +37,14 @@ class ReadCrud extends Component{
             <Modal.Description>
                 <Segment color="yellow">
                 <Header >Title</Header>
+                <Form>
+                    <TextArea placeholder='Title' />
+                </Form>
                 <p>Description</p>
+                <Form>
+                    <TextArea placeholder='Tell us more' />
+                </Form>
+
                 <p>Masters</p>
                 <Label as='a' image>
                     <img src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
@@ -38,21 +52,22 @@ class ReadCrud extends Component{
                     </Label>
                 <p>Members</p>
                 <div>
-                    <Label as='a' image>
-                    <img src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
-                                    Joe
-                    </Label>
-                    <Label as='a' image>
-                    <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
-                                    Elliot
-                    </Label>
-                    <Label as='a' image>
-                    <img src='https://react.semantic-ui.com/images/avatar/small/stevie.jpg' />
-                                    Stevie
-                    </Label>
+                <Button.Group>
+                <Button disabled={items.length === 0} icon='minus' onClick={this.handleRemove} />
+                <Button disabled={items.length === users.length} icon='plus' onClick={this.handleAdd} />
+                </Button.Group>
+                <Transition.Group as={List} duration={200} divided size='huge' verticalAlign='middle'>
+                 {items.map(item => (
+                <List.Item key={item}>
+                <Image avatar src={`/images/avatar/small/${item}.jpg`} />
+                <List.Content header={_.startCase(item)} />
+                </List.Item>
+                 ))}
+                </Transition.Group>
+
+
                 </div>
                 <Divider></Divider>
-                <Button color = "yellow">UPDATE</Button>
                 </Segment>
             </Modal.Description>
 
@@ -68,14 +83,10 @@ class ReadCrud extends Component{
             </Modal>
         </div>
 
-        <Button onClick={this.show('blurring')} color="red"  >
+        <Button onClick={this.show('blurring')} color="yellow"  >
     
-                                <p id="cardTitle">Title</p>
+                                <p>CREATE</p>
                                 
-                                <Button.Group>
-                                    <DeleteCrud></DeleteCrud>
-
-                                </Button.Group>
                              
                             </Button>
                            
@@ -84,4 +95,4 @@ class ReadCrud extends Component{
     }
 }
 
-export default ReadCrud;
+export default CreateCrud;
