@@ -1,0 +1,11 @@
+.updateButton{
+    padding: 0px !important;
+}
+
+.updateModal{
+    right: 0 !important;
+    left: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+
+}

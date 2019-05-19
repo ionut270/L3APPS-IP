@@ -13,6 +13,7 @@ import {
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import faker from "faker";
+import '../../style/Dashboard/UpdateTaskModal.css';
 
 import UpdateTaskModal from './UpdateTaskModal';
 
@@ -48,7 +49,7 @@ export default class cardTask extends Component {
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
                                 </Label>
-                                <Label>
+                                <Label className="updateButton">
                                     <UpdateTaskModal></UpdateTaskModal>
                                 </Label>
                             </List.Content>
@@ -75,7 +76,7 @@ export default class cardTask extends Component {
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
                                 </Label>
-                                <Label>
+                                <Label className="updateButton">
                                     <UpdateTaskModal></UpdateTaskModal>
                                 </Label>
                             </List.Content>
@@ -102,7 +103,7 @@ export default class cardTask extends Component {
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
                                 </Label>
-                                <Label>
+                                <Label className="updateButton">
                                     <UpdateTaskModal></UpdateTaskModal>
                                 </Label>
                             </List.Content>
