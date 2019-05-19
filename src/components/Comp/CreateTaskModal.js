@@ -82,28 +82,28 @@ else
           <ModalBody>
               <Form onSubmit={this.submitHandler}>
                 <FormGroup row>
-                  <Label sm={3}>Name</Label>
+                  <Label className="black-text" sm={3}>Name</Label>
                   <Col sm={9}>
                     <Input name="name" value={name} placeholder="Add a name ..." onChange={this.changeHandler}/>
                   </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Category</Label>
+                  <Label className="black-text" sm={3}>Category</Label>
                   <Col sm={9}>
                     <Input name="category" value={category} placeholder="Add a category ..." onChange={this.changeHandler}/>
                   </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Departament</Label>
+                  <Label className="black-text" sm={3}>Departament</Label>
                   <Col sm={9}>
                     <Input name="departament" value={departament} placeholder="Add a departament ..." onChange={this.changeHandler}/>
                   </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Difficulty</Label>
+                  <Label className="black-text" sm={3}>Difficulty</Label>
                   <Col sm={9}>
                     <select className="browser-default custom-select" name="difficulty" value={difficulty} onChange={this.changeHandler}>
                     <option>Choose your difficulty</option>
@@ -122,14 +122,14 @@ else
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Description</Label>
+                  <Label className="black-text" sm={3}>Description</Label>
                   <Col sm={9}>
                     <textarea  className="form-control" name="description" placeholder="Add a description ..." value={description} onChange={this.changeHandler}/>
                   </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Priority</Label>
+                  <Label className="black-text" sm={3}>Priority</Label>
                   <Col sm={9}>
                     <select className="browser-default custom-select" name="priority" value={priority} onChange={this.changeHandler}>
                     <option>Choose your priority</option>
@@ -141,7 +141,7 @@ else
                 </FormGroup>
 
                 <FormGroup row>
-                  <Label sm={3}>Deadline</Label>
+                  <Label className="black-text" sm={3}>Deadline</Label>
                   <Col sm={9}>
                     <Input name="deadline" placeholder="Example: 01/02/2019" value={deadline} onChange={this.changeHandler}/>
                   </Col>
