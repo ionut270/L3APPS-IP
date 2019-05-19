@@ -31,18 +31,11 @@ export default class dash extends Component {
                 <MyHeader />
                 <div className="dashFlex">
                     <Grid columns="equal">
-                        <Grid.Column width={8}>
+                        <Grid.Column width={7}>
                             <Subtask />
                         </Grid.Column>
-                        <Grid.Column>
-                            <Grid columns="equal">
-                                <Grid.Row>
-                                    <Task />
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <Plan />
-                                </Grid.Row>
-                            </Grid>
+                        <Grid.Column width={9}>
+                            <Task />
                         </Grid.Column>
                     </Grid>
                 </div>
