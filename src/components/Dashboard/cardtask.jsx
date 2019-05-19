@@ -14,6 +14,8 @@ import {
 import "semantic-ui-css/semantic.min.css";
 import faker from "faker";
 
+import UpdateTaskModal from './UpdateTaskModal';
+
 export default class cardTask extends Component {
     constructor(props) {
         super(props);
@@ -46,6 +48,9 @@ export default class cardTask extends Component {
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
                                 </Label>
+                                <Label>
+                                    <UpdateTaskModal></UpdateTaskModal>
+                                </Label>
                             </List.Content>
                         </List.Item>{" "}
 
@@ -70,6 +75,9 @@ export default class cardTask extends Component {
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
                                 </Label>
+                                <Label>
+                                    <UpdateTaskModal></UpdateTaskModal>
+                                </Label>
                             </List.Content>
                         </List.Item>{" "}
 
@@ -93,6 +101,9 @@ export default class cardTask extends Component {
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
+                                </Label>
+                                <Label>
+                                    <UpdateTaskModal></UpdateTaskModal>
                                 </Label>
                             </List.Content>
                         </List.Item>{" "}
