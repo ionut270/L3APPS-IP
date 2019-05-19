@@ -17,7 +17,9 @@ import {
 import Cookies from "universal-cookie";
 import MyHeader from "../../../Header";
 import ProgressButton from "./ProgressButton.js";
+import axios from "axios";
 
+const baseurl = "http://localhost:8081";
 const selectOptions = [
     {
         key: "Relaxed",
@@ -55,6 +57,7 @@ class ViewProfile extends React.Component {
             id: cookies.get("user_id")
         });
         console.log(this.state.id);
+        cookies.set('user_id', 1);
         console.log(
             "http://localhost:8081/get-profile/" + cookies.get("user_id")
         );
@@ -72,7 +75,7 @@ class ViewProfile extends React.Component {
                 //il punem in state
                 fetch(
                     "http://localhost:8081/viewUnderlings/" +
-                        cookies.get("user_id")
+                    cookies.get("user_id")
                 )
                     .then(responsee => {
                         return responsee.json();
@@ -88,7 +91,7 @@ class ViewProfile extends React.Component {
     render() {
         var listEmployees = () => {
             if (this.state.employees != null) {
-                this.state.employees.map(function(item, i) {
+                this.state.employees.map(function (item, i) {
                     return (
                         <Table.Body color="red">
                             <Table.Row>
@@ -215,7 +218,52 @@ class ViewProfile extends React.Component {
 }
 
 class EditProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: "",
+            email: "",
+            description: "",
+            jobName: "",
+            myFunction: "",
+            category: ""
+        };
+    }
+    changeHandler = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+    componentWillUnmount() {
+        if (this.state.userName || this.state.email || this.state.description
+            || this.state.jobName || this.state.myFunction || this.state.category) {
+            const create = {
+                username: this.state.userName,
+                email: this.state.email,
+                description: this.state.description,
+                job: {
+                    name: this.state.jobName,
+                    function: this.state.myFunction,
+                    category: this.state.category
+                }
+            };
+            const cookies = new Cookies();
+            const userId = cookies.get('user_id');
+            axios.post(`${baseurl}/edit-profile/${userId}/`, { create }).
+                then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+    }
     render() {
+        const {
+            userName,
+            email,
+            description,
+            jobName,
+            myFunction,
+            category
+        } = this.state;
         return (
             <Tab.Pane>
                 {" "}
@@ -226,8 +274,11 @@ class EditProfile extends React.Component {
                             <div className="ui fluid icon input">
                                 <i aria-hidden="true" className="users icon" />
                                 <input
+                                    name="userName"
                                     type="text"
+                                    value={userName}
                                     placeholder="Change Username..."
+                                    onChange={this.changeHandler}
                                 />
                             </div>
                         </Segment>
@@ -235,8 +286,11 @@ class EditProfile extends React.Component {
                             <Header as="h4">Change Email:</Header>
                             <div className="ui fluid icon input">
                                 <input
+                                    name="email"
                                     type="text"
+                                    value={email}
                                     placeholder="Change Email..."
+                                    onChange={this.changeHandler}
                                 />
                                 <i aria-hidden="true" className="mail icon" />
                             </div>
@@ -247,8 +301,11 @@ class EditProfile extends React.Component {
                             <Header as="h4">Change Description:</Header>
                             <form className="ui form ">
                                 <textarea
+                                    name="description"
+                                    value={description}
                                     placeholder="Change Description..."
                                     rows="3"
+                                    onChange={this.changeHandler}
                                 />
                             </form>
                         </Segment>
@@ -271,6 +328,7 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -284,6 +342,7 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -297,6 +356,7 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -316,8 +376,11 @@ class EditProfile extends React.Component {
                                                     </List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="jobName"
                                                             type="text"
+                                                            value={jobName}
                                                             placeholder="Change Job Name..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
@@ -329,8 +392,11 @@ class EditProfile extends React.Component {
                                                     </List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="myFunction"
                                                             type="text"
+                                                            value={myFunction}
                                                             placeholder="Change Function..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
@@ -342,8 +408,11 @@ class EditProfile extends React.Component {
                                                     </List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="category"
                                                             type="text"
+                                                            value={category}
                                                             placeholder="Change Category..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
