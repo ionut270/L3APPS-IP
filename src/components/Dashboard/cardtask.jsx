@@ -35,16 +35,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a">Task Name</List.Header>
+                                <List.Header as="a" ><p id="taskName">Task Name</p></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail>Fii Code</Label.Detail>
+                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail>25.02.2012</Label.Detail>
+                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
                                 </Label>
-                                <Label color="green">In progres</Label>
+                                <Label color="green"><p id="status">In progres</p></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
@@ -62,16 +62,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a">Task Name</List.Header>
+                                <List.Header as="a"><p id="taskName">Task Name</p></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail>Fii Code</Label.Detail>
+                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail>25.02.2012</Label.Detail>
+                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
                                 </Label>
-                                <Label color="green">In progres</Label>
+                                <Label color="green"><p id="status">In progres</p></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
@@ -89,16 +89,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a">Task Name</List.Header>
+                                <List.Header as="a"><p id="taskName">Task Name</p></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail>Fii Code</Label.Detail>
+                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail>25.02.2012</Label.Detail>
+                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
                                 </Label>
-                                <Label color="green">In progres</Label>
+                                <Label color="green"><p id="status">In progres</p></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
