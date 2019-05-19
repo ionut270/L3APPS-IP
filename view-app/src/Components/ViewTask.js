@@ -14,23 +14,38 @@ class ViewTask extends React.Component {
   state = {
     loading: true,
     task: [],
+    tasks: [],
     profile: [],
-    position: null
+    position: []
   };
 
   async componentDidMount() {
-    const url = "http://vvtsoft.ddns.net:5123/tasks/5cddeedc10ecd14e16ac3b69";
+    const url = "http://vvtsoft.ddns.net:5123/tasks/5ce1712510ecd1095a50fa01";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ task: data, loading: false });
-    const urlprofile = "http://localhost:8081/get-profile/8";
-    const responseprofile = await fetch(urlprofile);
-    const dataprofile = await responseprofile.json();
-    this.setState({ profile: dataprofile[1][0], loading: false });
-    const urlposition = "http://localhost:8081/get-position/8";
-    const responseposition = await fetch(urlposition);
-    const dataposition = await responseposition.json();
-    this.setState({ position: dataposition[1].position, loading: false });
+    console.log(data["sub-tasks"]);
+    const urltasks = "http://vvtsoft.ddns.net:5123/tasks";
+    const responsetasks = await fetch(urltasks);
+    const datatasks = await responsetasks.json();
+    this.setState({ tasks: datatasks, loading: false });
+    console.log(datatasks);
+    for (let i = 0; i < this.state.task.participants.length; i++) {
+      const urlprofile =
+        "http://localhost:8081/get-profile/" +
+        this.state.task.participants[i]._id;
+
+      const responseprofile = await fetch(urlprofile);
+      const dataprofile = await responseprofile.json();
+      this.setState({ profile: dataprofile[1][0], loading: false });
+      const urlposition =
+        "http://localhost:8081/get-position/" +
+        this.state.task.participants[i]._id;
+
+      const responseposition = await fetch(urlposition);
+      const dataposition = await responseposition.json();
+      this.setState({ position: dataposition[1].position, loading: false });
+    }
   }
   render() {
     return (
