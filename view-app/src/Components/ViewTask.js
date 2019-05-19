@@ -24,28 +24,45 @@ class ViewTask extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ task: data, loading: false });
-    console.log(data["sub-tasks"]);
     const urltasks = "http://vvtsoft.ddns.net:5123/tasks";
     const responsetasks = await fetch(urltasks);
     const datatasks = await responsetasks.json();
     this.setState({ tasks: datatasks, loading: false });
-    console.log(datatasks);
     for (let i = 0; i < this.state.task.participants.length; i++) {
       const urlprofile =
         "http://localhost:8081/get-profile/" +
         this.state.task.participants[i]._id;
 
-      const responseprofile = await fetch(urlprofile);
-      const dataprofile = await responseprofile.json();
-      this.setState({ profile: dataprofile[1][0], loading: false });
-      const urlposition =
-        "http://localhost:8081/get-position/" +
-        this.state.task.participants[i]._id;
+      // const responseprofile = await fetch(urlprofile);
+      // const dataprofile = await responseprofile.json();
+      // this.setState({ loading: false });
+      // this.state.profile.push(dataprofile[1][0]);
+      // const urlposition =
+      //   "http://localhost:8081/get-position/" +
+      //   this.state.task.participants[i]._id;
+      //
+      // const responseposition = await fetch(urlposition);
+      // const dataposition = await responseposition.json();
+      // this.setState({ loading: false });
+      // this.state.profile[i].job.push(dataposition[1]);
 
-      const responseposition = await fetch(urlposition);
-      const dataposition = await responseposition.json();
-      this.setState({ position: dataposition[1].position, loading: false });
+      fetch(urlprofile)
+        .then(data => {
+          this.setState({ loading: false });
+          this.state.profile.push(data[1][0]);
+          return (
+            "http://localhost:8081/get-position/" +
+            this.state.task.participants[i]._id
+          );
+        })
+        .then(url => {
+          fetch(url).then(data => {
+            this.setState({ loading: false });
+            this.state.profile[i].job.push(data[1][0]);
+          });
+        });
     }
+    console.log(this.state.profile[0]);
   }
   render() {
     return (
@@ -123,10 +140,14 @@ class ViewTask extends React.Component {
                 </Divider>
                 <Divider hidden />
                 <Label.Group size="large">
-                  <Label as="a" color="blue" image>
-                    {this.state.profile.nume} {this.state.profile.prenume}
-                    <Label.Detail>{this.state.position}</Label.Detail>
-                  </Label>
+                  {this.state.profile.map(data => {
+                    return (
+                      <Label as="a" color="blue" image>
+                        {data.nume} {data.prenume}
+                        <Label.Detail>dsf</Label.Detail>
+                      </Label>
+                    );
+                  })}
                 </Label.Group>
               </Segment>
             </Container>
