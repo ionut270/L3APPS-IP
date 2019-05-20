@@ -38,9 +38,16 @@ export default class SignupForm extends Component {
                 <div className="outer-div">
                     <div className="inner-div" />
                 </div>
-                <Grid centered style={styles.root}>
+                <Grid className="LoginLogoFlexGrid" centered style={styles.root}>
+                    <div className="loginLogo">
+                        <img
+                            src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"
+                            className="App-logo loginlogo"
+                            alt="logo"
+                        />
+                    </div>
                     <Grid.Column className="my-form">
-                        <h2>Register</h2>
+                        <h2 className="orangeUnderscoreLoginText">Register</h2>
                         <Form method="POST" name="LOGIN">
                             <Form.Field required>
                                 <label className="my-label">Name</label>
@@ -96,9 +103,7 @@ export default class SignupForm extends Component {
                                 />
                             </Form.Field>
                             <Form.Field required>
-                                <label className="my-label">
-                                    Confirm Password
-                                </label>
+                                <label className="my-label">Confirm Password</label>
                                 <input
                                     type="password"
                                     value={this.state.confirmpassword}
@@ -110,20 +115,17 @@ export default class SignupForm extends Component {
                                     placeholder="Confirm Password here..."
                                 />
                             </Form.Field>
-                            <Form.Field required>
+                            {/* <Form.Field required>
                                 <Checkbox
                                     className="my-label"
                                     label="I agree to the Terms and Conditions"
                                 />
-                            </Form.Field>
+                            </Form.Field> */}
                             <Button
                                 fluid
                                 type="submit"
                                 onClick={() => {
-                                    if (
-                                        this.state.confirmpassword ===
-                                        this.state.password
-                                    ) {
+                                    if (this.state.confirmpassword === this.state.password) {
                                         fetch(
                                             "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
                                                 this.state.email +
@@ -139,16 +141,11 @@ export default class SignupForm extends Component {
                                                 return response.json();
                                             })
                                             .then(function(myJson) {
-                                                console.log(
-                                                    JSON.stringify(myJson)
-                                                );
+                                                console.log(JSON.stringify(myJson));
                                                 if (myJson.error_code === 3) {
-                                                    this.state.errorMSG =
-                                                        myJson.execution_message;
+                                                    this.state.errorMSG = myJson.execution_message;
                                                 }
-                                                console.log(
-                                                    myJson.execution_message
-                                                );
+                                                console.log(myJson.execution_message);
                                             });
                                         this.redirectToLogin();
                                     } else {

@@ -31,9 +31,16 @@ export default class SignupForm extends Component {
                 <div className="outer-div">
                     <div className="inner-div" />
                 </div>
-                <Grid centered style={styles.root}>
+                <Grid className="LoginLogoFlexGrid" centered style={styles.root}>
+                    <div className="loginLogo">
+                        <img
+                            src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"
+                            className="App-logo loginlogo"
+                            alt="logo"
+                        />
+                    </div>
                     <Grid.Column className="my-form">
-                        <h2>Log in</h2>
+                        <h2 className="orangeUnderscoreLoginText">Log in</h2>
                         <Form>
                             <Form.Field required>
                                 <label className="my-label">Email</label>
@@ -45,7 +52,7 @@ export default class SignupForm extends Component {
                                         });
                                     }}
                                     type="text"
-                                    placeholder="Username here..."
+                                    placeholder="Email here..."
                                 />
                             </Form.Field>
                             <Form.Field required>
@@ -98,28 +105,17 @@ export default class SignupForm extends Component {
                                         })
                                         .then(function(data) {
                                             console.log("Data is", data);
-                                            if (
-                                                data.execution_message ===
-                                                "Succes"
-                                            ) {
+                                            if (data.execution_message === "Succes") {
+                                                console.log("SETTING UP COOKIES!");
                                                 var cookies = new Cookies();
-                                                cookies.set(
-                                                    "session_token",
-                                                    data.session_token,
-                                                    {
-                                                        path: "/"
-                                                    }
-                                                );
+                                                cookies.set("session_token", data.session_token, {
+                                                    path: "/"
+                                                });
                                                 cookies = new Cookies();
-                                                cookies.set(
-                                                    "user_id",
-                                                    data.user_id,
-                                                    {
-                                                        path: "/"
-                                                    }
-                                                );
-
-                                                //this.redirectToProfile();
+                                                cookies.set("user_id", data.user_id, {
+                                                    path: "/"
+                                                });
+                                                console.log("DONE!");
                                             }
                                         })
                                         .then(() => {

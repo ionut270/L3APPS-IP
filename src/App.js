@@ -7,9 +7,7 @@ import ReactDOM from "react-dom";
 import Login from "./components/Auth/LoginForm.jsx";
 import Register from "./components/Auth/SignupForm.jsx";
 import Dashboard from "./components/dashboard";
-import Plan from "./components/View/plan";
 import Task from "./components/View/task";
-import Subtask from "./components/View/subtask";
 import Profile from "./components/View/profileContent/Components/Profile";
 /** */
 
@@ -28,9 +26,7 @@ export default class App extends Component {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/dashboard" component={Dashboard} />
-                    <Route path="/plan" component={Plan} />
                     <Route path="/task" component={Task} />
-                    <Route path="/subtask" component={Subtask} />
                     <Route path="/profile" component={Profile} />
                 </div>
             </BrowserRouter>

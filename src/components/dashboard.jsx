@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import faker from "faker";
 import MyHeader from "./Header";
-import Plan from "./Dashboard/cardplan";
 import Task from "./Dashboard/cardtask";
 import Subtask from "./Dashboard/cardsubtask";
 import {
@@ -30,7 +29,7 @@ export default class dash extends Component {
             <div className="dashContainer">
                 <MyHeader />
                 <div className="dashFlex">
-                    <Grid columns="equal">
+                    <Grid columns="equal" className = "DashboardGeneralSize">
                         <Grid.Column width={8}>
                             <Subtask />
                         </Grid.Column>
@@ -38,9 +37,6 @@ export default class dash extends Component {
                             <Grid columns="equal">
                                 <Grid.Row>
                                     <Task />
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <Plan />
                                 </Grid.Row>
                             </Grid>
                         </Grid.Column>
