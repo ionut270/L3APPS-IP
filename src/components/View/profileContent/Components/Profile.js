@@ -19,7 +19,9 @@ import MyHeader from "../../../Header";
 import ProgressButton from "./ProgressButton.js";
 import axios from "axios";
 
-const baseurl = "http://localhost:8081";
+const baseUrl = "http://localhost:8081";
+const cookies = new Cookies();
+const userId = cookies.get('user_id');
 const selectOptions = [
     {
         key: "Relaxed",
@@ -52,16 +54,15 @@ class ViewProfile extends React.Component {
     }
     componentDidMount() {
         //get cookies
-        var cookies = new Cookies();
         this.setState({
-            id: cookies.get("user_id")
+            id: userId
         });
         console.log(this.state.id);
         cookies.set('user_id', 1);
         console.log(
-            "http://localhost:8081/get-profile/" + cookies.get("user_id")
+            "http://localhost:8081/get-profile/" + userId
         );
-        fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
+        fetch(`${baseUrl}/get-profile/${userId}`)
             .then(response => {
                 return response.json();
             })
@@ -72,11 +73,9 @@ class ViewProfile extends React.Component {
                     surname: response[1][0].prenume,
                     email: response[1][0].email
                 });
+                cookies.set('date_created', response[1][0].data_inregistrare);
                 //il punem in state
-                fetch(
-                    "http://localhost:8081/viewUnderlings/" +
-                    cookies.get("user_id")
-                )
+                fetch(`${baseUrl}/get-profile/${userId}`)
                     .then(responsee => {
                         return responsee.json();
                     })
@@ -221,48 +220,42 @@ class EditProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
+            prenume: "",
+            nume: "",
             email: "",
-            description: "",
-            jobName: "",
-            myFunction: "",
-            category: ""
-        };
+            parola: ""
+        }
+        axios.get(`${baseUrl}/get-profile/${userId}`)
+            .then(response => {
+                this.setState({
+                    prenume: response.data[1][0].prenume,
+                    nume: response.data[1][0].nume,
+                    email: response.data[1][0].email
+                });
+            });
     }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
-    componentWillUnmount() {
-        if (this.state.userName || this.state.email || this.state.description
-            || this.state.jobName || this.state.myFunction || this.state.category) {
-            const create = {
-                username: this.state.userName,
-                email: this.state.email,
-                description: this.state.description,
-                job: {
-                    name: this.state.jobName,
-                    function: this.state.myFunction,
-                    category: this.state.category
-                }
-            };
-            const cookies = new Cookies();
-            const userId = cookies.get('user_id');
-            axios.post(`${baseurl}/edit-profile/${userId}/`, { create }).
-                then(response => {
-                    console.log(response);
-                }).catch(error => {
-                    console.log(error);
-                });
+    componentDidUpdate() {
+        for (let property in this.state) {
+            if (this.state[property]) {
+                axios.get(`${baseUrl}/edit-profile/${userId}/${property}/${this.state[property]}`).
+                    then(response => {
+                        console.log(response);
+                    }).catch(error => {
+                        console.log(error);
+                    });
+            }
         }
+
     }
     render() {
         const {
-            userName,
+            prenume,
+            nume,
             email,
-            description,
-            jobName,
-            myFunction,
-            category
+            parola
         } = this.state;
         return (
             <Tab.Pane>
@@ -270,14 +263,27 @@ class EditProfile extends React.Component {
                 <Container textAlign="justified">
                     <Segment.Group>
                         <Segment color="red">
-                            <Header as="h4">Change Username:</Header>
+                            <Header as="h4">Change First Name:</Header>
                             <div className="ui fluid icon input">
                                 <i aria-hidden="true" className="users icon" />
                                 <input
-                                    name="userName"
+                                    name="prenume"
                                     type="text"
-                                    value={userName}
-                                    placeholder="Change Username..."
+                                    value={prenume}
+                                    placeholder="Change First Name..."
+                                    onChange={this.changeHandler}
+                                />
+                            </div>
+                        </Segment>
+                        <Segment color="red">
+                            <Header as="h4">Change Last Name:</Header>
+                            <div className="ui fluid icon input">
+                                <i aria-hidden="true" className="users icon" />
+                                <input
+                                    name="nume"
+                                    type="text"
+                                    value={nume}
+                                    placeholder="Change Last Name..."
                                     onChange={this.changeHandler}
                                 />
                             </div>
@@ -295,19 +301,18 @@ class EditProfile extends React.Component {
                                 <i aria-hidden="true" className="mail icon" />
                             </div>
                         </Segment>
-
                         <Segment color="red">
-                            {" "}
-                            <Header as="h4">Change Description:</Header>
-                            <form className="ui form ">
-                                <textarea
-                                    name="description"
-                                    value={description}
-                                    placeholder="Change Description..."
-                                    rows="3"
+                            <Header as="h4">Change Password:</Header>
+                            <div className="ui fluid icon input">
+                                <input
+                                    name="parola"
+                                    type="password"
+                                    value={parola}
+                                    placeholder="Change Password..."
                                     onChange={this.changeHandler}
                                 />
-                            </form>
+                                <i aria-hidden="true" className="lock icon" />
+                            </div>
                         </Segment>
 
                         <Segment color="red" secondary>
@@ -328,7 +333,6 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
-                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -342,7 +346,6 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
-                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -356,7 +359,6 @@ class EditProfile extends React.Component {
                                                         fluid
                                                         selection
                                                         options={selectOptions}
-                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -378,9 +380,7 @@ class EditProfile extends React.Component {
                                                         <input
                                                             name="jobName"
                                                             type="text"
-                                                            value={jobName}
                                                             placeholder="Change Job Name..."
-                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
@@ -394,9 +394,7 @@ class EditProfile extends React.Component {
                                                         <input
                                                             name="myFunction"
                                                             type="text"
-                                                            value={myFunction}
                                                             placeholder="Change Function..."
-                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
@@ -410,9 +408,7 @@ class EditProfile extends React.Component {
                                                         <input
                                                             name="category"
                                                             type="text"
-                                                            value={category}
                                                             placeholder="Change Category..."
-                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
