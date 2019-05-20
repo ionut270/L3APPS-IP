@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Menu, Dropdown, Image, Input } from "semantic-ui-react";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import faker from "faker";
 import "../style/App.css";
@@ -12,58 +13,41 @@ import EditPlan from "./Comp/EditPlanModal";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import Cookies from "universal-cookie";
+
 export default class Header extends Component {
     constructor(props) {
         super(props);
     }
     state = {};
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    componentDidMount() {
+        var cookies = new Cookies();
+        console.log(cookies.get());
+    }
     render() {
-        const trigger = (
-            <span>
-                <Image avatar src={faker.internet.avatar()} />{" "}
-                {faker.name.findName()}
-            </span>
-        );
-
-        const options = [
-            { key: "user", text: "Account", icon: "user", path: "/profile" },
-            {
-                key: "settings",
-                text: "Settings",
-                icon: "settings",
-                path: "/settings"
-            },
-            {
-                key: "sign-out",
-                text: "Sign Out",
-                icon: "sign out",
-                path: "/login"
-            }
-        ];
-
         const { activeItem } = this.state;
-
         return (
-            <Menu size="mini" inverted>
-                <Menu.Item>
-                    <img src=".\logo.png" />
+            <Menu size="mini" inverted className="noBorderRadius">
+                <Menu.Item className="App-header">
+                    <img
+                        src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"
+                        className="App-logo"
+                        alt="logo"
+                    />
                 </Menu.Item>
-                <Menu.Menu position="left">
+                {/* <Menu.Menu position="left">
                     <div className="ui left aligned category search item">
                         <div className="ui transparent icon input">
-                            <input
-                                className="prompt"
-                                type="text"
-                                placeholder="Search..."
-                            />
+                            <input className="prompt" type="text" placeholder="Search..." />
                             <i className="search link icon" />
                         </div>
                         <div className="results" />
                     </div>
-                </Menu.Menu>
+                </Menu.Menu> */}
                 <Menu.Item
                     name="Dashboard"
+                    href="/dashboard"
                     active={activeItem === "Dashboard"}
                     onClick={() => {
                         //this.handleItemClick;
@@ -73,19 +57,12 @@ export default class Header extends Component {
                 </Menu.Item>
 
                 <Menu.Item
-                    name="Activity"
-                    active={activeItem === "Activity"}
+                    name="Profile"
+                    href="/profile"
+                    active={activeItem === "Profile"}
                     onClick={this.handleItemClick}
                 >
-                    Activity
-                </Menu.Item>
-
-                <Menu.Item
-                    name="Plans"
-                    active={activeItem === "Plans"}
-                    onClick={this.handleItemClick}
-                >
-                    Plans
+                    Profile
                 </Menu.Item>
                 <Menu.Menu position="right">
                     <Menu.Item
@@ -96,42 +73,33 @@ export default class Header extends Component {
                         <Dropdown icon="add large">
                             <Dropdown.Menu>
                                 <Dropdown.Item>
-                                    <CreatePlanModal />
-                                </Dropdown.Item>
-                                <Dropdown.Item>
                                     <CreateTaskModal />
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                     <CreateSubTaskModal />
                                 </Dropdown.Item>
-                                <Dropdown.Item>
-                                    <EditPlan />
-                                </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Item>
                     <Menu.Item
-                        name="gamepad"
-                        active={activeItem === "gamepad"}
-                        onClick={this.handleItemClick}
-                    >
-                        <Icon className="mail large" />
-                    </Menu.Item>
-                    <Menu.Item
-                        name="User"
-                        active={activeItem === "User"}
-                        onClick={this.handleItemClick}
-                    >
-                        <Dropdown
-                            trigger={trigger}
-                            options={options}
-                            onClick={() => {
-                                console.log(options);
-                            }}
-                            pointing="top left"
-                            icon={null}
-                        />
-                    </Menu.Item>
+                        name="Logout"
+                        active={activeItem === "Logout"}
+                        href="/login"
+                        onClick={() => {
+                            /**TODO
+                             * DELETE COOKIES ON ROUTE /
+                             * REDIRECT TO LOGIN
+                             */
+                            var cookies = new Cookies();
+                            cookies.set("session_token", "", {
+                                path: "/"
+                            });
+                            cookies = new Cookies();
+                            cookies.set("user_id", "", {
+                                path: "/"
+                            });
+                        }}
+                    />
                 </Menu.Menu>
             </Menu>
         );

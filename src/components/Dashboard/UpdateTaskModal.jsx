@@ -114,8 +114,8 @@ class UpdateTaskModal extends React.Component {
                 content= "{this.state.task.name}"
               />
 
-              <Form.Input label="Project" readOnly>
-                Project name
+              <Form.Input label="Project" readOnly content="Project name">
+
               </Form.Input>
 
               <Form.Group widths={2} label="Due date">

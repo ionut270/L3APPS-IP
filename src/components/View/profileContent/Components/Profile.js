@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import {
     Button,
     Container,
@@ -17,6 +18,8 @@ import {
 import Cookies from "universal-cookie";
 import MyHeader from "../../../Header";
 import ProgressButton from "./ProgressButton.js";
+import axios from "axios";
+const baseurl = "http://localhost:8081";
 
 const selectOptions = [
     {
@@ -54,36 +57,41 @@ class ViewProfile extends React.Component {
         this.setState({
             id: cookies.get("user_id")
         });
-        console.log(this.state.id);
-        console.log(
-            "http://localhost:8081/get-profile/" + cookies.get("user_id")
-        );
-        fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
-            .then(response => {
-                return response.json();
-            })
-            .then(response => {
-                console.log("response is", response[1][0]);
-                this.setState({
-                    name: response[1][0].nume,
-                    surname: response[1][0].prenume,
-                    email: response[1][0].email
-                });
-                //il punem in state
-                fetch(
-                    "http://localhost:8081/viewUnderlings/" +
-                        cookies.get("user_id")
-                )
-                    .then(responsee => {
-                        return responsee.json();
-                    })
-                    .then(responsee => {
-                        this.setState({
-                            employees: responsee[1]
-                        });
-                        console.log("State is ", this.state);
+        this.forceUpdate();
+        console.log("State is : ", this.state.id, "=", cookies.get("user_id"));
+        if (
+            cookies.get("user_id") != undefined &&
+            cookies.get("user_id") != null &&
+            cookies.get("user_id") != ""
+        ) {
+            console.log("ITS NOT NULL!!!!!!!!", this.state.id);
+            console.log("http://localhost:8081/get-profile/" + cookies.get("user_id"));
+            fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
+                .then(response => {
+                    return response.json();
+                })
+                .then(response => {
+                    console.log("response is", response[1][0]);
+                    this.setState({
+                        name: response[1][0].nume,
+                        surname: response[1][0].prenume,
+                        email: response[1][0].email
                     });
-            });
+                    //il punem in state
+                    fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
+                        .then(responsee => {
+                            return responsee.json();
+                        })
+                        .then(responsee => {
+                            this.setState({
+                                employees: responsee[1]
+                            });
+                            console.log("State is ", this.state);
+                        });
+                });
+        } else {
+            return <Redirect to="/login" href="/login" />;
+        }
     }
     render() {
         var listEmployees = () => {
@@ -99,9 +107,7 @@ class ViewProfile extends React.Component {
                                             rounded
                                             size="mini"
                                         />
-                                        <Header.Content>
-                                            Oancea Ionut Eugen
-                                        </Header.Content>
+                                        <Header.Content>Oancea Ionut Eugen</Header.Content>
                                     </Header>
                                 </Table.Cell>
                                 <Table.Cell>
@@ -135,24 +141,16 @@ class ViewProfile extends React.Component {
                                 {/* <Divider hidden /> */}
                                 <Segment.Group>
                                     <Segment>
-                                        <Header as="h4">
-                                            Name : {this.state.name}
-                                        </Header>
+                                        <Header as="h4">Name : {this.state.name}</Header>
                                     </Segment>
                                     <Segment>
-                                        <Header as="h4">
-                                            Surname: {this.state.surname}
-                                        </Header>
+                                        <Header as="h4">Surname: {this.state.surname}</Header>
                                     </Segment>
                                     <Segment>
-                                        <Header as="h4">
-                                            Email : {this.state.email}
-                                        </Header>
+                                        <Header as="h4">Email : {this.state.email}</Header>
                                     </Segment>
                                     <Segment>
-                                        <Header as="h4">
-                                            Job : {this.state.job}{" "}
-                                        </Header>
+                                        <Header as="h4">Job : {this.state.job} </Header>
                                     </Segment>
                                 </Segment.Group>
                             </Grid.Column>
@@ -176,19 +174,13 @@ class ViewProfile extends React.Component {
                                 <Segment color="green" secondary attached>
                                     <List horizontal divided relaxed>
                                         <List.Item>
-                                            <List.Content>
-                                                Morning: Focused
-                                            </List.Content>
+                                            <List.Content>Morning: Focused</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Content>
-                                                Evening: Tired
-                                            </List.Content>
+                                            <List.Content>Evening: Tired</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Content>
-                                                Noon: Relaxed
-                                            </List.Content>
+                                            <List.Content>Noon: Relaxed</List.Content>
                                         </List.Item>
                                     </List>
                                 </Segment>
@@ -198,9 +190,7 @@ class ViewProfile extends React.Component {
                             <Table color="teal" key="teal">
                                 <Table.Header>
                                     <Table.Row>
-                                        <Table.HeaderCell>
-                                            Employee
-                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>Employee</Table.HeaderCell>
                                         <Table.HeaderCell>Job</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
@@ -215,19 +205,81 @@ class ViewProfile extends React.Component {
 }
 
 class EditProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: "",
+            email: "",
+            description: "",
+            jobName: "",
+            myFunction: "",
+            category: ""
+        };
+    }
+    changeHandler = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+    componentWillUnmount() {
+        if (
+            this.state.userName ||
+            this.state.email ||
+            this.state.description ||
+            this.state.jobName ||
+            this.state.myFunction ||
+            this.state.category
+        ) {
+            const create = {
+                username: this.state.userName,
+                email: this.state.email,
+                description: this.state.description,
+                job: {
+                    name: this.state.jobName,
+                    function: this.state.myFunction,
+                    category: this.state.category
+                }
+            };
+            const cookies = new Cookies();
+            const userId = cookies.get("user_id");
+            axios
+                .post(`${baseurl}/edit-profile/${userId}/`, { create })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
     render() {
+        const { userName, email, description, jobName, myFunction, category } = this.state;
         return (
             <Tab.Pane>
                 {" "}
                 <Container textAlign="justified">
                     <Segment.Group>
                         <Segment color="red">
-                            <Header as="h4">Change Username:</Header>
+                            <Header as="h4">Change Name:</Header>
                             <div className="ui fluid icon input">
                                 <i aria-hidden="true" className="users icon" />
                                 <input
+                                    name="name"
                                     type="text"
-                                    placeholder="Change Username..."
+                                    value={userName}
+                                    placeholder="Change Name..."
+                                    onChange={this.changeHandler}
+                                />
+                            </div>
+                        </Segment>
+                        <Segment color="red">
+                            <Header as="h4">Change Surname:</Header>
+                            <div className="ui fluid icon input">
+                                <i aria-hidden="true" className="users icon" />
+                                <input
+                                    name="Surname"
+                                    type="text"
+                                    value={userName}
+                                    placeholder="Change Surname..."
+                                    onChange={this.changeHandler}
                                 />
                             </div>
                         </Segment>
@@ -235,68 +287,57 @@ class EditProfile extends React.Component {
                             <Header as="h4">Change Email:</Header>
                             <div className="ui fluid icon input">
                                 <input
+                                    name="email"
                                     type="text"
+                                    value={email}
                                     placeholder="Change Email..."
+                                    onChange={this.changeHandler}
                                 />
                                 <i aria-hidden="true" className="mail icon" />
                             </div>
-                        </Segment>
-
-                        <Segment color="red">
-                            {" "}
-                            <Header as="h4">Change Description:</Header>
-                            <form className="ui form ">
-                                <textarea
-                                    placeholder="Change Description..."
-                                    rows="3"
-                                />
-                            </form>
                         </Segment>
 
                         <Segment color="red" secondary>
                             <Grid>
                                 <Grid.Column width={8}>
                                     <Header as="h4" attached="top">
-                                        Difficulty
+                                        Preferences
                                     </Header>
                                     <Segment attached color="red">
                                         <List divided relaxed>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Morning
-                                                    </List.Header>
+                                                    <List.Header>Morning</List.Header>
                                                     <Dropdown
                                                         placeholder="Select Difficulty"
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Afternoon
-                                                    </List.Header>
+                                                    <List.Header>Afternoon</List.Header>
                                                     <Dropdown
                                                         placeholder="Select Difficulty"
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Evening
-                                                    </List.Header>
+                                                    <List.Header>Evening</List.Header>
                                                     <Dropdown
                                                         placeholder="Select Difficulty"
                                                         fluid
                                                         selection
                                                         options={selectOptions}
+                                                        onChange={this.changeHandler}
                                                     />
                                                 </List.Content>
                                             </List.Item>
@@ -311,39 +352,42 @@ class EditProfile extends React.Component {
                                         <List divided relaxed>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Job Name
-                                                    </List.Header>
+                                                    <List.Header>Job Name</List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="jobName"
                                                             type="text"
+                                                            value={jobName}
                                                             placeholder="Change Job Name..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
                                             </List.Item>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Function
-                                                    </List.Header>
+                                                    <List.Header>Function</List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="myFunction"
                                                             type="text"
+                                                            value={myFunction}
                                                             placeholder="Change Function..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>
                                             </List.Item>
                                             <List.Item>
                                                 <List.Content>
-                                                    <List.Header>
-                                                        Category
-                                                    </List.Header>
+                                                    <List.Header>Category</List.Header>
                                                     <div className="ui fluid icon input">
                                                         <input
+                                                            name="category"
                                                             type="text"
+                                                            value={category}
                                                             placeholder="Change Category..."
+                                                            onChange={this.changeHandler}
                                                         />
                                                     </div>
                                                 </List.Content>

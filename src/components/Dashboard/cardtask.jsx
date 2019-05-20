@@ -20,6 +20,19 @@ import UpdateTaskModal from './UpdateTaskModal';
 export default class cardTask extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            tasks: []
+        };
+    }
+    componentDidMount() {
+        fetch("http://localhost:8081/tasks")
+            .then(res => {
+                return res.json();
+            })
+            .then(res => {
+                this.state.tasks = res;
+                this.forceUpdate();
+            });
     }
     render() {
         return (
@@ -27,87 +40,39 @@ export default class cardTask extends Component {
                 <Segment color="red">
                     <Header as="h3">Tasks</Header>
                     <Divider section />
-                    <List divided relaxed>
-                        <List.Item>
-                            <List.Icon
-                                name="plug"
-                                size="large"
-                                verticalAlign="middle"
-                            />
-                            <List.Content>
-                                <List.Header as="a" ><span id="taskName">Task Name</span></List.Header>
-                                <Label color="orange">
-                                    Project:
-                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
-                                </Label>
-                                <Label color="red">
-                                    Due Date
-                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
-                                </Label>
-                                <Label color="green"><span id="status">In progres</span></Label>
-                                <Label>
-                                    Planned for:{" "}
-                                    <Label.Detail>25.02.2012</Label.Detail>
-                                </Label>
-                                <Label className="updateButton">
-                                    <UpdateTaskModal></UpdateTaskModal>
-                                </Label>
-                            </List.Content>
-                        </List.Item>{" "}
+                    <List divided relaxed selectable>
+                    {this.state.tasks.map(data => {
+                            var url = "/task/" + data._id;
+                            return (
+                        <List.Item
 
-                        <List.Item>
+                                    key={data._id}
+                                    onClick={console.log("Hi!")}>
                             <List.Icon
                                 name="plug"
                                 size="large"
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a"><span id="taskName">Task Name</span></List.Header>
-                                <Label color="orange">
-                                    Project:
-                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
-                                </Label>
-                                <Label color="red">
-                                    Due Date
-                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
-                                </Label>
-                                <Label color="green"><span id="status">In progres</span></Label>
-                                <Label>
-                                    Planned for:{" "}
-                                    <Label.Detail>25.02.2012</Label.Detail>
-                                </Label>
-                                <Label className="updateButton">
-                                    <UpdateTaskModal></UpdateTaskModal>
-                                </Label>
+                            <List.Header as="a">{data.name}</List.Header>
+                                        <Label color="orange">
+                                            Departament:
+                                            <Label.Detail>{data.department}</Label.Detail>
+                                        </Label>
+                                        <Label color="red">
+                                            Due Date
+                                            <Label.Detail>{data.deadline}</Label.Detail>
+                                        </Label>
+                                        <Label color="green">{data.status}</Label>
+                                        <Label className="updateButton">
+                                        <UpdateTaskModal></UpdateTaskModal>
+                                        </Label>
                             </List.Content>
-                        </List.Item>{" "}
+                        </List.Item>
+                        );
+                        })}
 
-                        <List.Item>
-                            <List.Icon
-                                name="plug"
-                                size="large"
-                                verticalAlign="middle"
-                            />
-                            <List.Content>
-                                <List.Header as="a"><span id="taskName">Task Name</span></List.Header>
-                                <Label color="orange">
-                                    Project:
-                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
-                                </Label>
-                                <Label color="red">
-                                    Due Date
-                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
-                                </Label>
-                                <Label color="green"><span id="status">In progres</span></Label>
-                                <Label>
-                                    Planned for:{" "}
-                                    <Label.Detail>25.02.2012</Label.Detail>
-                                </Label>
-                                <Label className="updateButton">
-                                    <UpdateTaskModal></UpdateTaskModal>
-                                </Label>
-                            </List.Content>
-                        </List.Item>{" "}
+    
                     </List>
                 </Segment>
             </div>
