@@ -15,20 +15,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Cookies from "universal-cookie";
 
+function CheckAuth() {
+    console.log("Checking Auth!");
+    var cookies = new Cookies();
+    //console.log("invalid cookies! ", cookies.get("user_id"));
+    if (
+        cookies.get("user_id") === undefined ||
+        cookies.get("user_id") === null ||
+        cookies.get("user_id") === ""
+    ) {
+        console.log("Not logged in !");
+        return <Redirect to="/login" />;
+    } else {
+        return null;
+    }
+}
+
 export default class Header extends Component {
     constructor(props) {
         super(props);
     }
     state = {};
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-    componentDidMount() {
-        var cookies = new Cookies();
-        console.log(cookies.get());
-    }
+    componentDidMount() {}
     render() {
         const { activeItem } = this.state;
         return (
             <Menu size="mini" inverted className="noBorderRadius">
+                <CheckAuth />
                 <Menu.Item className="App-header">
                     <img
                         src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"

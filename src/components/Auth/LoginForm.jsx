@@ -16,7 +16,8 @@ export default class SignupForm extends Component {
             username: "",
             email: "",
             password: "",
-            confirmpassword: ""
+            confirmpassword: "",
+            error: ""
         };
     }
     redirectToSignUp = () => {
@@ -68,7 +69,7 @@ export default class SignupForm extends Component {
                                     placeholder="Password here..."
                                 />
                             </Form.Field>
-                            <Form.Field>
+                            {/* <Form.Field>
                                 <Checkbox
                                     className="my-label"
                                     label="I forgot my password"
@@ -76,7 +77,7 @@ export default class SignupForm extends Component {
                                         //redirect user to new page
                                     }}
                                 />
-                            </Form.Field>
+                            </Form.Field> */}
                             <Form.Field>
                                 <Checkbox
                                     className="my-label"
@@ -85,6 +86,9 @@ export default class SignupForm extends Component {
                                         this.redirectToSignUp();
                                     }}
                                 />
+                            </Form.Field>
+                            <Form.Field>
+                                <label className="my-label red ">{this.state.error}</label>
                             </Form.Field>
                             <Button
                                 fluid
@@ -116,10 +120,31 @@ export default class SignupForm extends Component {
                                                     path: "/"
                                                 });
                                                 console.log("DONE!");
+                                            } else {
+                                                //console.log("console.log", this.state);
+                                                //this.state.error = data.execution_message;
+                                                //this.setState = { error: data.execution_message };
+                                                //this.forceUpdate();
+                                                return data;
                                             }
                                         })
-                                        .then(() => {
-                                            this.redirectToProfile();
+                                        .then(res => {
+                                            //console.log(res.execution_message);
+                                            console.log(res);
+                                            if (
+                                                res === undefined ||
+                                                res.execution_message === undefined
+                                            ) {
+                                                this.redirectToProfile();
+                                            } else {
+                                                console.log("BAD");
+                                                this.state.error =
+                                                    "Email or password dosen't exists";
+                                                this.forceUpdate();
+                                            }
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
                                         });
                                 }}
                             >
