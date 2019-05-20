@@ -2,18 +2,9 @@ import React, { Component } from "react";
 import { Button, Header, Modal, Icon, Form } from "semantic-ui-react";
 import "../../style/Dashboard/UpdateTaskModal.css";
 
-
-fetch('http://localhost:8081/tasks',)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-    document.getElementById('taskName').innerHTML= myJson.name;
-  });
-
-class UpdateTaskModal extends Component {
+class UpdateTaskModal extends React.Component {
   state = {
+    loading: true,
     taskName: "",
     plan: "",
     deadline: "",
@@ -30,20 +21,57 @@ class UpdateTaskModal extends Component {
     priorityChanged: ""
   };
 
+  async componentDidMount() {
+    const url = "http://localhost:8081/tasks/5ce1712510ecd1095a50fa01";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ task: data, loading: false });
+    const urltasks = "http://localhost:8081/tasks";
+    const responsetasks = await fetch(urltasks);
+    const datatasks = await responsetasks.json();
+    this.setState({ tasks: datatasks, loading: false });
+    for (let i = 0; i < this.state.task.participants.length; i++) {
+      const urlprofile =
+        "http://localhost:8081/get-profile/" +
+        this.state.task.participants[i]._id;
+
+      fetch(urlprofile)
+        .then(data => {
+          this.setState({ loading: false });
+          this.state.profile.push(data[1][0]);
+          return (
+            "http://localhost:8081/get-position/" +
+            this.state.task.participants[i]._id
+          );
+        })
+        .then(url => {
+          fetch(url).then(data => {
+            this.setState({ loading: false });
+            this.state.profile[i].job.push(data[1][0]);
+          });
+        });
+    }
+    console.log(this.state.profile[0]);
+  }
+
+
+
+
+
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
-    const { taskName, plan, deadline, description, category, departament, priority } = this.state;
+    const {
+      taskName,
+      plan,
+      deadline,
+      description,
+      category,
+      departament,
+      priority
+    } = this.state;
 
-    this.setState({
-      submittedName: taskName,
-      plannedTask: plan,
-      deadlineTask: deadline,
-      descriptionTask: description,
-      categoryChanged: category,
-      departamentChanged: departament,
-      priorityChanged: priority
-    });
+
   };
   render() {
     const {
@@ -83,6 +111,7 @@ class UpdateTaskModal extends Component {
                 name="taskName"
                 value={taskName}
                 onChange={this.handleChange}
+                content= "{this.state.task.name}"
               />
 
               <Form.Input label="Project" readOnly>
@@ -96,14 +125,16 @@ class UpdateTaskModal extends Component {
                   onChange={this.handleChange}
                   label="Planning"
                   type="date"
-                />
+                  content= "{this.state.task.timestamp}"
+                ><span id="plan">Planned</span></Form.Input>
                 <Form.Input
                   type="date"
                   name="deadline"
                   value={deadline}
                   onChange={this.handleChange}
                   label="Due date"
-                />
+                  content= "{this.state.task.deadline}"
+                ><span id="deadline">Deadline</span></Form.Input>
               </Form.Group>
               <Form.Input
                 width="16"
@@ -132,19 +163,27 @@ class UpdateTaskModal extends Component {
                 />
               </Form.Group>
               <Form.Input
-                  width="16"
-                  placeholder="Priority"
-                  name="priority"
-                  value={priority}
-                  onChange={this.handleChange}
-                  label="Change priority"
-                />
+                width="16"
+                placeholder="Priority"
+                name="priority"
+                value={priority}
+                onChange={this.handleChange}
+                label="Change priority"
+              />
               <Form.Button color="green" content="Submit" />
             </Form>
             <strong>onChange:</strong>
             <pre>
               {JSON.stringify(
-                { taskName, plan, deadline, description, category, departament,priority },
+                {
+                  taskName,
+                  plan,
+                  deadline,
+                  description,
+                  category,
+                  departament,
+                  priority
+                },
                 null,
                 8
               )}
@@ -168,9 +207,10 @@ class UpdateTaskModal extends Component {
           </Modal.Content>
           <Modal.Actions />
         </Modal>
-      </div>
-    );
-  }
-}
+        </div>
+        )
+
+      };
+    }
 
 export default UpdateTaskModal;

@@ -35,16 +35,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a" ><p id="taskName">Task Name</p></List.Header>
+                                <List.Header as="a" ><span id="taskName">Task Name</span></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
+                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
+                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
                                 </Label>
-                                <Label color="green"><p id="status">In progres</p></Label>
+                                <Label color="green"><span id="status">In progres</span></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
@@ -62,16 +62,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a"><p id="taskName">Task Name</p></List.Header>
+                                <List.Header as="a"><span id="taskName">Task Name</span></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
+                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
+                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
                                 </Label>
-                                <Label color="green"><p id="status">In progres</p></Label>
+                                <Label color="green"><span id="status">In progres</span></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
@@ -89,16 +89,16 @@ export default class cardTask extends Component {
                                 verticalAlign="middle"
                             />
                             <List.Content>
-                                <List.Header as="a"><p id="taskName">Task Name</p></List.Header>
+                                <List.Header as="a"><span id="taskName">Task Name</span></List.Header>
                                 <Label color="orange">
                                     Project:
-                                    <Label.Detail><p id="projectName">Fii Code</p></Label.Detail>
+                                    <Label.Detail><span id="projectName">Fii Code</span></Label.Detail>
                                 </Label>
                                 <Label color="red">
                                     Due Date
-                                    <Label.Detail><p id="deadline">25.02.2012</p></Label.Detail>
+                                    <Label.Detail><span id="deadline">25.02.2012</span></Label.Detail>
                                 </Label>
-                                <Label color="green"><p id="status">In progres</p></Label>
+                                <Label color="green"><span id="status">In progres</span></Label>
                                 <Label>
                                     Planned for:{" "}
                                     <Label.Detail>25.02.2012</Label.Detail>
