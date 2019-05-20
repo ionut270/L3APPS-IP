@@ -37,10 +37,10 @@ class ViewTask extends React.Component {
       // const dataprofile = await responseprofile.json();
       // this.setState({ loading: false });
       // this.state.profile.push(dataprofile[1][0]);
-      // const urlposition =
-      //   "http://localhost:8081/get-position/" +
-      //   this.state.task.participants[i]._id;
-      //
+      const urlposition =
+        "http://localhost:8081/get-position/" +
+        this.state.task.participants[i]._id;
+
       // const responseposition = await fetch(urlposition);
       // const dataposition = await responseposition.json();
       // this.setState({ loading: false });
@@ -49,7 +49,7 @@ class ViewTask extends React.Component {
       fetch(urlprofile)
         .then(data => {
           this.setState({ loading: false });
-          this.state.profile.push(data[1][0]);
+          this.state.profile.push(data);
           return (
             "http://localhost:8081/get-position/" +
             this.state.task.participants[i]._id
@@ -58,11 +58,11 @@ class ViewTask extends React.Component {
         .then(url => {
           fetch(url).then(data => {
             this.setState({ loading: false });
-            this.state.profile[i].job.push(data[1][0]);
+            this.state.profile.push(data);
           });
         });
     }
-    console.log(this.state.profile[0]);
+    console.log(this.state.profile);
   }
   render() {
     return (
