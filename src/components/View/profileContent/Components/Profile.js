@@ -76,40 +76,26 @@ class ViewProfile extends React.Component {
                         console.log("State is ", this.state);
                     });
             })
+            .then((res)=>{
+                fetch("http://localhost:8081/get-position/" + cookies.get("user_id"))
+                .then(res=>{
+                    return res.json()
+                })
+                .then(res=>{
+                    console.log("Position:",res[1].position);
+                    this.setState({
+                        job: res[1].position
+                    })
+                })
+            })
+            .then((res)=>{
+                fetch("http://localhost:8081/viewUnderlings/"+cookies.get("user_id"))
+            })
             .catch(err => {
                 alert("No profile's for you !");
             });
     }
     render() {
-        var listEmployees = () => {
-            if (this.state.employees !== null) {
-                this.state.employees.map(function(item, i) {
-                    return (
-                        <Table.Body color="red">
-                            <Table.Row>
-                                <Table.Cell>
-                                    <Header as="h4" image>
-                                        <Image
-                                            src="https://steamuserimages-a.akamaihd.net/ugc/960838928914191885/31FF51C2135DAD7CB3BF2A2F2142DF0D2177A113/?imw=1024&imh=1024&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
-                                            rounded
-                                            size="mini"
-                                        />
-                                        <Header.Content>Oancea Ionut Eugen</Header.Content>
-                                    </Header>
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {
-                                        JSON.stringify(item)
-                                            .split(/"position":"/)[1]
-                                            .split(/"/)[0]
-                                    }
-                                </Table.Cell>
-                            </Table.Row>
-                        </Table.Body>
-                    );
-                });
-            }
-        };
         return (
             <Tab.Pane>
                 <Container textAlign="justified">
@@ -181,7 +167,7 @@ class ViewProfile extends React.Component {
                                         <Table.HeaderCell>Job</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
-                                {listEmployees}
+                                {/* {listEmployees} */}
                             </Table>
                         </Grid.Row>
                     </Grid>

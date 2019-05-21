@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button, Checkbox, Form, Grid } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
 import "./Auth.css";
 import Cookies from "universal-cookie";
 
@@ -9,6 +10,22 @@ const styles = {
     }
 };
 
+function MyComponentWillMount() {
+    //console.log("Checking Auth!");
+    var cookies = new Cookies();
+    //console.log("invalid cookies! ", cookies.get("user_id"));
+    if (
+        cookies.get("user_id") !== undefined ||
+        cookies.get("user_id") !== null ||
+        cookies.get("user_id") !== ""
+    ) {
+        console.log("Logged in !");
+        return <Redirect to="/dashboard" />;
+    } else {
+        return null;
+    }
+}
+
 export default class SignupForm extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +34,9 @@ export default class SignupForm extends Component {
             email: "",
             password: "",
             confirmpassword: "",
-            error: ""
+            error: "",
+            loading: false,
+            buttonColor: "orange"
         };
     }
     redirectToSignUp = () => {
@@ -79,23 +98,29 @@ export default class SignupForm extends Component {
                                 />
                             </Form.Field> */}
                             <Form.Field>
-                                <Checkbox
+                                <label
                                     className="my-label"
-                                    label="New user, click here"
+                                    color="red"
                                     onClick={() => {
                                         this.redirectToSignUp();
                                     }}
-                                />
-                            </Form.Field>
-                            <Form.Field>
+                                >
+                                    New user, click here
+                                </label>
                                 <label className="my-label red ">{this.state.error}</label>
                             </Form.Field>
                             <Button
+                                loading={this.state.loading}
+                                color={this.state.buttonColor}
                                 fluid
                                 type="submit"
                                 onClick={() => {
                                     //request with data
                                     //console.log(this.state);
+                                    this.setState({
+                                        loading: true,
+                                        buttonColor: "gray"
+                                    });
                                     fetch(
                                         'http://localhost:8081/{request_tag:"login",email:"' +
                                             this.state.email +
@@ -139,7 +164,9 @@ export default class SignupForm extends Component {
                                             } else {
                                                 //console.log("BAD");
                                                 this.setState({
-                                                    error: "Email or password dosen't exists"
+                                                    error: "Email or password dosen't exists",
+                                                    loading: false,
+                                                    buttonColor: "orange"
                                                 });
                                                 // this.state.error =
                                                 //     "Email or password dosen't exists";
@@ -148,7 +175,9 @@ export default class SignupForm extends Component {
                                         })
                                         .catch(err => {
                                             this.setState({
-                                                error: "CROSS ORIGIN ACESS FAILED"
+                                                error: "CROSS ORIGIN ACESS FAILED",
+                                                loading: false,
+                                                buttonColor: "orange"
                                             });
                                             // this.state.error = "CROSS ORIGIN ACESS FAILED";
                                             this.forceUpdate();

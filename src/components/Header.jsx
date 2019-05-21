@@ -28,14 +28,43 @@ export default class Header extends Component {
         if (
             cookies.get("user_id") === undefined ||
             cookies.get("user_id") === null ||
-            cookies.get("user_id") === ""
+            cookies.get("user_id") === "" ||
+            cookies.get("session_token") === undefined ||
+            cookies.get("session_token") === null ||
+            cookies.get("session_token") === ""
         ) {
-            console.log("Not logged in !");
             this.setState({
                 redirect: true
             });
             //return <Redirect to="/login" />;
         } else {
+            /**TODO
+             * VERIFICAM COOKIE SESSIONUL INAINTE DE A CONTINUA
+             */
+            ///%7Brequest_tag:%22check_session_token%22,user_id:%22:ID%22,session_token:%:TOKEN%22%7D
+            fetch(
+                'http://localhost:8081/{request_tag:"check_session_token",user_id:"' +
+                    cookies.get("user_id") +
+                    '",session_token:"' +
+                    cookies.get("session_token") +
+                    '"}'
+            )
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    if (res.error_code === "0") {
+                        console.log("Gud session", res);
+                        this.setState({
+                            redirect: false
+                        });
+                    } else {
+                        console.log("Bad session");
+                        this.setState({
+                            redirect: true
+                        });
+                    }
+                });
             this.setState({
                 redirect: false
             });
