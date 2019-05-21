@@ -1,18 +1,7 @@
 import React, { Component } from "react";
-import {
-    Divider,
-    Header,
-    Segment,
-    Icon,
-    Menu,
-    Dropdown,
-    Image,
-    Input,
-    Label,
-    List
-} from "semantic-ui-react";
+import { Divider, Header, Segment, Label, List } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import faker from "faker";
+//import faker from "faker";
 
 export default class cardTask extends Component {
     constructor(props) {
@@ -27,7 +16,10 @@ export default class cardTask extends Component {
                 return res.json();
             })
             .then(res => {
-                this.state.tasks = res;
+                //this.state.tasks = res;
+                this.setState({
+                    tasks: res
+                });
                 this.forceUpdate();
             });
     }

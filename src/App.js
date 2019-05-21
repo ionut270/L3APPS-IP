@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+//import ReactDOM from "react-dom";
 
 /** */
 //import Auth from "./components/Auth/auth";

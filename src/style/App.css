@@ -142,3 +142,10 @@
 .noBorderRadius {
     border-radius: 0 !important;
 }
+
+.CenteredTagTaskPage {
+    position: absolute !important;
+    left: -1em !important;
+    top: 3.5em !important;
+    z-index: 1 !important;
+}

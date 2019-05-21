@@ -1,48 +1,54 @@
 import React, { Component } from "react";
-import { Icon, Menu, Dropdown, Image, Input } from "semantic-ui-react";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Menu, Dropdown } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import faker from "faker";
+//import faker from "faker";
 import "../style/App.css";
 
-import CreatePlanModal from "./Comp/CreatePlanModal.js";
+//import CreatePlanModal from "./Comp/CreatePlanModal.js";
 import CreateTaskModal from "./Comp/CreateTaskModal.js";
-import CreateSubTaskModal from "./Comp/CreateSubTaskModal.js";
-import EditPlan from "./Comp/EditPlanModal";
+//import CreateSubTaskModal from "./Comp/CreateSubTaskModal.js";
+//import EditPlan from "./Comp/EditPlanModal";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Cookies from "universal-cookie";
 
-function CheckAuth() {
-    console.log("Checking Auth!");
-    var cookies = new Cookies();
-    //console.log("invalid cookies! ", cookies.get("user_id"));
-    if (
-        cookies.get("user_id") === undefined ||
-        cookies.get("user_id") === null ||
-        cookies.get("user_id") === ""
-    ) {
-        console.log("Not logged in !");
-        return <Redirect to="/login" />;
-    } else {
-        return null;
-    }
-}
-
 export default class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     state = {};
     handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-    componentDidMount() {}
+    componentDidMount() {
+        //console.log("Checking Auth!");
+        var cookies = new Cookies();
+        //console.log("invalid cookies! ", cookies.get("user_id"));
+        if (
+            cookies.get("user_id") === undefined ||
+            cookies.get("user_id") === null ||
+            cookies.get("user_id") === ""
+        ) {
+            console.log("Not logged in !");
+            this.setState({
+                redirect: true
+            });
+            //return <Redirect to="/login" />;
+        } else {
+            this.setState({
+                redirect: false
+            });
+        }
+    }
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/login" userInput={this.state.userInput} />;
+        }
         const { activeItem } = this.state;
         return (
             <Menu size="mini" inverted className="noBorderRadius">
-                <CheckAuth />
+                {/* <CheckAuth /> */}
                 <Menu.Item className="App-header">
                     <img
                         src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"
@@ -50,6 +56,7 @@ export default class Header extends Component {
                         alt="logo"
                     />
                 </Menu.Item>
+                {/** No search bar implemented... */}
                 {/* <Menu.Menu position="left">
                     <div className="ui left aligned category search item">
                         <div className="ui transparent icon input">
@@ -89,9 +96,9 @@ export default class Header extends Component {
                                 <Dropdown.Item>
                                     <CreateTaskModal />
                                 </Dropdown.Item>
-                                <Dropdown.Item>
+                                {/* <Dropdown.Item>
                                     <CreateSubTaskModal />
-                                </Dropdown.Item>
+                                </Dropdown.Item> */}
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Item>

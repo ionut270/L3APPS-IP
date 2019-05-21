@@ -14,7 +14,7 @@ import {
 import Cookies from "universal-cookie";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
+//import axios from "axios";
 
 class CreateTaskModal extends Component {
     constructor(props) {
@@ -64,7 +64,7 @@ class CreateTaskModal extends Component {
             };
             //console.log("Create", create, JSON.stringify(create));
             const cookies = new Cookies();
-            const userId = cookies.get("user_id");
+            //const userId = cookies.get("user_id");
             var to_send = {
                 name: create.name,
                 category: create.category,

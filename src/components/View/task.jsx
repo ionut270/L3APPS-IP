@@ -12,24 +12,15 @@ import {
 import MyHeader from "../Header";
 
 class ViewTask extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     state = {
         loading: true,
         task: [],
         tasks: [],
         subtasks: [],
-        profile: [
-            {
-                data_inregistrare: "2019-05-19 00:00:00",
-                email: "test3@yahoo.com",
-                nume: "nume3",
-                parola: "ghfhgfff",
-                position: "tester",
-                prenume: "prenume3"
-            }
-        ]
+        profile: []
     };
 
     async componentDidMount() {
@@ -45,9 +36,9 @@ class ViewTask extends React.Component {
         this.setState({ tasks: datatasks, loading: false });
         for (let i = 0; i < this.state.task.participants.length; i++) {
             if (
-                this.state.task.participants[i]._id != undefined &&
-                this.state.task.participants[i]._id != null &&
-                this.state.task.participants[i]._id != ""
+                this.state.task.participants[i]._id !== undefined &&
+                this.state.task.participants[i]._id !== null &&
+                this.state.task.participants[i]._id !== ""
             ) {
                 console.log("I'am", this.state.task.participants[i]);
                 const urlprofile =
@@ -62,24 +53,28 @@ class ViewTask extends React.Component {
                         } else {
                             this.state.profile.push(res[1][0]);
                         }
+                        this.forceUpdate();
                         return (
                             "http://localhost:8081/get-position/" +
                             this.state.task.participants[i]._id
                         );
                     })
-                    .then(url => {
-                        fetch(url)
-                            .then(data => {
-                                return data.json();
-                            })
-                            .then(res => {
-                                if (this.state.profile[i] != undefined) {
-                                    this.state.profile[i].position = res[1].position;
-                                    this.forceUpdate();
-                                    //console.log(url);
-                                }
-                            });
-                    });
+                    /**problema la get! */
+                    // .then(url => {
+                    //     fetch(url)
+                    //         .then(data => {
+                    //             return data.text();
+                    //             //return data.json();
+                    //         })
+                    //         .then(res => {
+                    //             console.log(res);
+                    //             if (this.state.profile[i] !== undefined) {
+                    //                 this.state.profile[i].position = res[1].position;
+                    //                 this.forceUpdate();
+                    //                 //console.log(url);
+                    //             }
+                    //         });
+                    // });
             }
         }
         for (var i = 0; i < this.state.task["sub-tasks"].length; i++) {
@@ -90,9 +85,9 @@ class ViewTask extends React.Component {
                     return res.json();
                 })
                 .then(res => {
-                    console.log("RES", res);
+                    //console.log("RES", res);
                     this.state.subtasks.push(res);
-                    console.log("NEW RES IS ", this.state.subtasks);
+                    //console.log("NEW RES IS ", this.state.subtasks);
                 });
         }
         this.forceUpdate();
@@ -111,7 +106,7 @@ class ViewTask extends React.Component {
                             </Divider>
 
                             <Segment color="yellow">
-                                <Label ribbon="left">
+                                <Label ribbon="left" className="CenteredTagTaskPage">
                                     <Header as="h1">{this.state.task.priority}</Header>
                                 </Label>
 
@@ -171,13 +166,14 @@ class ViewTask extends React.Component {
                                     {this.state.profile.map(data => {
                                         return (
                                             <Label
+                                                key={data.email}
                                                 className="ParticipantsLabel"
                                                 as="a"
                                                 color="blue"
                                                 image
                                             >
                                                 {data.nume} {data.prenume}
-                                                <Label.Detail>{data.position}</Label.Detail>
+                                                <Label.Detail>DEV{data.position}</Label.Detail>
                                             </Label>
                                         );
                                     })}

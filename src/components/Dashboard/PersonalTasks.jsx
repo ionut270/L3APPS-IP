@@ -1,23 +1,11 @@
 import React, { Component } from "react";
-import {
-    Divider,
-    Header,
-    Segment,
-    Icon,
-    Menu,
-    Dropdown,
-    Image,
-    Input,
-    Label,
-    List,
-    Button
-} from "semantic-ui-react";
+import { Divider, Segment, Icon, List, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import faker from "faker";
+//import faker from "faker";
 
 import Cookies from "universal-cookie";
 
-export default class subtasks extends Component {
+export default class PersonalTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,23 +18,14 @@ export default class subtasks extends Component {
                 return res.json();
             })
             .then(res => {
-                this.state.tasks = res;
+                //this.state.tasks = res;
+                this.setState({
+                    tasks: res
+                });
                 this.forceUpdate();
             });
     }
     render() {
-        const options = [
-            {
-                key: "Today",
-                text: "Today",
-                value: "Today"
-            },
-            {
-                key: "Tomorow",
-                text: "Tomorow",
-                value: "Tomorow"
-            }
-        ];
         return (
             <div className="dashSubtask">
                 <Segment color="red">
@@ -65,18 +44,18 @@ export default class subtasks extends Component {
                     <List divided relaxed>
                         {this.state.tasks.map(data => {
                             //console.log("MAP!")
-                            if (data.participants != undefined) {
+                            if (data.participants !== undefined) {
                                 var i = 0;
                                 while (i <= data.participants.length) {
                                     //console.log("i=",i,"=",data.participants[i],"/",data.participants.length);
-                                    if (data.participants[i] != undefined) {
+                                    if (data.participants[i] !== undefined) {
                                         //
                                         //var cookies = new Cookies();
                                         //console.log(cookies.get("user_id"), "=",data.participants[i]._id);
                                         var cookies = new Cookies();
                                         cookies.get("user_id");
                                         var myid = cookies.get("user_id");
-                                        if (myid == data.participants[i]._id) {
+                                        if (myid === data.participants[i]._id) {
                                             //console.log(data);
                                             var url = "/task/" + data._id;
                                             return (
@@ -102,6 +81,8 @@ export default class subtasks extends Component {
                                                     </List.Content>
                                                 </List.Item>
                                             );
+                                        } else {
+                                            return null;
                                         }
                                     }
                                     i++;
@@ -109,6 +90,7 @@ export default class subtasks extends Component {
                             } else {
                                 return null;
                             }
+                            return null;
                         })}
                     </List>
                 </Segment>

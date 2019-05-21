@@ -95,22 +95,22 @@ export default class SignupForm extends Component {
                                 type="submit"
                                 onClick={() => {
                                     //request with data
-                                    console.log(this.state);
+                                    //console.log(this.state);
                                     fetch(
-                                        "http://18.220.57.109:8090/%7Brequest_tag:%22login%22,%20email:%20%22" +
+                                        'http://localhost:8081/{request_tag:"login",email:"' +
                                             this.state.email +
-                                            "%22,%20password:%20%22" +
+                                            '",password:"' +
                                             this.state.password +
-                                            "%22%7D"
+                                            '"}'
                                     )
                                         .then(function(res) {
-                                            console.log(res);
+                                            //console.log(res);
                                             return res.json();
                                         })
                                         .then(function(data) {
-                                            console.log("Data is", data);
+                                            //console.log("Data is", data);
                                             if (data.execution_message === "Succes") {
-                                                console.log("SETTING UP COOKIES!");
+                                                //console.log("SETTING UP COOKIES!");
                                                 var cookies = new Cookies();
                                                 cookies.set("session_token", data.session_token, {
                                                     path: "/"
@@ -119,7 +119,7 @@ export default class SignupForm extends Component {
                                                 cookies.set("user_id", data.user_id, {
                                                     path: "/"
                                                 });
-                                                console.log("DONE!");
+                                                //console.log("DONE!");
                                             } else {
                                                 //console.log("console.log", this.state);
                                                 //this.state.error = data.execution_message;
@@ -130,21 +130,28 @@ export default class SignupForm extends Component {
                                         })
                                         .then(res => {
                                             //console.log(res.execution_message);
-                                            console.log(res);
+                                            //console.log(res);
                                             if (
                                                 res === undefined ||
                                                 res.execution_message === undefined
                                             ) {
                                                 this.redirectToProfile();
                                             } else {
-                                                console.log("BAD");
-                                                this.state.error =
-                                                    "Email or password dosen't exists";
+                                                //console.log("BAD");
+                                                this.setState({
+                                                    error: "Email or password dosen't exists"
+                                                });
+                                                // this.state.error =
+                                                //     "Email or password dosen't exists";
                                                 this.forceUpdate();
                                             }
                                         })
                                         .catch(err => {
-                                            console.log(err);
+                                            this.setState({
+                                                error: "CROSS ORIGIN ACESS FAILED"
+                                            });
+                                            // this.state.error = "CROSS ORIGIN ACESS FAILED";
+                                            this.forceUpdate();
                                         });
                                 }}
                             >

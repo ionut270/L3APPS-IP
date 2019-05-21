@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, Checkbox, Form, Grid, Icon } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
 import "./Auth.css";
-import axios from "axios";
+//import axios from "axios";
 
 const styles = {
     root: {
@@ -23,7 +23,9 @@ export default class SignupForm extends Component {
                 password: false,
                 email: false
             },
-            errorMSG: ""
+            errorMSG: "",
+            loading: false,
+            buttonColor: "orange"
         };
     }
     redirectToLogin = () => {
@@ -121,40 +123,85 @@ export default class SignupForm extends Component {
                                     label="I agree to the Terms and Conditions"
                                 />
                             </Form.Field> */}
+                            <Form.Field>
+                                <label className="my-label">{this.state.errorMSG}</label>
+                            </Form.Field>
                             <Button
+                                loading={this.state.loading}
+                                color={this.state.buttonColor}
                                 fluid
                                 type="submit"
                                 onClick={() => {
-                                    if (this.state.confirmpassword === this.state.password) {
-                                        fetch(
-                                            "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
-                                                this.state.email +
-                                                "%22,password:%22" +
-                                                this.state.password +
-                                                "%22,first_name:%22" +
-                                                this.state.name +
-                                                "%22,last_name:%22" +
-                                                this.state.surname +
-                                                "%22%7D"
-                                        )
-                                            .then(function(response) {
-                                                return response.json();
-                                            })
-                                            .then(function(myJson) {
-                                                console.log(JSON.stringify(myJson));
-                                                if (myJson.error_code === 3) {
-                                                    this.state.errorMSG = myJson.execution_message;
-                                                }
-                                                console.log(myJson.execution_message);
+                                    console.log(
+                                        this.state.email,
+                                        this.state.name,
+                                        this.state.password,
+                                        this.state.surname
+                                    );
+                                    if (
+                                        this.state.email !== "" &&
+                                        this.state.name !== "" &&
+                                        this.state.password !== "" &&
+                                        this.state.surname !== ""
+                                    ) {
+                                        if (this.state.confirmpassword === this.state.password) {
+                                            this.setState({
+                                                loading: true,
+                                                buttonColor: "gray"
                                             });
-                                        this.redirectToLogin();
+                                            this.forceUpdate();
+                                            fetch(
+                                                "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
+                                                    this.state.email +
+                                                    "%22,password:%22" +
+                                                    this.state.password +
+                                                    "%22,first_name:%22" +
+                                                    this.state.name +
+                                                    "%22,last_name:%22" +
+                                                    this.state.surname +
+                                                    "%22%7D"
+                                            )
+                                                .then(function(response) {
+                                                    return response.json();
+                                                })
+                                                .then(res => {
+                                                    console.log("err code is ", res.error_code);
+                                                    if (res.error_code === "0") {
+                                                        this.redirectToLogin();
+                                                    } else {
+                                                        console.log("Eroor");
+                                                        this.setState({
+                                                            errorMSG: res.execution_message,
+                                                            loading: false,
+                                                            buttonColor: "orange"
+                                                        });
+                                                        this.forceUpdate();
+                                                    }
+                                                })
+                                                .catch(err => {
+                                                    this.setState({
+                                                        errorMSG: "CROSS ORIGIN ACESS FAILED",
+                                                        loading: false,
+                                                        buttonColor: "orange"
+                                                    });
+                                                    // this.state.error = "CROSS ORIGIN ACESS FAILED";
+                                                    this.forceUpdate();
+                                                });
+                                        } else {
+                                            this.setState({
+                                                errorMSG: "Passwords don't match!",
+                                                loading: false,
+                                                buttonColor: "orange"
+                                            });
+                                            this.forceUpdate();
+                                        }
                                     } else {
-                                        console.log(
-                                            this.state.password,
-                                            "=",
-                                            this.state.confirmpassword
-                                        );
-                                        //enable error mesage
+                                        this.setState({
+                                            errorMSG: "Please fill all the fields !",
+                                            loading: false,
+                                            buttonColor: "orange"
+                                        });
+                                        this.forceUpdate();
                                     }
                                 }}
                             >
