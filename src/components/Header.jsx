@@ -115,7 +115,7 @@ export default class Header extends Component {
                     Profile
                 </Menu.Item>
                 <Menu.Menu position="right">
-                    <Menu.Item
+                    {/* <Menu.Item
                         name="Add"
                         active={activeItem === "Add"}
                         onClick={this.handleItemClick}
@@ -125,12 +125,13 @@ export default class Header extends Component {
                                 <Dropdown.Item>
                                     <CreateTaskModal />
                                 </Dropdown.Item>
-                                {/* <Dropdown.Item>
-                                    <CreateSubTaskModal />
-                                </Dropdown.Item> */}
                             </Dropdown.Menu>
                         </Dropdown>
+                    </Menu.Item> */}
+                    <Menu.Item>
+                        <CreateTaskModal />
                     </Menu.Item>
+
                     <Menu.Item
                         name="Logout"
                         active={activeItem === "Logout"}

@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-//import ReactDOM from "react-dom";
-
-/** */
-//import Auth from "./components/Auth/auth";
 import Login from "./components/Auth/LoginForm.jsx";
 import Register from "./components/Auth/SignupForm.jsx";
 import Dashboard from "./components/dashboard";
 import Task from "./components/View/task";
-import Profile from "./components/View/profileContent/Components/Profile";
-/** */
+import Profile from "./components/View/Profile";
 
 export default class App extends Component {
     constructor() {

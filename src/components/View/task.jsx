@@ -60,21 +60,21 @@ class ViewTask extends React.Component {
                         );
                     })
                     /**problema la get! */
-                    // .then(url => {
-                    //     fetch(url)
-                    //         .then(data => {
-                    //             return data.text();
-                    //             //return data.json();
-                    //         })
-                    //         .then(res => {
-                    //             console.log(res);
-                    //             if (this.state.profile[i] !== undefined) {
-                    //                 this.state.profile[i].position = res[1].position;
-                    //                 this.forceUpdate();
-                    //                 //console.log(url);
-                    //             }
-                    //         });
-                    // });
+                    .then(url => {
+                        fetch(url)
+                            .then(data => {
+                                //return data.text();
+                                return data.json();
+                            })
+                            .then(res => {
+                                console.log(res);
+                                if (this.state.profile[i] !== undefined) {
+                                    this.state.profile[i].position = res[1].position;
+                                    this.forceUpdate();
+                                    //console.log(url);
+                                }
+                            });
+                    });
             }
         }
         for (var i = 0; i < this.state.task["sub-tasks"].length; i++) {
@@ -173,7 +173,7 @@ class ViewTask extends React.Component {
                                                 image
                                             >
                                                 {data.nume} {data.prenume}
-                                                <Label.Detail>DEV{data.position}</Label.Detail>
+                                                <Label.Detail>{data.position}</Label.Detail>
                                             </Label>
                                         );
                                     })}

@@ -11,10 +11,25 @@ import {
     ModalFooter,
     ModalBody
 } from "reactstrap";
+import { Select } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 import Cookies from "universal-cookie";
+import Calendar from "react-calendar";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import axios from "axios";
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+}
 
 class CreateTaskModal extends Component {
     constructor(props) {
@@ -25,8 +40,10 @@ class CreateTaskModal extends Component {
             department: "",
             description: "",
             priority: "",
-            deadline: "",
-            status: ""
+            deadline: formatDate(new Date()),
+            status: "",
+            date: new Date(),
+            render_calendar: false
         };
     }
 
@@ -100,17 +117,18 @@ class CreateTaskModal extends Component {
             alert("Nu au fost introduse toate datele");
         }
     };
-
+    onChange = date => {
+        this.setState({ date });
+        this.setState({
+            deadline: formatDate(this.state.date)
+        });
+        console.log(this.state.deadline);
+    };
     render() {
         const { name, category, department, description, priority, deadline, status } = this.state;
         return (
             <div className="CreateTaskModal">
-                <Button
-                    color="outline-primary"
-                    onClick={this.toggleModal.bind(this)}
-                    size="lg"
-                    block
-                >
+                <Button color="outline-primary" onClick={this.toggleModal.bind(this)} block>
                     Create Task
                 </Button>
 
@@ -213,11 +231,10 @@ class CreateTaskModal extends Component {
                                     Deadline
                                 </Label>
                                 <Col sm={9}>
-                                    <Input
-                                        name="deadline"
-                                        placeholder="Example: 01/02/2019"
-                                        value={deadline}
-                                        onChange={this.changeHandler}
+                                    <Calendar
+                                        className="CalendarWidthMax"
+                                        onChange={this.onChange}
+                                        value={this.state.date}
                                     />
                                 </Col>
                             </FormGroup>

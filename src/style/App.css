@@ -149,3 +149,26 @@
     top: 3.5em !important;
     z-index: 1 !important;
 }
+
+.TaskListItems {
+    width: 100% !important;
+}
+
+
+.mobileLabelTasks {
+    width: 13em;
+    text-align: center;
+}
+
+
+@media (orientation: portrait) {
+    .mobileLabelTasks {
+        width: 100% !important;
+        margin: .5em !important;
+        text-align: center !important;
+    }
+}
+
+.CalendarWidthMax {
+    width: 100% !important;
+}

@@ -13,7 +13,7 @@ import {
     Table
 } from "semantic-ui-react";
 import Cookies from "universal-cookie";
-import MyHeader from "../../../Header";
+import MyHeader from "../Header";
 //import ProgressButton from "./ProgressButton.js";
 import axios from "axios";
 //const baseurl = "http://localhost:8081";
@@ -71,9 +71,8 @@ class ViewProfile extends React.Component {
                     })
                     .then(responsee => {
                         this.setState({
-                            employees: responsee[1]
+                            employees: response[1]
                         });
-                        console.log("State is ", this.state);
                     });
             })
             .then((res)=>{
@@ -90,6 +89,15 @@ class ViewProfile extends React.Component {
             })
             .then((res)=>{
                 fetch("http://localhost:8081/viewUnderlings/"+cookies.get("user_id"))
+                .then(res=>{
+                    return res.json();
+                })
+                .then(res =>{
+                    this.setState({
+                        employees: res[1].underlings
+                    });
+                    this.forceUpdate();
+                })
             })
             .catch(err => {
                 alert("No profile's for you !");
@@ -160,13 +168,22 @@ class ViewProfile extends React.Component {
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Table color="teal" key="teal">
+                            <Table celled color="teal">
                                 <Table.Header>
                                     <Table.Row>
                                         <Table.HeaderCell>Employee</Table.HeaderCell>
                                         <Table.HeaderCell>Job</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
+
+                                {this.state.employees.map(user=>{
+                                    return (
+                                        <Table.Body key = {user.ID}>
+                                            <Table.Cell>{user.email}</Table.Cell>
+                                            <Table.Cell>{user.job}</Table.Cell>
+                                        </Table.Body>
+                                    );
+                                })}
                                 {/* {listEmployees} */}
                             </Table>
                         </Grid.Row>
