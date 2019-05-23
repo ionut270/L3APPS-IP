@@ -31,6 +31,5 @@ A task schedular app that allows you to create and assign tasks kindof like a jy
 - Creating a task sucesfully does not remove the create task component
 - Profile data gets loaded slowly
 - The app crashes if one of the microservices fails and sends a html instead of a json
-- 
 
 ### [Curent task page](https://onedrive.live.com/edit.aspx?resid=FA433C654EFFEE81!25217&ithint=file%2cxlsx&authkey=!ALu2HbVjqCEcBfc)
