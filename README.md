@@ -6,7 +6,7 @@ Note in order for the app to run properly the gateway has to be ran from the sam
 A task schedular app that allows you to create and assign tasks kindof like a jyra. The biggest diference from the jyra example is the fact that the app is being able to assign automatically the tasks for the day using a set of preferences the user can define in the profile page.
 
 The app Ui is made in React using React's semantic ui module.
-More on how [React](https://reactjs.org/) and [React Semantuc ui](https://react.semantic-ui.com/)
+More on [React](https://reactjs.org/) and [React Semantuc ui](https://react.semantic-ui.com/)
 
 ## Stauts
 
