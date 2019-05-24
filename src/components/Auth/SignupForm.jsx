@@ -152,16 +152,16 @@ export default class SignupForm extends Component {
                                             this.forceUpdate();
                                             fetch(
                                                 "http://localhost:8081/%7Brequest_tag:%22signup%22,email:%22" +
-                                                    this.state.email +
-                                                    "%22,password:%22" +
-                                                    this.state.password +
-                                                    "%22,first_name:%22" +
-                                                    this.state.name +
-                                                    "%22,last_name:%22" +
-                                                    this.state.surname +
-                                                    "%22%7D"
+                                                this.state.email +
+                                                "%22,password:%22" +
+                                                this.state.password +
+                                                "%22,first_name:%22" +
+                                                this.state.name +
+                                                "%22,last_name:%22" +
+                                                this.state.surname +
+                                                "%22%7D"
                                             )
-                                                .then(function(response) {
+                                                .then(function (response) {
                                                     return response.json();
                                                 })
                                                 .then(res => {
@@ -187,6 +187,27 @@ export default class SignupForm extends Component {
                                                     // this.state.error = "CROSS ORIGIN ACESS FAILED";
                                                     this.forceUpdate();
                                                 });
+                                            fetch(
+                                                'http://localhost:8081/{request_tag:"login",email:"' +
+                                                this.state.email +
+                                                '",password:"' +
+                                                this.state.password +
+                                                '"}'
+                                            )
+                                                .then(function (res) {
+                                                    return res.json();
+                                                })
+                                                .then(function (data) {
+                                                    // console.log("Data is", data);
+
+                                                    if (data.execution_message === "Succes") {
+                                                        fetch("http://localhost:8081/add-preferences/" + data.user_id + "/focused/relaxed/tired")
+                                                            .then(function (res2) {
+                                                                return res2.json();
+                                                            })
+                                                    }
+                                                });
+
                                         } else {
                                             this.setState({
                                                 errorMSG: "Passwords don't match!",
