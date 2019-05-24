@@ -41,6 +41,7 @@ class CreateTaskModal extends Component {
       department: "",
       description: "",
       priority: "",
+      time: "",
       deadline: formatDate(new Date()),
       status: "",
       date: new Date(),
@@ -78,11 +79,13 @@ class CreateTaskModal extends Component {
         description: this.state.description,
         priority: this.state.priority,
         deadline: this.state.deadline,
-        status: this.state.status
+        status: this.state.status,
+        time: this.state.time
       };
       //console.log("Create", create, JSON.stringify(create));
       const cookies = new Cookies();
       //const userId = cookies.get("user_id");
+
       var to_send = {
         name: create.name,
         category: create.category,
@@ -91,17 +94,25 @@ class CreateTaskModal extends Component {
         department: create.department,
         description: create.description,
         priority: create.priority,
-        eroare: "",
         status: create.status,
         "sub-tasks": [],
         timestamp: "",
+        "hour estimation": create.time,
         participants: [
           {
             _id: cookies.get("user_id")
           }
         ]
       };
-      console.log("Sending", to_send);
+      // fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
+      //   .then(response => {
+      //     return response.json();
+      //   })
+      //   .then(response => {
+      //     console.log("response is", response[1][0]);
+      //     to_send.creator = response[1][0].nume;
+      //   });
+      console.log("Sending", JSON.stringify(to_send));
       fetch("http://localhost:8081/tasks", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
@@ -134,6 +145,7 @@ class CreateTaskModal extends Component {
       department,
       description,
       priority,
+      time,
       status
     } = this.state;
     return (
@@ -220,6 +232,21 @@ class CreateTaskModal extends Component {
                     value={description}
                     onChange={this.changeHandler}
                   />
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Label className="black-text" sm={3}>
+                  Time estimation
+                </Label>
+                <Col sm={9}>
+                  <input type="number"
+                    className="form-control"
+                    name="time"
+                    placeholder="Add time ..."
+                    value={time}
+                    onChange={this.changeHandler}
+                  ></input>
                 </Col>
               </FormGroup>
 
