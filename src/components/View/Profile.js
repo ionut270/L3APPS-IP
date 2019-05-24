@@ -209,6 +209,15 @@ class ViewProfile extends React.Component {
               </Table>
             </Grid.Row>
           </Grid>
+          <Divider hidden />
+          <button
+            class="ui fluid button red"
+            onClick={() => {
+              this.redirectToUnderlings();
+            }}
+          >
+            View Underlings
+          </button>
         </Container>
       </Tab.Pane>
     );
@@ -450,15 +459,6 @@ class Profile extends React.Component {
                 }
               ]}
             />{" "}
-            <Divider hidden />
-            <button
-              class="ui fluid button red"
-              onClick={() => {
-                this.redirectToUnderlings();
-              }}
-            >
-              View Underlings
-            </button>
           </Segment>
         </Container>
       </div>
