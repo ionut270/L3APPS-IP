@@ -23,25 +23,16 @@ const prenume = "prenume";
 const nume = "nume";
 const email = "email";
 const parola = "parola";
+const morning = "morning";
+const evening = "evening";
+const afternoon = "afternoon";
 const cookies = new Cookies();
 const userId = cookies.get("user_id");
 
 const selectOptions = [
-  {
-    key: "Relaxed",
-    text: "Relaxed",
-    value: "Relaxed"
-  },
-  {
-    key: "Focused",
-    text: "Focused",
-    value: "Focused"
-  },
-  {
-    key: "Tired",
-    text: "Tired",
-    value: "Tired"
-  }
+  { key: "Relaxed", text: "Relaxed", value: "relaxed" },
+  { key: "Focused", text: "Focused", value: "focused" },
+  { key: "Tired", text: "Tired", value: "tired" }
 ];
 
 class ViewProfile extends React.Component {
@@ -54,9 +45,9 @@ class ViewProfile extends React.Component {
       email: "",
       job: "",
       employees: [],
-      morning: "Relaxed",
-      evening: "Focused",
-      noon: "Tired"
+      morning: "",
+      evening: "",
+      noon: ""
     };
   }
 
@@ -231,6 +222,7 @@ class EditProfile extends React.Component {
       nume: "",
       email: "",
       parola: "",
+      morning: "",
       eroare: ""
     };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
@@ -320,6 +312,7 @@ class EditProfile extends React.Component {
                   />
                 </div>
               </Segment>
+
               <Segment color="red">
                 <Header as="h4">Change Last Name:</Header>
                 <div className="ui fluid icon input">
@@ -384,6 +377,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
+                        onChange={this.changeHandler}
                       />
                     </List.Content>
                   </List.Item>
