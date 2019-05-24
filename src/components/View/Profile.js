@@ -49,7 +49,10 @@ class ViewProfile extends React.Component {
       surname: "",
       email: "",
       job: "",
-      employees: []
+      employees: [],
+      morning: "Relaxed",
+      evening: "Focused",
+      noon: "Tired"
     };
   }
   componentDidMount() {
@@ -64,6 +67,20 @@ class ViewProfile extends React.Component {
           surname: response[1][0].prenume,
           email: response[1][0].email
         });
+
+        fetch("http://localhost:8081/get-preferences/" + cookies.get("user_id"))
+          .then(responsee1 => {
+            return responsee1.json();
+          })
+          .then(responsee1 => {
+            console.log("prefferences:", responsee1[0].exitCode);
+            this.setState({
+              morning: responsee1[1][0].morning,
+              evening: responsee1[1][0].evening,
+              noon: responsee1[1][0].afternoon
+            });
+          });
+
         //il punem in state
         fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
           .then(responsee => {
@@ -91,7 +108,7 @@ class ViewProfile extends React.Component {
               });
             }
           });
-      })
+      }) //aaa
       .then(res => {
         fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
           .then(res => {
@@ -162,13 +179,13 @@ class ViewProfile extends React.Component {
                 <Segment color="green" secondary attached>
                   <List horizontal divided relaxed>
                     <List.Item>
-                      <List.Content>Morning: Focused</List.Content>
+                      <List.Content>Morning: {this.state.morning}</List.Content>
                     </List.Item>
                     <List.Item>
-                      <List.Content>Evening: Tired</List.Content>
+                      <List.Content>Evening: {this.state.evening}</List.Content>
                     </List.Item>
                     <List.Item>
-                      <List.Content>Noon: Relaxed</List.Content>
+                      <List.Content>Noon: {this.state.noon}</List.Content>
                     </List.Item>
                   </List>
                 </Segment>
@@ -220,10 +237,7 @@ class EditProfile extends React.Component {
   }
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.prenume);
-    console.log(this.state.nume);
   };
-
   componentDidUpdate() {
     for (let property in this.state) {
       if (this.state[property]) {
@@ -302,96 +316,45 @@ class EditProfile extends React.Component {
               </div>
             </Segment>
 
-            <Segment color="red" secondary>
-              <Grid>
-                <Grid.Column width={8}>
-                  <Header as="h4" attached="top">
-                    Difficulty
-                  </Header>
-                  <Segment attached color="red">
-                    <List divided relaxed>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Morning</List.Header>
-                          <Dropdown
-                            placeholder="Select Difficulty"
-                            fluid
-                            selection
-                            options={selectOptions}
-                          />
-                        </List.Content>
-                      </List.Item>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Afternoon</List.Header>
-                          <Dropdown
-                            placeholder="Select Difficulty"
-                            fluid
-                            selection
-                            options={selectOptions}
-                          />
-                        </List.Content>
-                      </List.Item>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Evening</List.Header>
-                          <Dropdown
-                            placeholder="Select Difficulty"
-                            fluid
-                            selection
-                            options={selectOptions}
-                          />
-                        </List.Content>
-                      </List.Item>
-                    </List>
-                  </Segment>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <Header as="h4" attached="top">
-                    Job
-                  </Header>
-                  <Segment attached color="red">
-                    <List divided relaxed>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Job Name</List.Header>
-                          <div className="ui fluid icon input">
-                            <input
-                              name="jobName"
-                              type="text"
-                              placeholder="Change Job Name..."
-                            />
-                          </div>
-                        </List.Content>
-                      </List.Item>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Function</List.Header>
-                          <div className="ui fluid icon input">
-                            <input
-                              name="myFunction"
-                              type="text"
-                              placeholder="Change Function..."
-                            />
-                          </div>
-                        </List.Content>
-                      </List.Item>
-                      <List.Item>
-                        <List.Content>
-                          <List.Header>Category</List.Header>
-                          <div className="ui fluid icon input">
-                            <input
-                              name="category"
-                              type="text"
-                              placeholder="Change Category..."
-                            />
-                          </div>
-                        </List.Content>
-                      </List.Item>
-                    </List>
-                  </Segment>
-                </Grid.Column>
-              </Grid>
+            <Header as="h4" attached="top">
+              Difficulty
+            </Header>
+            <Segment attached color="red">
+              <List divided relaxed>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Morning</List.Header>
+                    <Dropdown
+                      placeholder="Select Difficulty"
+                      fluid
+                      selection
+                      options={selectOptions}
+                    />
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Afternoon</List.Header>
+                    <Dropdown
+                      placeholder="Select Difficulty"
+                      fluid
+                      selection
+                      options={selectOptions}
+                    />
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Evening</List.Header>
+                    <Dropdown
+                      placeholder="Select Difficulty"
+                      fluid
+                      selection
+                      options={selectOptions}
+                    />
+                  </List.Content>
+                </List.Item>
+              </List>
             </Segment>
           </Segment.Group>
         </Container>
