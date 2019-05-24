@@ -1,4 +1,5 @@
 import React from "react";
+
 //import { Redirect } from "react-router-dom";
 import {
   Container,
@@ -421,6 +422,9 @@ class Profile extends React.Component {
   // constructor(props) {
   //     super(props);
   // }
+  redirectToUnderlings = () => {
+    this.props.history.push("/underling");
+  };
   render() {
     return (
       <div
@@ -445,7 +449,16 @@ class Profile extends React.Component {
                   render: () => <EditProfile />
                 }
               ]}
-            />
+            />{" "}
+            <Divider hidden />
+            <button
+              class="ui fluid button red"
+              onClick={() => {
+                this.redirectToUnderlings();
+              }}
+            >
+              View Underlings
+            </button>
           </Segment>
         </Container>
       </div>
