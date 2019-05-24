@@ -15,15 +15,17 @@ const userId = cookies.get("user_id");
 class Underlings extends React.Component {
   state = {
     nume: null,
-    job: null,
+    status: false,
     jobs: [],
     profile: [],
     arr: []
   };
   async componentDidMount() {
-    const response = await fetch("http://localhost:8081/viewUnderlings/3");
+    const response = await fetch(
+      "http://localhost:8081/viewUnderlings/" + cookies.get("user_id")
+    );
     const data = await response.json();
-    if (data[1].underlings === null) this.setState({ jobs: "1" });
+    if (data[1].underlings === null) this.setState({ status: true });
     else this.setState({ jobs: data[1].underlings });
 
     for (let i = 0; i < this.state.jobs.length; i++) {
@@ -41,29 +43,45 @@ class Underlings extends React.Component {
   render() {
     return (
       <div>
-        {" "}
-        <MyHeader />
-        <Divider hidden />
-        <Container textAlign="center">
-          <Segment inverted attached>
-            <Header as="h2" inverted color="Blue">
-              My Underlings
-            </Header>
-            <List divided inverted relaxed>
-              {this.state.jobs.map(title => (
-                <div key={title.ID}>
-                  <Divider />
-                  <List.Item>
-                    <List.Content>
-                      <List.Header>Email: {title.email}</List.Header>
-                      Job: {title.job}
-                    </List.Content>
-                  </List.Item>
-                </div>
-              ))}
-            </List>
-          </Segment>
-        </Container>
+        {this.state.status ? (
+          <div>
+            <MyHeader />
+            <Divider hidden />
+            <Container textAlign="center">
+              <Segment inverted>
+                <Header as="h2" inverted color="Blue">
+                  You don't have underlings
+                </Header>
+              </Segment>
+            </Container>
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <MyHeader />
+            <Divider hidden />
+            <Container textAlign="center">
+              <Segment inverted attached>
+                <Header as="h2" inverted color="Blue">
+                  My Underlings
+                </Header>
+                <List divided inverted relaxed>
+                  {this.state.jobs.map(title => (
+                    <div key={title.ID}>
+                      <Divider />
+                      <List.Item>
+                        <List.Content>
+                          <List.Header>Email: {title.email}</List.Header>
+                          Job: {title.job}
+                        </List.Content>
+                      </List.Item>
+                    </div>
+                  ))}
+                </List>
+              </Segment>
+            </Container>
+          </div>
+        )}
       </div>
     );
   }
