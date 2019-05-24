@@ -111,7 +111,7 @@ class ViewProfile extends React.Component {
                             })
                         }
                     })
-            })
+            })//aaa
             .then((res) => {
                 fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
                     .then(res => {
