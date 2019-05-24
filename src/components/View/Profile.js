@@ -30,9 +30,9 @@ const cookies = new Cookies();
 const userId = cookies.get("user_id");
 
 const selectOptions = [
-  { key: "Relaxed", text: "Relaxed", value: "relaxed" },
-  { key: "Focused", text: "Focused", value: "focused" },
-  { key: "Tired", text: "Tired", value: "tired" }
+  { name: "relaxed", key: "relaxed", text: "Relaxed", value: "relaxed" },
+  { name: "focused", key: "focused", text: "Focused", value: "focused" },
+  { name: "tired", key: "fired", text: "Tired", value: "tired" }
 ];
 
 class ViewProfile extends React.Component {
@@ -222,7 +222,7 @@ class EditProfile extends React.Component {
       nume: "",
       email: "",
       parola: "",
-      morning: "",
+      morning1: "dada",
       eroare: ""
     };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
@@ -253,6 +253,9 @@ class EditProfile extends React.Component {
           });
       }
     }
+    console.log(
+      `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
+    );
   }
 
   handleSubmit = e => {
@@ -290,9 +293,21 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    // axios
+    //   .get(
+    //     `${baseUrl}/edit-preferences/${userId}/${morning}/${
+    //       this.state.morning1
+    //     }`
+    //   )
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   };
   render() {
-    const { prenume, nume, email, parola } = this.state;
+    const { prenume, nume, email, parola, morning1 } = this.state;
     return (
       <Tab.Pane>
         {" "}
@@ -366,6 +381,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
+                        onChange={this.changeHandler}
                       />
                     </List.Content>
                   </List.Item>
