@@ -4,7 +4,7 @@ import {
   Container,
   List,
   Tab,
-  Image,
+  Form,
   Segment,
   Grid,
   Header,
@@ -19,6 +19,10 @@ import axios from "axios";
 //const baseurl = "http://localhost:8081";
 
 const baseUrl = "http://localhost:8081";
+const prenume = "prenume";
+const nume = "nume";
+const email = "email";
+const parola = "parola";
 const cookies = new Cookies();
 const userId = cookies.get("user_id");
 
@@ -55,6 +59,7 @@ class ViewProfile extends React.Component {
       noon: "Tired"
     };
   }
+
   componentDidMount() {
     fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
       .then(response => {
@@ -100,7 +105,7 @@ class ViewProfile extends React.Component {
           .then(res => {
             if (res[0].exitCode === 0) {
               this.setState({
-                job: "undifined"
+                job: "undefined"
               });
             } else {
               this.setState({
@@ -225,7 +230,8 @@ class EditProfile extends React.Component {
       prenume: "",
       nume: "",
       email: "",
-      parola: ""
+      parola: "",
+      eroare: ""
     };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
       this.setState({
@@ -256,107 +262,146 @@ class EditProfile extends React.Component {
       }
     }
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    axios
+      .get(`${baseUrl}/edit-profile/${userId}/${prenume}/${this.state.prenume}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    axios
+      .get(`${baseUrl}/edit-profile/${userId}/${nume}/${this.state.nume}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    axios
+      .get(`${baseUrl}/edit-profile/${userId}/${email}/${this.state.email}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    axios
+      .get(`${baseUrl}/edit-profile/${userId}/${parola}/${this.state.parola}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   render() {
     const { prenume, nume, email, parola } = this.state;
     return (
       <Tab.Pane>
         {" "}
         <Container textAlign="justified">
-          <Segment.Group>
-            <Segment color="red">
-              <Header as="h4">Change First Name:</Header>
-              <div className="ui fluid icon input">
-                <i aria-hidden="true" className="users icon" />
-                <input
-                  name="prenume"
-                  type="text"
-                  value={prenume}
-                  placeholder="Change First Name..."
-                  onChange={this.changeHandler}
-                />
-              </div>
-            </Segment>
-            <Segment color="red">
-              <Header as="h4">Change Last Name:</Header>
-              <div className="ui fluid icon input">
-                <i aria-hidden="true" className="users icon" />
-                <input
-                  name="nume"
-                  type="text"
-                  value={nume}
-                  placeholder="Change Last Name..."
-                  onChange={this.changeHandler}
-                />
-              </div>
-            </Segment>
-            <Segment color="red">
-              <Header as="h4">Change Email:</Header>
-              <div className="ui fluid icon input">
-                <input
-                  name="email"
-                  type="text"
-                  value={email}
-                  placeholder="Change Email..."
-                  onChange={this.changeHandler}
-                />
-                <i aria-hidden="true" className="mail icon" />
-              </div>
-            </Segment>
-            <Segment color="red">
-              <Header as="h4">Change Password:</Header>
-              <div className="ui fluid icon input">
-                <input
-                  name="parola"
-                  type="password"
-                  value={parola}
-                  placeholder="Change Password..."
-                  onChange={this.changeHandler}
-                />
-                <i aria-hidden="true" className="lock icon" />
-              </div>
-            </Segment>
+          <Form onSubmit={this.handleSubmit}>
+            <Segment.Group>
+              <Segment color="red">
+                <Header as="h4">Change First Name:</Header>
+                <div className="ui fluid icon input">
+                  <i aria-hidden="true" className="users icon" />
+                  <input
+                    name="prenume"
+                    type="text"
+                    value={prenume}
+                    placeholder="Change First Name..."
+                    onChange={this.changeHandler}
+                  />
+                </div>
+              </Segment>
+              <Segment color="red">
+                <Header as="h4">Change Last Name:</Header>
+                <div className="ui fluid icon input">
+                  <i aria-hidden="true" className="users icon" />
+                  <input
+                    name="nume"
+                    type="text"
+                    value={nume}
+                    placeholder="Change Last Name..."
+                    onChange={this.changeHandler}
+                  />
+                </div>
+              </Segment>
+              <Segment color="red">
+                <Header as="h4">Change Email:</Header>
+                <div className="ui fluid icon input">
+                  <input
+                    name="email"
+                    type="text"
+                    value={email}
+                    placeholder="Change Email..."
+                    onChange={this.changeHandler}
+                  />
+                  <i aria-hidden="true" className="mail icon" />
+                </div>
+              </Segment>
+              <Segment color="red">
+                <Header as="h4">Change Password:</Header>
+                <div className="ui fluid icon input">
+                  <input
+                    name="parola"
+                    type="password"
+                    value={parola}
+                    placeholder="Change Password..."
+                    onChange={this.changeHandler}
+                  />
+                  <i aria-hidden="true" className="lock icon" />
+                </div>
+              </Segment>
 
-            <Header as="h4" attached="top">
-              Difficulty
-            </Header>
-            <Segment attached color="red">
-              <List divided relaxed>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Morning</List.Header>
-                    <Dropdown
-                      placeholder="Select Difficulty"
-                      fluid
-                      selection
-                      options={selectOptions}
-                    />
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Afternoon</List.Header>
-                    <Dropdown
-                      placeholder="Select Difficulty"
-                      fluid
-                      selection
-                      options={selectOptions}
-                    />
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Evening</List.Header>
-                    <Dropdown
-                      placeholder="Select Difficulty"
-                      fluid
-                      selection
-                      options={selectOptions}
-                    />
-                  </List.Content>
-                </List.Item>
-              </List>
-            </Segment>
-          </Segment.Group>
+              <Header as="h4" attached="top">
+                Difficulty
+              </Header>
+              <Segment attached color="red">
+                <List divided relaxed>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header>Morning</List.Header>
+                      <Dropdown
+                        placeholder="Select Difficulty"
+                        fluid
+                        selection
+                        options={selectOptions}
+                      />
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header>Afternoon</List.Header>
+                      <Dropdown
+                        placeholder="Select Difficulty"
+                        fluid
+                        selection
+                        options={selectOptions}
+                      />
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Content>
+                      <List.Header>Evening</List.Header>
+                      <Dropdown
+                        placeholder="Select Difficulty"
+                        fluid
+                        selection
+                        options={selectOptions}
+                      />
+                    </List.Content>
+                  </List.Item>
+                </List>
+              </Segment>
+            </Segment.Group>
+          </Form>
         </Container>
       </Tab.Pane>
     );
