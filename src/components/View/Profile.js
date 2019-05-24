@@ -75,29 +75,38 @@ class ViewProfile extends React.Component {
                         });
                     });
             })
-            .then((res)=>{
+            .then((res) => {
                 fetch("http://localhost:8081/get-position/" + cookies.get("user_id"))
-                .then(res=>{
-                    return res.json()
-                })
-                .then(res=>{
-                    console.log("Position:",res[1].position);
-                    this.setState({
-                        job: res[1].position
+                    .then(res => {
+                        return res.json()
                     })
-                })
+                    .then(res => {
+                        if (res[0].exitCode == 0) {
+                            this.setState({
+                                job: "undifined"
+                            })
+
+                        }
+                        else {
+                            this.setState({
+                                job: res[1].position
+                            })
+                        }
+                    })
             })
-            .then((res)=>{
-                fetch("http://localhost:8081/viewUnderlings/"+cookies.get("user_id"))
-                .then(res=>{
-                    return res.json();
-                })
-                .then(res =>{
-                    this.setState({
-                        employees: res[1].underlings
-                    });
-                    this.forceUpdate();
-                })
+            .then((res) => {
+                fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
+                    .then(res => {
+                        return res.json();
+                    })
+                    .then(res => {
+                        console.log("underling:", res[1].underlings);
+                        if (res[1].underlings != null)
+                            this.setState({
+                                employees: res[1].underlings
+                            });
+                        this.forceUpdate();
+                    })
             })
             .catch(err => {
                 alert("No profile's for you !");
@@ -176,9 +185,9 @@ class ViewProfile extends React.Component {
                                     </Table.Row>
                                 </Table.Header>
 
-                                {this.state.employees.map(user=>{
+                                {this.state.employees.map(user => {
                                     return (
-                                        <Table.Body key = {user.ID}>
+                                        <Table.Body key={user.ID}>
                                             <Table.Cell>{user.email}</Table.Cell>
                                             <Table.Cell>{user.job}</Table.Cell>
                                         </Table.Body>
