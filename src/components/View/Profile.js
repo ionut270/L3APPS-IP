@@ -1,5 +1,5 @@
 import React from "react";
-
+import Underlings from "./Underlings.js";
 //import { Redirect } from "react-router-dom";
 import {
   Container,
@@ -209,15 +209,6 @@ class ViewProfile extends React.Component {
               </Table>
             </Grid.Row>
           </Grid>
-          <Divider hidden />
-          <button
-            class="ui fluid button red"
-            onClick={() => {
-              this.redirectToUnderlings();
-            }}
-          >
-            View Underlings
-          </button>
         </Container>
       </Tab.Pane>
     );
@@ -444,7 +435,16 @@ class Profile extends React.Component {
       >
         <MyHeader />
         <Divider hidden />
+
         <Container textAlign="justified">
+          <button
+            class="ui fluid button red"
+            onClick={() => {
+              this.redirectToUnderlings();
+            }}
+          >
+            View Underlings
+          </button>
           <Segment color="red">
             <Tab
               menu={{ secondary: true, pointing: true }}
