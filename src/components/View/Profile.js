@@ -98,7 +98,7 @@ class ViewProfile extends React.Component {
             return res.json();
           })
           .then(res => {
-            if (res[0].exitCode == 0) {
+            if (res[0].exitCode === 0) {
               this.setState({
                 job: "undifined"
               });
