@@ -134,7 +134,6 @@ class CreateTaskModal extends Component {
       department,
       description,
       priority,
-      deadline,
       status
     } = this.state;
     return (
