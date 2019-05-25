@@ -232,7 +232,7 @@ class ViewProfile extends React.Component {
                           //request with data
                           //console.log(this.state);
                           // window.location.reload();
-
+                          window.location.reload();
                           this.setState({
                             loading: true,
                             buttonColor: "gray"
@@ -274,7 +274,7 @@ class ViewProfile extends React.Component {
                           //request with data
                           //console.log(this.state);
                           // window.location.reload();
-
+                          window.location.reload();
                           this.setState({
                             loading: true,
                             buttonColor: "gray"
@@ -324,7 +324,7 @@ class ViewProfile extends React.Component {
                         onClick={() => {
                           //request with data
                           //console.log(this.state);
-                          //window.location.reload();
+                          window.location.reload();
 
                           this.setState({
                             loading: true,
