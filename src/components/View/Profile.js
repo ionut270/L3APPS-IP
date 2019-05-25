@@ -4,6 +4,7 @@ import {
   Container,
   List,
   Tab,
+  Input,
   Form,
   Segment,
   Grid,
@@ -47,12 +48,12 @@ class ViewProfile extends React.Component {
       morning: "",
       evening: "",
       noon: "",
-      superiorId : "",
-      underlingId : "",
-      underlingPos : "",
-      underlingIdDelete : "",
-      underlingIdChange : "",
-      underlingPosChange : ""
+      superiorId: "",
+      underlingId: "",
+      underlingPos: "",
+      underlingIdDelete: "",
+      underlingIdChange: "",
+      underlingPosChange: ""
     };
   }
 
@@ -176,159 +177,174 @@ class ViewProfile extends React.Component {
                 </Segment>
               </Grid.Column>
             </Grid.Row>
-            { this.state.job === 'HR' ?
-                <Grid.Row>
-                    <Segment>
-                        <Header as="h3">Add underling</Header>
-                        <List.Item>
-                            <List.Content>Superior ID</List.Content>
-                            <input
-                            value={this.state.superiorId}
-                            onChange={e => {
-                                this.setState({
-                                    superiorId: e.target.value
-                                });
-                            }}
-                            type="number"
-                            min="1"
+            {this.state.job === "HR" ? (
+              <Grid.Row>
+                <Grid.Column>
+                  <Segment.Group horizontal>
+                    <Segment textAlign="center" color="red">
+                      <Header as="h3">Add underling</Header>
+                      <Divider />
+                      <List.Item>
+                        <List.Content>Superior ID</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.superiorId}
+                          onChange={e => {
+                            this.setState({
+                              superiorId: e.target.value
+                            });
+                          }}
+                          type="number"
+                          min="1"
                         />
-                        </List.Item>
-                        <List.Item>
-                            <List.Content>Underling ID</List.Content>
-                            <input
-                            value={this.state.underlingId}
-                            onChange={e => {
-                                this.setState({
-                                    underlingId: e.target.value
-                                });
-                            }}
-                            type="number"
-                            min="1"
+                      </List.Item>
+                      <List.Item>
+                        <List.Content>Underling ID</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.underlingId}
+                          onChange={e => {
+                            this.setState({
+                              underlingId: e.target.value
+                            });
+                          }}
+                          type="number"
+                          min="1"
                         />
-                        </List.Item>
-                        <List.Item>
-                            <List.Content>Underling Position</List.Content>
-                            <input
-                            value={this.state.underlingPos}
-                            onChange={e => {
-                                this.setState({
-                                    underlingPos: e.target.value
-                                });
-                            }}
-                            type="text"
+                      </List.Item>
+                      <List.Item>
+                        <List.Content>Underling Position</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.underlingPos}
+                          onChange={e => {
+                            this.setState({
+                              underlingPos: e.target.value
+                            });
+                          }}
+                          type="text"
                         />
-                        </List.Item>
-                        <Button
-                            onClick={() => {
-                                //request with data
-                                //console.log(this.state);
-                                // window.location.reload();
+                      </List.Item>
+                      <Divider hidden />
+                      <Button
+                        color="google plus"
+                        onClick={() => {
+                          //request with data
+                          //console.log(this.state);
+                          // window.location.reload();
 
-                                this.setState({
-                                    loading: true,
-                                    buttonColor: "gray"
-                                });
-                                fetch(
-                                    'http://localhost:8081/add-underling/' +
-                                        this.state.underlingId +
-                                        '/' +
-                                        this.state.superiorId +
-                                        '/' +
-                                        this.state.underlingPos
-                                )
-
-                            }}
-                        >
-                            Add Underling
-                        </Button>
+                          this.setState({
+                            loading: true,
+                            buttonColor: "gray"
+                          });
+                          fetch(
+                            "http://localhost:8081/add-underling/" +
+                              this.state.underlingId +
+                              "/" +
+                              this.state.superiorId +
+                              "/" +
+                              this.state.underlingPos
+                          );
+                        }}
+                      >
+                        Add Underling
+                      </Button>
                     </Segment>
-                    <Segment>
-                        <Header as="h3">Remove underling</Header>
-                        <List.Item>
-                            <List.Content>Underling ID</List.Content>
-                            <input
-                            value={this.state.underlingIdDelete}
-                            onChange={e => {
-                                this.setState({
-                                    underlingIdDelete: e.target.value
-                                });
-                            }}
-                            type="number"
-                            min="1"
+                    <Segment textAlign="center" color="red">
+                      <Header as="h3">Remove underling</Header>
+                      <Divider />
+                      <List.Item>
+                        <List.Content>Underling ID</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.underlingIdDelete}
+                          onChange={e => {
+                            this.setState({
+                              underlingIdDelete: e.target.value
+                            });
+                          }}
+                          type="number"
+                          min="1"
                         />
-                        </List.Item>
-                        <Button
-                            onClick={() => {
-                                //request with data
-                                //console.log(this.state);
-                                // window.location.reload();
+                      </List.Item>
+                      <Divider hidden />
+                      <Button
+                        color="google plus"
+                        onClick={() => {
+                          //request with data
+                          //console.log(this.state);
+                          // window.location.reload();
 
-                                this.setState({
-                                    loading: true,
-                                    buttonColor: "gray"
-                                });
-                                fetch(
-                                    'http://localhost:8081/remove-underling/' +
-                                        this.state.underlingIdDelete 
-                                )
-
-                                
-                            }}
-                        >
-                            Remove Underling
-                        </Button>
+                          this.setState({
+                            loading: true,
+                            buttonColor: "gray"
+                          });
+                          fetch(
+                            "http://localhost:8081/remove-underling/" +
+                              this.state.underlingIdDelete
+                          );
+                        }}
+                      >
+                        Remove Underling
+                      </Button>
                     </Segment>
-                    <Segment>
-                        <Header as="h3">Change position</Header>
-                        <List.Item>
-                            <List.Content>Underling ID</List.Content>
-                            <input
-                            value={this.state.underlingIdChange}
-                            onChange={e => {
-                                this.setState({
-                                    underlingIdChange: e.target.value
-                                });
-                            }}
-                            type="number"
-                            min="1"
+                    <Segment textAlign="center" color="red">
+                      <Header as="h3">Change position</Header>
+                      <Divider />
+                      <List.Item>
+                        <List.Content>Underling ID</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.underlingIdChange}
+                          onChange={e => {
+                            this.setState({
+                              underlingIdChange: e.target.value
+                            });
+                          }}
+                          type="number"
+                          min="1"
                         />
-                        </List.Item>
-                        <List.Item>
-                            <List.Content>Underling Position</List.Content>
-                            <input
-                            value={this.state.underlingPosChange}
-                            onChange={e => {
-                                this.setState({
-                                    underlingPosChange: e.target.value
-                                });
-                            }}
-                            type="text"
+                      </List.Item>
+                      <List.Item>
+                        <List.Content>Underling Position</List.Content>
+                        <Input
+                          fluid
+                          value={this.state.underlingPosChange}
+                          onChange={e => {
+                            this.setState({
+                              underlingPosChange: e.target.value
+                            });
+                          }}
+                          type="text"
                         />
-                        </List.Item>
-                        <Button
-                            onClick={() => {
-                                //request with data
-                                //console.log(this.state);
-                                //window.location.reload();
+                      </List.Item>
+                      <Divider hidden />
+                      <Button
+                        color="google plus"
+                        onClick={() => {
+                          //request with data
+                          //console.log(this.state);
+                          //window.location.reload();
 
-                                this.setState({
-                                    loading: true,
-                                    buttonColor: "gray"
-                                });
-                                fetch(
-                                    'http://localhost:8081/change-position/' +
-                                        this.state.underlingIdChange +
-                                        '/' +
-                                        this.state.underlingPosChange
-                                )
-                                
-                            }}
-                        >
-                            Change Position
-                        </Button>
+                          this.setState({
+                            loading: true,
+                            buttonColor: "gray"
+                          });
+                          fetch(
+                            "http://localhost:8081/change-position/" +
+                              this.state.underlingIdChange +
+                              "/" +
+                              this.state.underlingPosChange
+                          );
+                        }}
+                      >
+                        Change Position
+                      </Button>
                     </Segment>
-                </Grid.Row>
-            : null }
+                  </Segment.Group>
+                </Grid.Column>
+              </Grid.Row>
+            ) : null}
             <Grid.Row>
               <Table celled color="teal">
                 <Table.Header>
