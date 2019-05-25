@@ -223,8 +223,9 @@ class EditProfile extends React.Component {
       nume: "",
       email: "",
       parola: "",
-      morning1: "dada",
-      eroare: ""
+      morning1: "",
+      eroare: "",
+      morning: ""
     };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
       this.setState({
@@ -235,7 +236,9 @@ class EditProfile extends React.Component {
     });
   }
   changeHandler = e => {
+    console.log("target:", e.target.value);
     this.setState({ [e.target.name]: e.target.value });
+    this.forceUpdate();
   };
   componentDidUpdate() {
     for (let property in this.state) {
@@ -243,7 +246,7 @@ class EditProfile extends React.Component {
         axios
           .get(
             `${baseUrl}/edit-profile/${userId}/${property}/${
-              this.state[property]
+            this.state[property]
             }`
           )
           .then(response => {
@@ -253,10 +256,18 @@ class EditProfile extends React.Component {
             console.log(error);
           });
       }
+
     }
     console.log(
       `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
     );
+    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/morning/" + this.morning)//localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      }).then(res => {
+        console.log("prefferences response:", res)
+
+      })
   }
 
   handleSubmit = e => {
@@ -294,6 +305,7 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
+
     // axios
     //   .get(
     //     `${baseUrl}/edit-preferences/${userId}/${morning}/${
@@ -378,11 +390,12 @@ class EditProfile extends React.Component {
                     <List.Content>
                       <List.Header>Morning</List.Header>
                       <Dropdown
+                        name="morning"
                         placeholder="Select Difficulty"
                         fluid
                         selection
                         options={selectOptions}
-                        onChange={this.changeHandler}
+                        onChange={this.state.morning = "relaxed"}
                       />
                     </List.Content>
                   </List.Item>
