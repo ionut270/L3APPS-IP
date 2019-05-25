@@ -154,18 +154,14 @@ class ViewProfile extends React.Component {
               <Grid.Column>
                 <Header as="h4" attached="top">
                   Preferences
-                                </Header>
+                </Header>
                 <Segment color="green" secondary attached>
                   <List horizontal divided relaxed>
                     <List.Item>
-                      <List.Content>
-                        Morning: {this.state.morning}
-                      </List.Content>
+                      <List.Content>Morning: {this.state.morning}</List.Content>
                     </List.Item>
                     <List.Item>
-                      <List.Content>
-                        Evening: {this.state.evening}
-                      </List.Content>
+                      <List.Content>Evening: {this.state.evening}</List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Content>Noon: {this.state.noon}</List.Content>
@@ -304,9 +300,9 @@ class EditProfile extends React.Component {
 
     fetch(
       "http://localhost:8081/edit-preferences/" +
-      cookies.get("user_id") +
-      "/morning/" +
-      this.state1.morning
+        cookies.get("user_id") +
+        "/morning/" +
+        this.state1.morning
     ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
@@ -316,9 +312,9 @@ class EditProfile extends React.Component {
       });
     fetch(
       "http://localhost:8081/edit-preferences/" +
-      cookies.get("user_id") +
-      "/evening/" +
-      this.state1.evening
+        cookies.get("user_id") +
+        "/evening/" +
+        this.state1.evening
     ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
@@ -328,9 +324,9 @@ class EditProfile extends React.Component {
       });
     fetch(
       "http://localhost:8081/edit-preferences/" +
-      cookies.get("user_id") +
-      "/afternoon/" +
-      this.state1.noon
+        cookies.get("user_id") +
+        "/afternoon/" +
+        this.state1.noon
     ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
@@ -412,8 +408,8 @@ class EditProfile extends React.Component {
               </Segment>
 
               <Header as="h4" attached="top">
-                Difficulty
-                            </Header>
+                Preferences
+              </Header>
               <Segment attached color="red">
                 <List divided relaxed>
                   <List.Item>
@@ -458,7 +454,7 @@ class EditProfile extends React.Component {
             </Segment.Group>
             <Button type="submit" onSubmit={this.handleSubmit} positive fluid>
               Confirm
-                        </Button>
+            </Button>
           </Form>
         </Container>
       </Tab.Pane>
