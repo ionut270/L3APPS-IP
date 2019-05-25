@@ -23,9 +23,6 @@ const baseUrl = "http://localhost:8081";
 const prenume = "prenume";
 const nume = "nume";
 const email = "email";
-const morning = "morning";
-const evening = "evening";
-const afternoon = "afternoon";
 const parola = "parola";
 
 const cookies = new Cookies();
@@ -329,78 +326,43 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    axios
-      .get(
-        `${baseUrl}/edit-preferences/${userId}/${morning}/${
-          this.state1.morning
-        }`
-      )
-      .then(response => {
-        console.log(response);
+
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/morning/" +
+        this.state1.morning
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
       })
-      .catch(error => {
-        console.log(error);
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-    axios
-      .get(
-        `${baseUrl}/edit-preferences/${userId}/${evening}/${
-          this.state1.evening
-        }`
-      )
-      .then(response => {
-        console.log(response);
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/evening/" +
+        this.state1.evening
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
       })
-      .catch(error => {
-        console.log(error);
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-    axios
-      .get(
-        `${baseUrl}/edit-preferences/${userId}/${afternoon}/${
-          this.state1.afternoon
-        }`
-      )
-      .then(response => {
-        console.log(response);
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/afternoon/" +
+        this.state1.noon
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
       })
-      .catch(error => {
-        console.log(error);
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-    // // fetch(
-    // //   "http://localhost:8081/edit-preferences/" +
-    // //     cookies.get("user_id") +
-    // //     "/morning/" +
-    // //     this.state1.morning
-    // // ) //localhost:8081/edit-preferences/20/morning/tired
-    // //   .then(res => {
-    // //     return res.json();
-    // //   })
-    // //   .then(res => {
-    // //     console.log("prefferences response:", res);
-    // //   });
-    // fetch(
-    //   "http://localhost:8081/edit-preferences/" +
-    //     cookies.get("user_id") +
-    //     "/evening/" +
-    //     this.state1.evening
-    // ) //localhost:8081/edit-preferences/20/morning/tired
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(res => {
-    //     console.log("prefferences response:", res);
-    //   });
-    // fetch(
-    //   "http://localhost:8081/edit-preferences/" +
-    //     cookies.get("user_id") +
-    //     "/afternoon/" +
-    //     this.state1.noon
-    // ) //localhost:8081/edit-preferences/20/morning/tired
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(res => {
-    //     console.log("prefferences response:", res);
-    //   });
 
     alert("Datele au fost schimbate");
   };
