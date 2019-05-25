@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Divider, Header, Segment, Label, List, Table, Button } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+import { Divider, Header, Segment, Label, List } from "semantic-ui-react";
+//import { Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 //import faker from "faker";
 

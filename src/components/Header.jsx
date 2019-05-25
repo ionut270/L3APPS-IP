@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 //import faker from "faker";
