@@ -117,6 +117,9 @@
     margin: .5em !important;
     padding: 1em !important;
 }
+.ButtonContainer {
+    width:20%!important;
+}
 
 .ListParticipants {
     display: flex;
