@@ -43,13 +43,15 @@ export default class PersonalTask extends Component {
     window.location.reload();
     let sortedTasks = this.state.tasks;
     sortedTasks = sortedTasks.sort((a, b) => {
-      if (a.status === 'Not Started' && b.status !== 'Not Started') {
+      if (a.status.toLowerCase() === 'not started' && b.status.toLowerCase() !== 'not started') {
         return -1;
-      } else if (a.status === 'Starting' && (b.status === 'Doing' || b.status === 'Done' || b.status === 'Finished')) {
+      } else if (a.status.toLowerCase() === 'starting' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting') {
         return -1;
-      } else if (a.status === 'Doing' && (b.status === 'Done' || b.status === 'Finished')) {
+      } else if (a.status.toLowerCase() === 'doing' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing') {
         return -1;
-      } else if (a.status === 'Done' && b.status === 'Finished') {
+      } else if (a.status.toLowerCase() === 'done' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing' && b.status.toLowerCase() !== 'done') {
+        return -1;
+      } else if (a.status.toLowerCase() === 'finished' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing' && b.status.toLowerCase() !== 'done' && b.status.toLowerCase() !== 'finished') {
         return -1;
       } else {
         return 0;
