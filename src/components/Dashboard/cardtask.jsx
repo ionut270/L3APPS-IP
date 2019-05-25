@@ -22,6 +22,9 @@ export default class cardTask extends Component {
                     tasks: res
                 });
                 this.forceUpdate();
+            })
+            .catch(res => {
+                console.log("bad gateway", res);
             });
     }
     render() {
