@@ -38,10 +38,6 @@ export default class Header extends Component {
             });
             //return <Redirect to="/login" />;
         } else {
-            /**TODO
-             * VERIFICAM COOKIE SESSIONUL INAINTE DE A CONTINUA
-             */
-            ///%7Brequest_tag:%22check_session_token%22,user_id:%22:ID%22,session_token:%:TOKEN%22%7D
             fetch(
                 'http://localhost:8081/{request_tag:"check_session_token",user_id:"' +
                     cookies.get("user_id") +
@@ -77,7 +73,6 @@ export default class Header extends Component {
         const { activeItem } = this.state;
         return (
             <Menu size="mini" inverted className="noBorderRadius">
-                {/* <CheckAuth /> */}
                 <Menu.Item className="App-header">
                     <img
                         src="https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg"
@@ -115,19 +110,6 @@ export default class Header extends Component {
                     Profile
                 </Menu.Item>
                 <Menu.Menu position="right">
-                    {/* <Menu.Item
-                        name="Add"
-                        active={activeItem === "Add"}
-                        onClick={this.handleItemClick}
-                    >
-                        <Dropdown icon="add large">
-                            <Dropdown.Menu>
-                                <Dropdown.Item>
-                                    <CreateTaskModal />
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </Menu.Item> */}
                     <Menu.Item>
                         <CreateTaskModal />
                     </Menu.Item>

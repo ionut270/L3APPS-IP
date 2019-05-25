@@ -70,12 +70,21 @@ class ViewProfile extends React.Component {
             return responsee1.json();
           })
           .then(responsee1 => {
+              console.log(responsee1);
+              if(responsee1[0] === undefined || responsee1[0] === null || responsee1[0] ===""){
+                this.setState({
+                    morning: "unset",
+                    evening: "unset",
+                    noon: "unset"
+                  });
+              } else {
             console.log("prefferences:", responsee1[0].exitCode);
             this.setState({
               morning: responsee1[1][0].morning,
               evening: responsee1[1][0].evening,
               noon: responsee1[1][0].afternoon
             });
+        }
           });
 
         //il punem in state
