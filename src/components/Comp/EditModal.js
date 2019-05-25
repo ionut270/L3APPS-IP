@@ -61,9 +61,6 @@ submitHandler = e =>{
   })
 
 }
-
-
-
   render() {
     const { name, category, departament, description, priority,deadline} = this.state
     return (

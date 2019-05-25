@@ -12,7 +12,7 @@ import {
   ModalBody,
   Row
 } from "reactstrap";
-import { Select } from "semantic-ui-react";
+// import { Select } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import Cookies from "universal-cookie";
 import Calendar from "react-calendar";

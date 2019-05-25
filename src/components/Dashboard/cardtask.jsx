@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Divider, Header, Segment, Label, List, Table, Button } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+import { Divider, Header, Segment, Label, List } from "semantic-ui-react";
+//import { Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 //import faker from "faker";
 
@@ -33,8 +33,7 @@ export default class cardTask extends Component {
                 <Segment color="red">
                     <Header as="h3">Tasks</Header>
                     <Divider section />
-
-                    <List divided relaxed selectable>
+                    <List divided relaxed selectable="true">
                         {this.state.tasks.map(data => {
                             var url = "/task/" + data._id;
                             var color;
@@ -57,8 +56,8 @@ export default class cardTask extends Component {
                                 >
                                     <List.Icon name="plug" size="large" verticalAlign="middle" />
                                     <List.Content>
-                                        <List.Header as="a">{data.name}</List.Header>
-                                        <List.Description as="a">
+                                        <List.Header>{data.name}</List.Header>
+                                        <List.Description>
                                             <List horizontal className="TaskListItems">
                                                 <List.Item>{data.department}</List.Item>
                                                 <List.Content floated="right">
