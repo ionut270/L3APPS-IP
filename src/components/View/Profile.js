@@ -71,7 +71,11 @@ class ViewProfile extends React.Component {
           })
           .then(responsee1 => {
             console.log(responsee1);
-            if (responsee1[0] === undefined || responsee1[0] === null || responsee1[0] === "") {
+            if (
+              responsee1[0] === undefined ||
+              responsee1[0] === null ||
+              responsee1[0] === ""
+            ) {
               this.setState({
                 morning: "unset",
                 evening: "unset",
@@ -234,13 +238,12 @@ class EditProfile extends React.Component {
       parola: "",
       morning1: "",
       eroare: ""
-
     };
     this.state1 = {
       morning: "",
       noon: "",
       evening: ""
-    }
+    };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
       this.setState({
         prenume: response.data[1][0].prenume,
@@ -265,7 +268,7 @@ class EditProfile extends React.Component {
     this.state1.noon = e.target.getAttribute("name");
     this.forceUpdate();
     console.log(this.state);
-  }
+  };
   changeHandler = e => {
     console.log("target:", e.target.value);
     this.setState({ [e.target.name]: e.target.value });
@@ -277,7 +280,7 @@ class EditProfile extends React.Component {
         axios
           .get(
             `${baseUrl}/edit-profile/${userId}/${property}/${
-            this.state[property]
+              this.state[property]
             }`
           )
           .then(response => {
@@ -287,30 +290,46 @@ class EditProfile extends React.Component {
             console.log(error);
           });
       }
-
     }
     console.log(
       `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
     );
-    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/morning/" + this.state1.morning)//localhost:8081/edit-preferences/20/morning/tired
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/morning/" +
+        this.state1.morning
+    ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
-      }).then(res => {
-        console.log("prefferences response:", res)
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/evening/" + this.state1.evening)//localhost:8081/edit-preferences/20/morning/tired
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/evening/" +
+        this.state1.evening
+    ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
-      }).then(res => {
-        console.log("prefferences response:", res)
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/afternoon/" + this.state1.noon)//localhost:8081/edit-preferences/20/morning/tired
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/afternoon/" +
+        this.state1.noon
+    ) //localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
-      }).then(res => {
-        console.log("prefferences response:", res)
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
       });
-
   }
 
   handleSubmit = e => {
@@ -348,12 +367,9 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
-
-
-
   };
   render() {
-    const { prenume, nume, email, parola, morning1 } = this.state;
+    const { prenume, nume, email, parola } = this.state;
     return (
       <Tab.Pane>
         {" "}
