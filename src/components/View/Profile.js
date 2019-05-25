@@ -1,5 +1,4 @@
 import React from "react";
-import Underlings from "./Underlings.js";
 //import { Redirect } from "react-router-dom";
 import {
   Container,
@@ -9,6 +8,7 @@ import {
   Segment,
   Grid,
   Header,
+  Button,
   Divider,
   Dropdown,
   Table
@@ -24,9 +24,7 @@ const prenume = "prenume";
 const nume = "nume";
 const email = "email";
 const parola = "parola";
-const morning = "morning";
-const evening = "evening";
-const afternoon = "afternoon";
+
 const cookies = new Cookies();
 const userId = cookies.get("user_id");
 
@@ -58,47 +56,12 @@ class ViewProfile extends React.Component {
         return response.json();
       })
       .then(response => {
-        console.log("response is", response[1][0]);
         this.setState({
           name: response[1][0].nume,
           surname: response[1][0].prenume,
           email: response[1][0].email
         });
 
-        fetch("http://localhost:8081/get-preferences/" + cookies.get("user_id"))
-          .then(responsee1 => {
-            return responsee1.json();
-          })
-          .then(responsee1 => {
-              console.log(responsee1);
-              if(responsee1[0] === undefined || responsee1[0] === null || responsee1[0] ===""){
-                this.setState({
-                    morning: "unset",
-                    evening: "unset",
-                    noon: "unset"
-                  });
-              } else {
-            console.log("prefferences:", responsee1[0].exitCode);
-            this.setState({
-              morning: responsee1[1][0].morning,
-              evening: responsee1[1][0].evening,
-              noon: responsee1[1][0].afternoon
-            });
-        }
-          });
-
-        //il punem in state
-        fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
-          .then(responsee => {
-            return responsee.json();
-          })
-          .then(responsee => {
-            this.setState({
-              employees: response[1]
-            });
-          });
-      })
-      .then(res => {
         fetch("http://localhost:8081/get-position/" + cookies.get("user_id"))
           .then(res => {
             return res.json();
@@ -113,9 +76,36 @@ class ViewProfile extends React.Component {
                 job: res[1].position
               });
             }
+          })
+          .catch(res => {
+            console.log(res);
           });
-      }) //aaa
-      .then(res => {
+
+        //we fetch the rest then
+        fetch("http://localhost:8081/get-preferences/" + cookies.get("user_id"))
+          .then(res => {
+            if (res.status !== 404) {
+              return res.json();
+            }
+          })
+          .then(res => {
+            if (res[0] === undefined || res[0] === null || res[0] === "") {
+              this.setState({
+                morning: "unset",
+                evening: "unset",
+                noon: "unset"
+              });
+            } else {
+              this.setState({
+                morning: res[1][0].morning,
+                evening: res[1][0].evening,
+                noon: res[1][0].afternoon
+              });
+            }
+          })
+          .catch(res => {
+            console.log("ERR returning preferences");
+          });
         fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
           .then(res => {
             return res.json();
@@ -127,6 +117,9 @@ class ViewProfile extends React.Component {
                 employees: res[1].underlings
               });
             this.forceUpdate();
+          })
+          .catch(res => {
+            console.log(res);
           });
       })
       .catch(err => {
@@ -139,23 +132,13 @@ class ViewProfile extends React.Component {
         <Container textAlign="justified">
           <Grid>
             <Grid.Row>
-              {/* <Grid.Column width={5} textAlign="center">
-                                <Image
-                                    src="https://steamuserimages-a.akamaihd.net/ugc/960838928914191885/31FF51C2135DAD7CB3BF2A2F2142DF0D2177A113/?imw=1024&imh=1024&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
-                                    alt="avatar"
-                                    size="small"
-                                    centered
-                                />
-                            </Grid.Column> */}
-
               <Grid.Column className="profileData">
-                {/* <Divider hidden /> */}
                 <Segment.Group>
                   <Segment>
-                    <Header as="h4">Name : {this.state.name}</Header>
+                    <Header as="h4">Last Name : {this.state.name}</Header>
                   </Segment>
                   <Segment>
-                    <Header as="h4">Surname: {this.state.surname}</Header>
+                    <Header as="h4">First Name: {this.state.surname}</Header>
                   </Segment>
                   <Segment>
                     <Header as="h4">Email : {this.state.email}</Header>
@@ -166,29 +149,23 @@ class ViewProfile extends React.Component {
                 </Segment.Group>
               </Grid.Column>
             </Grid.Row>
-            {/* <Grid.Row>
-                            <Grid.Column>
-                                <Header as="h4" attached="top">
-                                    Your Tasks
-                                </Header>
-                                <Segment color="red" secondary attached>
-                                    Planurile tale
-                                </Segment>
-                            </Grid.Column>
-                        </Grid.Row> */}
 
             <Grid.Row>
               <Grid.Column>
                 <Header as="h4" attached="top">
                   Preferences
-                </Header>
+                                </Header>
                 <Segment color="green" secondary attached>
                   <List horizontal divided relaxed>
                     <List.Item>
-                      <List.Content>Morning: {this.state.morning}</List.Content>
+                      <List.Content>
+                        Morning: {this.state.morning}
+                      </List.Content>
                     </List.Item>
                     <List.Item>
-                      <List.Content>Evening: {this.state.evening}</List.Content>
+                      <List.Content>
+                        Evening: {this.state.evening}
+                      </List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Content>Noon: {this.state.noon}</List.Content>
@@ -205,16 +182,16 @@ class ViewProfile extends React.Component {
                     <Table.HeaderCell>Job</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
-
-                {this.state.employees.map(user => {
-                  return (
-                    <Table.Body key={user.ID}>
-                      <Table.Cell>{user.email}</Table.Cell>
-                      <Table.Cell>{user.job}</Table.Cell>
-                    </Table.Body>
-                  );
-                })}
-                {/* {listEmployees} */}
+                <Table.Body>
+                  {this.state.employees.map(user => {
+                    return (
+                      <Table.Row key={user.email}>
+                        <Table.Cell>{user.email}</Table.Cell>
+                        <Table.Cell>{user.job}</Table.Cell>
+                      </Table.Row>
+                    );
+                  })}
+                </Table.Body>
               </Table>
             </Grid.Row>
           </Grid>
@@ -232,8 +209,13 @@ class EditProfile extends React.Component {
       nume: "",
       email: "",
       parola: "",
-      morning1: "dada",
+      morning1: "",
       eroare: ""
+    };
+    this.state1 = {
+      morning: "",
+      noon: "",
+      evening: ""
     };
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
       this.setState({
@@ -243,30 +225,46 @@ class EditProfile extends React.Component {
       });
     });
   }
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
+
+  changeHandlerMorning = e => {
+    console.log("here", e.target.getAttribute("name"));
+    this.state1.morning = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log("here!!!", this.state);
   };
-  componentDidUpdate() {
-    for (let property in this.state) {
-      if (this.state[property]) {
-        axios
-          .get(
-            `${baseUrl}/edit-profile/${userId}/${property}/${
-              this.state[property]
-            }`
-          )
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-    }
-    console.log(
-      `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
-    );
-  }
+  changeHandlerEvening = e => {
+    this.state1.evening = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log(this.state);
+  };
+  changeHandlerNoon = e => {
+    this.state1.noon = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log(this.state);
+  };
+  changeHandler = e => {
+    console.log("target:", e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+    this.forceUpdate();
+  };
+  // componentDidUpdate() {
+  // for (let property in this.state) {
+  //   if (this.state[property]) {
+  //     axios
+  //       .get(
+  //         `${baseUrl}/edit-profile/${userId}/${property}/${
+  //           this.state[property]
+  //         }`
+  //       )
+  //       .then(response => {
+  //         console.log(response);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+  //}
 
   handleSubmit = e => {
     e.preventDefault();
@@ -303,21 +301,48 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    // axios
-    //   .get(
-    //     `${baseUrl}/edit-preferences/${userId}/${morning}/${
-    //       this.state.morning1
-    //     }`
-    //   )
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+      cookies.get("user_id") +
+      "/morning/" +
+      this.state1.morning
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+      cookies.get("user_id") +
+      "/evening/" +
+      this.state1.evening
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+      cookies.get("user_id") +
+      "/afternoon/" +
+      this.state1.noon
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+
+    alert("Datele au fost schimbate");
   };
   render() {
-    const { prenume, nume, email, parola, morning1 } = this.state;
+    const { prenume, nume, email, parola } = this.state;
     return (
       <Tab.Pane>
         {" "}
@@ -332,6 +357,8 @@ class EditProfile extends React.Component {
                     name="prenume"
                     type="text"
                     value={prenume}
+                    title="First name should only contain letters"
+                    pattern="[a-zA-Z]+"
                     placeholder="Change First Name..."
                     onChange={this.changeHandler}
                   />
@@ -345,6 +372,8 @@ class EditProfile extends React.Component {
                   <input
                     name="nume"
                     type="text"
+                    pattern="[a-zA-Z]+"
+                    title="Last name should only contain letters"
                     value={nume}
                     placeholder="Change Last Name..."
                     onChange={this.changeHandler}
@@ -358,6 +387,8 @@ class EditProfile extends React.Component {
                     name="email"
                     type="text"
                     value={email}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Invalid format for email"
                     placeholder="Change Email..."
                     onChange={this.changeHandler}
                   />
@@ -371,6 +402,8 @@ class EditProfile extends React.Component {
                     name="parola"
                     type="password"
                     value={parola}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     placeholder="Change Password..."
                     onChange={this.changeHandler}
                   />
@@ -380,18 +413,19 @@ class EditProfile extends React.Component {
 
               <Header as="h4" attached="top">
                 Difficulty
-              </Header>
+                            </Header>
               <Segment attached color="red">
                 <List divided relaxed>
                   <List.Item>
                     <List.Content>
                       <List.Header>Morning</List.Header>
                       <Dropdown
+                        name="morning"
                         placeholder="Select Difficulty"
                         fluid
                         selection
                         options={selectOptions}
-                        onChange={this.changeHandler}
+                        onChange={this.changeHandlerMorning}
                       />
                     </List.Content>
                   </List.Item>
@@ -403,7 +437,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
-                        onChange={this.changeHandler}
+                        onChange={this.changeHandlerNoon}
                       />
                     </List.Content>
                   </List.Item>
@@ -415,12 +449,16 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
+                        onChange={this.changeHandlerEvening}
                       />
                     </List.Content>
                   </List.Item>
                 </List>
               </Segment>
             </Segment.Group>
+            <Button type="submit" onSubmit={this.handleSubmit} positive fluid>
+              Confirm
+                        </Button>
           </Form>
         </Container>
       </Tab.Pane>
@@ -446,14 +484,14 @@ class Profile extends React.Component {
         <Divider hidden />
 
         <Container textAlign="justified">
-          <button
-            class="ui fluid button red"
-            onClick={() => {
-              this.redirectToUnderlings();
-            }}
-          >
-            View Underlings
-          </button>
+          {/* <button
+                        class="ui fluid button red"
+                        onClick={() => {
+                            this.redirectToUnderlings();
+                        }}
+                    >
+                        View Underlings
+                    </button> */}
           <Segment color="red">
             <Tab
               menu={{ secondary: true, pointing: true }}

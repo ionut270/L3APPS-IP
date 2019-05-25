@@ -1,7 +1,7 @@
 import React from "react";
 import { Divider, Container, Segment, List, Header } from "semantic-ui-react";
 import Cookies from "universal-cookie";
-import MyHeader from "../Header";
+import MyHeader from "../src/components/Header";
 import axios from "axios";
 const baseUrl = "http://localhost:8081";
 const prenume = "prenume";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Grid } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 import "./Auth.css";
 import Cookies from "universal-cookie";
 
@@ -9,23 +9,6 @@ const styles = {
         marginTop: "5%"
     }
 };
-
-function MyComponentWillMount() {
-    //console.log("Checking Auth!");
-    var cookies = new Cookies();
-    //console.log("invalid cookies! ", cookies.get("user_id"));
-    if (
-        cookies.get("user_id") !== undefined ||
-        cookies.get("user_id") !== null ||
-        cookies.get("user_id") !== ""
-    ) {
-        console.log("Logged in !");
-        return <Redirect to="/dashboard" />;
-    } else {
-        return null;
-    }
-}
-
 export default class SignupForm extends Component {
     constructor(props) {
         super(props);
@@ -119,7 +102,7 @@ export default class SignupForm extends Component {
                                     //console.log(this.state);
                                     this.setState({
                                         loading: true,
-                                        buttonColor: "gray"
+                                        buttonColor: "grey"
                                     });
                                     fetch(
                                         'http://localhost:8081/{request_tag:"login",email:"' +
@@ -155,7 +138,7 @@ export default class SignupForm extends Component {
                                         })
                                         .then(res => {
                                             //console.log(res.execution_message);
-                                            //console.log(res);
+                                            console.log(res);
                                             if (
                                                 res === undefined ||
                                                 res.execution_message === undefined
