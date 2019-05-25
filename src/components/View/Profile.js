@@ -52,106 +52,87 @@ class ViewProfile extends React.Component {
 
   componentDidMount() {
     fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        console.log("response is", response[1][0]);
-        this.setState({
-          name: response[1][0].nume,
-          surname: response[1][0].prenume,
-          email: response[1][0].email
-        });
-
-        fetch("http://localhost:8081/get-preferences/" + cookies.get("user_id"))
-          .then(responsee1 => {
-            return responsee1.json();
-          })
-          .then(responsee1 => {
-            console.log(responsee1);
-            if (
-              responsee1[0] === undefined ||
-              responsee1[0] === null ||
-              responsee1[0] === ""
-            ) {
-              this.setState({
-                morning: "unset",
-                evening: "unset",
-                noon: "unset"
-              });
-            } else {
-              console.log("prefferences:", responsee1[0].exitCode);
-              this.setState({
-                morning: responsee1[1][0].morning,
-                evening: responsee1[1][0].evening,
-                noon: responsee1[1][0].afternoon
-              });
-            }
-          });
-
-        //il punem in state
-        fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
-          .then(responsee => {
-            return responsee.json();
-          })
-          .then(responsee => {
+        .then(response => {
+            return response.json();
+        })
+        .then(response => {
             this.setState({
-              employees: response[1]
+                name: response[1][0].nume,
+                surname: response[1][0].prenume,
+                email: response[1][0].email
             });
-          });
-      })
-      .then(res => {
-        fetch("http://localhost:8081/get-position/" + cookies.get("user_id"))
-          .then(res => {
-            return res.json();
-          })
-          .then(res => {
-            if (res[0].exitCode === 0) {
-              this.setState({
-                job: "undefined"
-              });
-            } else {
-              this.setState({
-                job: res[1].position
-              });
-            }
-          });
-      }) //aaa
-      .then(res => {
-        fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
-          .then(res => {
-            return res.json();
-          })
-          .then(res => {
-            console.log("underling:", res[1].underlings);
-            if (res[1].underlings != null)
-              this.setState({
-                employees: res[1].underlings
-              });
-            this.forceUpdate();
-          });
-      })
-      .catch(err => {
-        alert("No profile's for you !");
-      });
-  }
+
+            fetch("http://localhost:8081/get-position/" + cookies.get("user_id"))
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    if (res[0].exitCode === 0) {
+                        this.setState({
+                            job: "undefined"
+                        });
+                    } else {
+                        this.setState({
+                            job: res[1].position
+                        });
+                    }
+                })
+                .catch(res => {
+                    console.log(res);
+                });
+
+            //we fetch the rest then
+            fetch("http://localhost:8081/get-preferences/" + cookies.get("user_id"))
+                .then(res => {
+                    if (res.status !== 404) {
+                        return res.json();
+                    }
+                })
+                .then(res => {
+                    if (res[0] === undefined || res[0] === null || res[0] === "") {
+                        this.setState({
+                            morning: "unset",
+                            evening: "unset",
+                            noon: "unset"
+                        });
+                    } else {
+                        this.setState({
+                            morning: res[1][0].morning,
+                            evening: res[1][0].evening,
+                            noon: res[1][0].afternoon
+                        });
+                    }
+                })
+                .catch(res => {
+                    console.log("ERR returning preferences");
+                });
+            fetch("http://localhost:8081/viewUnderlings/" + cookies.get("user_id"))
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log("underling:", res[1].underlings);
+                    if (res[1].underlings != null)
+                        this.setState({
+                            employees: res[1].underlings
+                        });
+                    this.forceUpdate();
+                })
+                .catch(res => {
+                    console.log(res);
+                });
+        })
+        .catch(err => {
+            alert("No profile's for you !");
+        });
+}
   render() {
     return (
       <Tab.Pane>
         <Container textAlign="justified">
           <Grid>
             <Grid.Row>
-              {/* <Grid.Column width={5} textAlign="center">
-                                <Image
-                                    src="https://steamuserimages-a.akamaihd.net/ugc/960838928914191885/31FF51C2135DAD7CB3BF2A2F2142DF0D2177A113/?imw=1024&imh=1024&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
-                                    alt="avatar"
-                                    size="small"
-                                    centered
-                                />
-                            </Grid.Column> */}
-
               <Grid.Column className="profileData">
-                {/* <Divider hidden /> */}
                 <Segment.Group>
                   <Segment>
                     <Header as="h4">Name : {this.state.name}</Header>
@@ -168,16 +149,6 @@ class ViewProfile extends React.Component {
                 </Segment.Group>
               </Grid.Column>
             </Grid.Row>
-            {/* <Grid.Row>
-                            <Grid.Column>
-                                <Header as="h4" attached="top">
-                                    Your Tasks
-                                </Header>
-                                <Segment color="red" secondary attached>
-                                    Planurile tale
-                                </Segment>
-                            </Grid.Column>
-                        </Grid.Row> */}
 
             <Grid.Row>
               <Grid.Column>
@@ -210,13 +181,12 @@ class ViewProfile extends React.Component {
 
                 {this.state.employees.map(user => {
                   return (
-                    <Table.Body key={user.ID}>
+                    <Table.Body key={user.email}>
                       <Table.Cell>{user.email}</Table.Cell>
                       <Table.Cell>{user.job}</Table.Cell>
                     </Table.Body>
                   );
                 })}
-                {/* {listEmployees} */}
               </Table>
             </Grid.Row>
           </Grid>
