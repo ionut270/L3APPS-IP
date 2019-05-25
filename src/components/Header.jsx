@@ -80,16 +80,6 @@ export default class Header extends Component {
                         alt="logo"
                     />
                 </Menu.Item>
-                {/** No search bar implemented... */}
-                {/* <Menu.Menu position="left">
-                    <div className="ui left aligned category search item">
-                        <div className="ui transparent icon input">
-                            <input className="prompt" type="text" placeholder="Search..." />
-                            <i className="search link icon" />
-                        </div>
-                        <div className="results" />
-                    </div>
-                </Menu.Menu> */}
                 <Menu.Item
                     name="Dashboard"
                     href="/dashboard"
@@ -100,7 +90,16 @@ export default class Header extends Component {
                 >
                     Dashboard
                 </Menu.Item>
-
+                <Menu.Item
+                    name="My tasks"
+                    href="/My tasks"
+                    active={activeItem === "My tasks"}
+                    onClick={() => {
+                        //this.handleItemClick;
+                    }}
+                >
+                    Dashboard
+                </Menu.Item>
                 <Menu.Item
                     name="Profile"
                     href="/profile"
