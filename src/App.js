@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard";
 import Task from "./components/View/task";
 import Profile from "./components/View/Profile";
 // import Underlings from "./components/View/Underlings.js";
+import MyTasks from "./components/Dashboard/My_tasks.jsx";
 
 export default class App extends Component {
     constructor() {
@@ -24,6 +25,7 @@ export default class App extends Component {
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/task" component={Task} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/My tasks" component={MyTasks} />
                     {/* <Route path="/underling" component={Underlings} /> */}
                 </div>
             </BrowserRouter>

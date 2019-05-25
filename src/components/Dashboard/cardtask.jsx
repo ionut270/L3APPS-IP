@@ -34,57 +34,64 @@ export default class cardTask extends Component {
                     <Header as="h3">Tasks</Header>
                     <Divider section />
                     <List divided relaxed selectable="true">
-                        {this.state.tasks.map(data => {
-                            var url = "/task/" + data._id;
-                            var color;
-                            if (data.status === "Done") {
-                                color = "green";
-                            } else if (data.status === "Doing") {
-                                color = "yellow";
-                            } else if (data.status === "Starting") {
-                                color = "teal";
-                            } else if (data.status === "Postponed") {
-                                color = "red";
-                            }
+                        {this.state.tasks
+                            .slice(0)
+                            .reverse()
+                            .map(data => {
+                                var url = "/task/" + data._id;
+                                var color;
+                                if (data.status === "Done") {
+                                    color = "green";
+                                } else if (data.status === "Doing") {
+                                    color = "yellow";
+                                } else if (data.status === "Starting") {
+                                    color = "teal";
+                                } else if (data.status === "Postponed") {
+                                    color = "red";
+                                }
 
-                            return (
-                                <List.Item
-                                    as="a"
-                                    href={url}
-                                    key={data._id}
-                                    onClick={console.log("Hi!")}
-                                >
-                                    <List.Icon name="plug" size="large" verticalAlign="middle" />
-                                    <List.Content>
-                                        <List.Header>{data.name}</List.Header>
-                                        <List.Description>
-                                            <List horizontal className="TaskListItems">
-                                                <List.Item>{data.department}</List.Item>
-                                                <List.Content floated="right">
-                                                    <List.Item className="PaddedInListElements">
-                                                        <Label
-                                                            color="blue"
-                                                            className="mobileLabelTasks"
-                                                        >
-                                                            Due Date
-                                                            <Label.Detail>
-                                                                {data.deadline}
-                                                            </Label.Detail>
-                                                        </Label>
-                                                        <Label
-                                                            color={color}
-                                                            className="mobileLabelTasks"
-                                                        >
-                                                            {data.status}
-                                                        </Label>
-                                                    </List.Item>
-                                                </List.Content>
-                                            </List>
-                                        </List.Description>
-                                    </List.Content>
-                                </List.Item>
-                            );
-                        })}
+                                return (
+                                    <List.Item
+                                        as="a"
+                                        href={url}
+                                        key={data._id}
+                                        onClick={console.log("Hi!")}
+                                    >
+                                        <List.Icon
+                                            name="plug"
+                                            size="large"
+                                            verticalAlign="middle"
+                                        />
+                                        <List.Content>
+                                            <List.Header>{data.name}</List.Header>
+                                            <List.Description>
+                                                <List horizontal className="TaskListItems">
+                                                    <List.Item>{data.department}</List.Item>
+                                                    <List.Content floated="right">
+                                                        <List.Item className="PaddedInListElements">
+                                                            <Label
+                                                                color="blue"
+                                                                className="mobileLabelTasks"
+                                                            >
+                                                                Due Date
+                                                                <Label.Detail>
+                                                                    {data.deadline}
+                                                                </Label.Detail>
+                                                            </Label>
+                                                            <Label
+                                                                color={color}
+                                                                className="mobileLabelTasks"
+                                                            >
+                                                                {data.status}
+                                                            </Label>
+                                                        </List.Item>
+                                                    </List.Content>
+                                                </List>
+                                            </List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                );
+                            })}
                     </List>
                 </Segment>
             </div>

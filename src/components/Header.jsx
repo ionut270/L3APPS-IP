@@ -98,7 +98,7 @@ export default class Header extends Component {
                         //this.handleItemClick;
                     }}
                 >
-                    Dashboard
+                    My Tasks
                 </Menu.Item>
                 <Menu.Item
                     name="Profile"

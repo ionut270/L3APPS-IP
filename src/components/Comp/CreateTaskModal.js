@@ -121,7 +121,7 @@ class CreateTaskModal extends Component {
                 department: create.department,
                 description: create.description,
                 priority: create.priority,
-                status: create.status,
+                status: "Not started",
                 "sub-tasks": [],
                 timestamp: "",
                 "hour estimation": create.time,
@@ -211,7 +211,7 @@ class CreateTaskModal extends Component {
                                 </Col>
                             </FormGroup>
 
-                            <FormGroup row>
+                            {/* <FormGroup row>
                                 <Label className="black-text" sm={3}>
                                     Status
                                 </Label>
@@ -223,7 +223,7 @@ class CreateTaskModal extends Component {
                                         onChange={this.changeHandler}
                                     />
                                 </Col>
-                            </FormGroup>
+                            </FormGroup> */}
 
                             <FormGroup row>
                                 <Label className="black-text" sm={3}>
@@ -242,7 +242,7 @@ class CreateTaskModal extends Component {
 
                             <FormGroup row>
                                 <Label className="black-text" sm={3}>
-                                    Time estimation
+                                    Task time estiamte
                                 </Label>
                                 <Col sm={9}>
                                     <input
