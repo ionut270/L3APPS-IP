@@ -1,5 +1,4 @@
 import React from "react";
-import Underlings from "./Underlings.js";
 //import { Redirect } from "react-router-dom";
 import {
   Container,
@@ -9,6 +8,7 @@ import {
   Segment,
   Grid,
   Header,
+  Button,
   Divider,
   Dropdown,
   Table
@@ -24,9 +24,7 @@ const prenume = "prenume";
 const nume = "nume";
 const email = "email";
 const parola = "parola";
-const morning = "morning";
-const evening = "evening";
-const afternoon = "afternoon";
+
 const cookies = new Cookies();
 const userId = cookies.get("user_id");
 
@@ -274,63 +272,24 @@ class EditProfile extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
     this.forceUpdate();
   };
-  componentDidUpdate() {
-    for (let property in this.state) {
-      if (this.state[property]) {
-        axios
-          .get(
-            `${baseUrl}/edit-profile/${userId}/${property}/${
-              this.state[property]
-            }`
-          )
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-    }
-    console.log(
-      `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
-    );
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/morning/" +
-        this.state1.morning
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
-      });
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/evening/" +
-        this.state1.evening
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
-      });
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/afternoon/" +
-        this.state1.noon
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
-      });
-  }
+  // componentDidUpdate() {
+  //   // for (let property in this.state) {
+  //   //   if (this.state[property]) {
+  //   //     axios
+  //   //       .get(
+  //   //         `${baseUrl}/edit-profile/${userId}/${property}/${
+  //   //           this.state[property]
+  //   //         }`
+  //   //       )
+  //   //       .then(response => {
+  //   //         console.log(response);
+  //   //       })
+  //   //       .catch(error => {
+  //   //         console.log(error);
+  //   //       });
+  //   //   }
+  //   // }
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -367,6 +326,45 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
+
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/morning/" +
+        this.state1.morning
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/evening/" +
+        this.state1.evening
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+    fetch(
+      "http://localhost:8081/edit-preferences/" +
+        cookies.get("user_id") +
+        "/afternoon/" +
+        this.state1.noon
+    ) //localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log("prefferences response:", res);
+      });
+
+    alert("Datele au fost schimbate");
   };
   render() {
     const { prenume, nume, email, parola } = this.state;
@@ -384,6 +382,8 @@ class EditProfile extends React.Component {
                     name="prenume"
                     type="text"
                     value={prenume}
+                    title="First name should only contain letters"
+                    pattern="[a-zA-Z]+"
                     placeholder="Change First Name..."
                     onChange={this.changeHandler}
                   />
@@ -397,6 +397,8 @@ class EditProfile extends React.Component {
                   <input
                     name="nume"
                     type="text"
+                    pattern="[a-zA-Z]+"
+                    title="Last name should only contain letters"
                     value={nume}
                     placeholder="Change Last Name..."
                     onChange={this.changeHandler}
@@ -410,6 +412,8 @@ class EditProfile extends React.Component {
                     name="email"
                     type="text"
                     value={email}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Invalid format for email"
                     placeholder="Change Email..."
                     onChange={this.changeHandler}
                   />
@@ -423,6 +427,8 @@ class EditProfile extends React.Component {
                     name="parola"
                     type="password"
                     value={parola}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     placeholder="Change Password..."
                     onChange={this.changeHandler}
                   />
@@ -475,6 +481,9 @@ class EditProfile extends React.Component {
                 </List>
               </Segment>
             </Segment.Group>
+            <Button type="submit" onSubmit={this.handleSubmit} positive fluid>
+              Confirm
+            </Button>
           </Form>
         </Container>
       </Tab.Pane>
