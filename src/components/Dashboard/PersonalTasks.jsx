@@ -34,6 +34,42 @@ export default class PersonalTask extends Component {
     }).then(response => response.json());
   }
 
+  deleteTasks = e => {
+    window.location.reload();
+    this.state.tasks
+      .slice(0)
+      .reverse()
+      .map(data => {
+        //console.log("MAP!")
+        if (data.participants !== undefined) {
+          var i = 0;
+          while (i <= data.participants.length) {
+            //console.log("i=",i,"=",data.participants[i],"/",data.participants.length);
+            if (data.participants[i] !== undefined) {
+              //
+              //var cookies = new Cookies();
+              //console.log(cookies.get("user_id"), "=",data.participants[i]._id);
+              var cookies = new Cookies();
+              cookies.get("user_id");
+              var myid = cookies.get("user_id");
+              if (myid === data.participants[i]._id) {
+                //console.log(data);
+                return fetch(baseUrl + "/" + data._id, {
+                  method: "delete"
+                }).then(response => response.json());
+              } else {
+                return null;
+              }
+            }
+            i++;
+          }
+        } else {
+          return null;
+        }
+        return null;
+      });
+  };
+
   render() {
     return (
       <div className="dashSubtask">
@@ -48,6 +84,14 @@ export default class PersonalTask extends Component {
           <Button icon labelPosition="right">
             <Icon name="warning sign" />
             Report
+          </Button>
+          <Button
+            type="submit"
+            floated="right"
+            color="red"
+            onClick={this.deleteTasks}
+          >
+            Delete all tasks
           </Button>
           <Divider section />
           <List divided relaxed>
