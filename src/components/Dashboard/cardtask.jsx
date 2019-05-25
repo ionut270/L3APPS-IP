@@ -19,7 +19,7 @@ export default class cardTask extends Component {
             .then(res => {
                 //this.state.tasks = res;
                 this.setState({
-                    tasks: res
+                    tasks: res.reverse()
                 });
                 this.forceUpdate();
             })
@@ -35,8 +35,6 @@ export default class cardTask extends Component {
                     <Divider section />
                     <List divided relaxed selectable="true">
                         {this.state.tasks
-                            .slice(0)
-                            .reverse()
                             .map(data => {
                                 var url = "/task/" + data._id;
                                 var color;
