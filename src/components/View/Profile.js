@@ -70,21 +70,21 @@ class ViewProfile extends React.Component {
             return responsee1.json();
           })
           .then(responsee1 => {
-              console.log(responsee1);
-              if(responsee1[0] === undefined || responsee1[0] === null || responsee1[0] ===""){
-                this.setState({
-                    morning: "unset",
-                    evening: "unset",
-                    noon: "unset"
-                  });
-              } else {
-            console.log("prefferences:", responsee1[0].exitCode);
-            this.setState({
-              morning: responsee1[1][0].morning,
-              evening: responsee1[1][0].evening,
-              noon: responsee1[1][0].afternoon
-            });
-        }
+            console.log(responsee1);
+            if (responsee1[0] === undefined || responsee1[0] === null || responsee1[0] === "") {
+              this.setState({
+                morning: "unset",
+                evening: "unset",
+                noon: "unset"
+              });
+            } else {
+              console.log("prefferences:", responsee1[0].exitCode);
+              this.setState({
+                morning: responsee1[1][0].morning,
+                evening: responsee1[1][0].evening,
+                noon: responsee1[1][0].afternoon
+              });
+            }
           });
 
         //il punem in state
@@ -233,9 +233,14 @@ class EditProfile extends React.Component {
       email: "",
       parola: "",
       morning1: "",
-      eroare: "",
-      morning: ""
+      eroare: ""
+
     };
+    this.state1 = {
+      morning: "",
+      noon: "",
+      evening: ""
+    }
     axios.get(`${baseUrl}/get-profile/${userId}`).then(response => {
       this.setState({
         prenume: response.data[1][0].prenume,
@@ -243,6 +248,23 @@ class EditProfile extends React.Component {
         email: response.data[1][0].email
       });
     });
+  }
+
+  changeHandlerMorning = e => {
+    console.log("here", e.target.getAttribute("name"));
+    this.state1.morning = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log("here!!!", this.state);
+  };
+  changeHandlerEvening = e => {
+    this.state1.evening = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log(this.state);
+  };
+  changeHandlerNoon = e => {
+    this.state1.noon = e.target.getAttribute("name");
+    this.forceUpdate();
+    console.log(this.state);
   }
   changeHandler = e => {
     console.log("target:", e.target.value);
@@ -270,13 +292,25 @@ class EditProfile extends React.Component {
     console.log(
       `${baseUrl}/edit-preferences/${userId}/${morning}/${this.state.morning1}`
     );
-    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/morning/" + this.morning)//localhost:8081/edit-preferences/20/morning/tired
+    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/morning/" + this.state1.morning)//localhost:8081/edit-preferences/20/morning/tired
       .then(res => {
         return res.json();
       }).then(res => {
         console.log("prefferences response:", res)
+      });
+    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/evening/" + this.state1.evening)//localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      }).then(res => {
+        console.log("prefferences response:", res)
+      });
+    fetch("http://localhost:8081/edit-preferences/" + cookies.get("user_id") + "/afternoon/" + this.state1.noon)//localhost:8081/edit-preferences/20/morning/tired
+      .then(res => {
+        return res.json();
+      }).then(res => {
+        console.log("prefferences response:", res)
+      });
 
-      })
   }
 
   handleSubmit = e => {
@@ -315,18 +349,8 @@ class EditProfile extends React.Component {
         console.log(error);
       });
 
-    // axios
-    //   .get(
-    //     `${baseUrl}/edit-preferences/${userId}/${morning}/${
-    //       this.state.morning1
-    //     }`
-    //   )
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+
+
   };
   render() {
     const { prenume, nume, email, parola, morning1 } = this.state;
@@ -404,7 +428,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
-                        onChange={this.state.morning = "relaxed"}
+                        onChange={this.changeHandlerMorning}
                       />
                     </List.Content>
                   </List.Item>
@@ -416,7 +440,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
-                        onChange={this.changeHandler}
+                        onChange={this.changeHandlerNoon}
                       />
                     </List.Content>
                   </List.Item>
@@ -428,6 +452,7 @@ class EditProfile extends React.Component {
                         fluid
                         selection
                         options={selectOptions}
+                        onChange={this.changeHandlerEvening}
                       />
                     </List.Content>
                   </List.Item>
