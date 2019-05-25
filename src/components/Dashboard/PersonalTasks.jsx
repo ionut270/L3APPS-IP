@@ -13,6 +13,8 @@ export default class PersonalTask extends Component {
       tasks: []
     };
   }
+  cookies = new Cookies();
+  myUserId = this.cookies.get('user_id');
   componentDidMount() {
     fetch("http://localhost:8081/tasks")
       .then(res => {
@@ -21,7 +23,11 @@ export default class PersonalTask extends Component {
       .then(res => {
         //this.state.tasks = res;
         this.setState({
-          tasks: res
+          tasks: res.reverse().filter((element) => {
+            if (element.participants) {
+              if (element.participants.find(el => el._id === this.myUserId)) { return element; }
+            }
+          })
         });
         this.forceUpdate();
       });
@@ -33,40 +39,32 @@ export default class PersonalTask extends Component {
       method: "delete"
     }).then(response => response.json());
   }
+  rearrenge = () => {
+    window.location.reload();
+    let sortedTasks = this.state.tasks;
+    sortedTasks = sortedTasks.sort((a, b) => {
+      if (a.status === 'Not Started' && b.status !== 'Not Started') {
+        return -1;
+      } else if (a.status === 'Starting' && (b.status === 'Doing' || b.status === 'Done' || b.status === 'Finished')) {
+        return -1;
+      } else if (a.status === 'Doing' && (b.status === 'Done' || b.status === 'Finished')) {
+        return -1;
+      } else if (a.status === 'Done' && b.status === 'Finished') {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    this.setState({ tasks: sortedTasks });
+  }
 
   deleteTasks = e => {
     window.location.reload();
     this.state.tasks
-      .slice(0)
-      .reverse()
       .map(data => {
-        //console.log("MAP!")
-        if (data.participants !== undefined) {
-          var i = 0;
-          while (i <= data.participants.length) {
-            //console.log("i=",i,"=",data.participants[i],"/",data.participants.length);
-            if (data.participants[i] !== undefined) {
-              //
-              //var cookies = new Cookies();
-              //console.log(cookies.get("user_id"), "=",data.participants[i]._id);
-              var cookies = new Cookies();
-              cookies.get("user_id");
-              var myid = cookies.get("user_id");
-              if (myid === data.participants[i]._id) {
-                //console.log(data);
-                return fetch(baseUrl + "/" + data._id, {
-                  method: "delete"
-                }).then(response => response.json());
-              } else {
-                return null;
-              }
-            }
-            i++;
-          }
-        } else {
-          return null;
-        }
-        return null;
+        return fetch(baseUrl + "/" + data._id, {
+          method: "delete"
+        }).then(response => response.json());
       });
   };
 
@@ -77,9 +75,9 @@ export default class PersonalTask extends Component {
           {/* <Header as="h3">
 						<Dropdown placeholder="Today" fluid selection options={options} />
 					</Header> */}
-          <Button icon labelPosition="right">
+          <Button icon labelPosition="right" onClick={this.rearrenge}>
             <Icon name="redo" />
-            Rearange
+            Rearrange
           </Button>
           <Button icon labelPosition="right">
             <Icon name="warning sign" />
@@ -95,66 +93,38 @@ export default class PersonalTask extends Component {
           </Button>
           <Divider section />
           <List divided relaxed>
-            {this.state.tasks
-              .slice(0)
-              .reverse()
-              .map(data => {
-                //console.log("MAP!")
-                if (data.participants !== undefined) {
-                  var i = 0;
-                  while (i <= data.participants.length) {
-                    //console.log("i=",i,"=",data.participants[i],"/",data.participants.length);
-                    if (data.participants[i] !== undefined) {
-                      //
-                      //var cookies = new Cookies();
-                      //console.log(cookies.get("user_id"), "=",data.participants[i]._id);
-                      var cookies = new Cookies();
-                      cookies.get("user_id");
-                      var myid = cookies.get("user_id");
-                      if (myid === data.participants[i]._id) {
-                        //console.log(data);
-                        var url = "/task/" + data._id;
-                        console.log(data);
-                        return (
-                          <List.Item>
-                            <List.Icon
-                              name="cogs"
-                              size="large"
-                              verticalAlign="middle"
-                            />
-                            <Button
-                              type="submit"
-                              floated="right"
-                              color="red"
-                              onClick={this.deleteTask.bind(this, data._id)}
-                            >
-                              X
+            {this.state.tasks.map(data => {
+              const url = '/task/' + data._id;
+              return (
+                <List.Item>
+                  <List.Icon
+                    name="cogs"
+                    size="large"
+                    verticalAlign="middle"
+                  />
+                  <Button
+                    type="submit"
+                    floated="right"
+                    color="red"
+                    onClick={this.deleteTask.bind(this, data._id)}
+                  >
+                    X
                             </Button>
-                            <List.Content href={url}>
-                              <Segment.Group horizontal basic>
-                                <Segment basic>{data.name}</Segment>
-                                <Segment basic>
-                                  Due date: {data.deadline}
-                                </Segment>
-                                <Segment basic>Status: {data.status}</Segment>
-                              </Segment.Group>
-                              <List.Header as="a">
-                                {data.description}
-                              </List.Header>
-                            </List.Content>
-                          </List.Item>
-                        );
-                      } else {
-                        return null;
-                      }
-                    }
-                    i++;
-                  }
-                } else {
-                  return null;
-                }
-                return null;
-              })}
+                  <List.Content href={url}>
+                    <Segment.Group horizontal basic>
+                      <Segment basic>{data.name}</Segment>
+                      <Segment basic>
+                        Due date: {data.deadline}
+                      </Segment>
+                      <Segment basic>Status: {data.status}</Segment>
+                    </Segment.Group>
+                    <List.Header as="a">
+                      {data.description}
+                    </List.Header>
+                  </List.Content>
+                </List.Item>
+              );
+            })}
           </List>
         </Segment>
       </div>
