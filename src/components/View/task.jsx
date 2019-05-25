@@ -10,6 +10,7 @@ import {
     Card
 } from "semantic-ui-react";
 import MyHeader from "../Header";
+import CreateSubtaskModal from "../Comp/CreateSubTaskModal";
 
 class ViewTask extends React.Component {
     // constructor(props) {
@@ -22,7 +23,6 @@ class ViewTask extends React.Component {
         subtasks: [],
         profile: []
     };
-
     async componentDidMount() {
         var currentUrl = window.location.href.split(/\//)["4"];
         const url = "http://vvtsoft.ddns.net:5123/tasks/" + currentUrl;
@@ -156,8 +156,9 @@ class ViewTask extends React.Component {
                                             </Card>
                                         );
                                     })}
-                                </Card.Group>
-                                <Divider hidden />
+                                </Card.Group>                                
+                                <Divider />
+                                <Container className="ButtonContainer"><CreateSubtaskModal task={this.state.task}/></Container>
                                 <Divider horizontal>
                                     <Header as="h3">Participants</Header>
                                 </Divider>
