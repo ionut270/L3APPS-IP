@@ -14,7 +14,7 @@ import { withRouter } from "react-router-dom";
 //import faker from "faker";
 
 import Cookies from "universal-cookie";
-const baseUrl = "http://vvtsoft.ddns.net:5123/tasks";
+const baseUrl = "http://localhost:8081/tasks";
 class PersonalTask extends Component {
   constructor(props) {
     super(props);

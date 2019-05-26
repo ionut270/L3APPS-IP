@@ -21,7 +21,7 @@ class EditTask extends Component {
   }
 
   handleSubmit = async () => {
-    const url = `http://vvtsoft.ddns.net:5123/tasks`;
+    const url = `http://localhost:8081/tasks`;
     console.log(this.state);
     fetch(url, {
       method: "PUT",
@@ -37,7 +37,7 @@ class EditTask extends Component {
 
   async componentDidMount() {
     const response = await fetch(
-      `http://vvtsoft.ddns.net:5123/tasks/${this.props.location.state.id}`
+      `http://localhost:8081/tasks/${this.props.location.state.id}`
     );
     const data = await response.json();
     console.log(data);
