@@ -48,7 +48,8 @@ class CreateTaskModal extends Component {
             deadline: formatDate(new Date()),
             status: "",
             date: new Date(),
-            render_calendar: false
+            render_calendar: false,
+            task_id: ""
         };
     }
 
@@ -132,6 +133,7 @@ class CreateTaskModal extends Component {
                 ]
             };
             console.log("Sending", JSON.stringify(to_send));
+
             fetch("http://localhost:8081/tasks", {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 headers: {
@@ -143,9 +145,25 @@ class CreateTaskModal extends Component {
                     return res.json();
                 })
                 .then(res => {
-                    console.log(res);
+                    
+                    //console.log(this.state.task_id);
+                    var to_send_assigner = {
+                        id_task: res._id,
+                        id_user: cookies.get("user_id")
+                    };
+                    fetch("http://localhost:8081/assigner", {
+                        method: "POST", // *GET, POST, PUT, DELETE, etc.
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(to_send_assigner) // body data type must match "Content-Type" header
+                    })
                 });
             //alert("Task-ul a fost creat!");
+            
+
+           
+
         } else {
             alert("Nu au fost introduse toate datele");
         }
