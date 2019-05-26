@@ -25,12 +25,12 @@ class ViewTask extends React.Component {
     };
     async componentDidMount() {
         var currentUrl = window.location.href.split(/\//)["4"];
-        const url = "http://vvtsoft.ddns.net:5123/tasks/" + currentUrl;
+        const url = "http://localhost:8081/tasks/" + currentUrl;
         console.log("URL IS ", url);
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ task: data, loading: false });
-        const urltasks = "http://vvtsoft.ddns.net:5123/tasks";
+        const urltasks = "http://localhost:8081/tasks";
         const responsetasks = await fetch(urltasks);
         const datatasks = await responsetasks.json();
         this.setState({ tasks: datatasks, loading: false });
@@ -79,7 +79,7 @@ class ViewTask extends React.Component {
         }
         for (var i = 0; i < this.state.task["sub-tasks"].length; i++) {
             console.log("Count!");
-            var url2 = "http://vvtsoft.ddns.net:5123/tasks/" + this.state.task["sub-tasks"][i];
+            var url2 = "http://localhost:8081/tasks/" + this.state.task["sub-tasks"][i];
             fetch(url2)
                 .then(res => {
                     return res.json();
