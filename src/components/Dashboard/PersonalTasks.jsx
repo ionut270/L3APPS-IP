@@ -40,11 +40,32 @@ class PersonalTask extends Component {
 	}
 
 	deleteTask(param, e) {
-		window.location.reload();
+    console.log("ASDasdas Andi cel mai tare ", param["sub-tasks"]);
+    for(let i  = 0; i < param["sub-tasks"].length; i++) {
+      console.log(baseUrl + "/" + param["sub-tasks"][i]._id);
+        fetch(baseUrl + "/" + param["sub-tasks"][i]._id, {
+          method: "delete",
+        })
+        .then(
+          e => {
+            console.log("Delete sub-tasks succesfull", e);
+            if(i === param["sub-tasks"].length-1) {
+                window.location.reload();
+            }
+          }
+          
+        )
+        .catch(
+          e => {
+            console.log("Exception delete sub-tasks", e);
+          }
+        )
+    }
 		console.log(param);
-		return fetch(baseUrl + "/" + param, {
+		return fetch(baseUrl + "/" + param._id, {
 			method: "delete",
-		}).then(response => response.json());
+    }).then(response => response.json())
+    .catch(e => {console.log("Exception deleting task")});
 	}
 	rearrenge = () => {
 		window.location.reload();
@@ -126,7 +147,7 @@ class PersonalTask extends Component {
 					<Card.Group>
 						{this.state.tasks.map(data => {
 							const url = "/task/" + data._id;
-							console.log(data);
+							//console.log(data);
 							var color;
 							if (data.status === "Done") {
 								color = "green";
@@ -163,7 +184,7 @@ class PersonalTask extends Component {
 												Edit
 											</Button>
 											<Button.Or />
-											<Button type="submit" color="red" onClick={this.deleteTask.bind(this, data._id)}>
+											<Button type="submit" color="red" onClick={this.deleteTask.bind(this, data)}>
 												X
 											</Button>
 										</Button.Group>
