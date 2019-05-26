@@ -127,7 +127,23 @@ class EditTask extends Component {
                 }}
                 value={this.state.task.department}
               />
+              <Divider horizontal>Change Status</Divider>
 
+              <select
+                onChange={e => {
+                  this.setState({
+                    task: {
+                      ...this.state.task,
+                      status: e.target.value
+                    }
+                  });
+                }}
+              >
+                <option value="Not started">Not started</option>
+                <option value="Starting">Starting</option>
+                <option value="Doing">Doing</option>
+                <option value="Done">Done</option>
+                </select>
               <Divider horizontal>Change priority</Divider>
 
               <select

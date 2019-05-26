@@ -20,8 +20,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const cookies = new Cookies();
-//const userId = cookies.get("user_id");
-//import axios from "axios";
 
 function formatDate(date) {
     var d = new Date(date),
@@ -132,8 +130,7 @@ class CreateTaskModal extends Component {
                     }
                 ]
             };
-            console.log("Sending", JSON.stringify(to_send));
-
+            //console.log("Sending", JSON.stringify(to_send));
             fetch("http://localhost:8081/tasks", {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 headers: {
@@ -158,6 +155,12 @@ class CreateTaskModal extends Component {
                         },
                         body: JSON.stringify(to_send_assigner) // body data type must match "Content-Type" header
                     })
+                    .then(res=>{
+                        window.location.reload();
+                    })
+                    .catch(res=>{
+                        console.log(res);
+                    })
                 });
             //alert("Task-ul a fost creat!");
             
@@ -173,16 +176,14 @@ class CreateTaskModal extends Component {
         this.setState({
             deadline: formatDate(this.state.date)
         });
-        console.log(this.state.deadline);
     };
     render() {
-        const { name, category, department, description, priority, time, status } = this.state;
+        const { name, category, department, description, priority, time } = this.state;
         return (
             <div className="CreateTaskModal">
                 <Button color="outline-primary" onClick={this.toggleModal.bind(this)} block>
                     Create Task
                 </Button>
-
                 <Modal size="lg" isOpen={this.state.modalIsOpen}>
                     <ModalHeader toggle={this.toggleModal.bind(this)}>Create Task</ModalHeader>
                     <ModalBody>
@@ -200,7 +201,6 @@ class CreateTaskModal extends Component {
                                     />
                                 </Col>
                             </FormGroup>
-
                             <FormGroup row>
                                 <Label className="black-text" sm={3}>
                                     Category
@@ -214,7 +214,6 @@ class CreateTaskModal extends Component {
                                     />
                                 </Col>
                             </FormGroup>
-
                             <FormGroup row>
                                 <Label className="black-text" sm={3}>
                                     Departament
@@ -228,21 +227,6 @@ class CreateTaskModal extends Component {
                                     />
                                 </Col>
                             </FormGroup>
-
-                            {/* <FormGroup row>
-                                <Label className="black-text" sm={3}>
-                                    Status
-                                </Label>
-                                <Col sm={9}>
-                                    <Input
-                                        name="status"
-                                        value={status}
-                                        placeholder="Status ..."
-                                        onChange={this.changeHandler}
-                                    />
-                                </Col>
-                            </FormGroup> */}
-
                             <FormGroup row>
                                 <Label className="black-text" sm={3}>
                                     Description

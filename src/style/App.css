@@ -175,3 +175,7 @@
 .CalendarWidthMax {
     width: 100% !important;
 }
+
+.statusInTaskLabel{
+    margin: 1em !important;
+}
