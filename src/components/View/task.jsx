@@ -34,7 +34,7 @@ class ViewTask extends React.Component {
         if(response.status === 200) {
         const data = await response.json();
         this.setState({ task: data, loading: false });
-        console.log(data);
+        //console.log(data);
         const urltasks = "http://localhost:8081/tasks";
         const responsetasks = await fetch(urltasks);
         const datatasks = await responsetasks.json();
