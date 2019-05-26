@@ -102,6 +102,20 @@ class ViewTask extends React.Component {
     }
     }
     render() {
+        console.log(this.state.task.status);
+        var percent = 0;
+            if(this.state.task.status === "Not started"){
+                percent =  0;
+            }
+            if(this.state.task.status === "Starting"){
+                percent =  25;
+            }
+            if(this.state.task.status === "Doing"){
+                percent =  50;
+            }
+            if(this.state.task.status === "Done"){
+                percent = 100;
+            }
         return (
             <div>
                 <MyHeader />
@@ -138,7 +152,7 @@ class ViewTask extends React.Component {
                                     </Segment>
                                 </Divider>
                                 <Divider hidden />
-                                <Progress percent={0} active color="yellow">
+                                <Progress percent={percent} active color="yellow">
                                     {this.state.task.status}
                                 </Progress>
                                 <Divider hidden />

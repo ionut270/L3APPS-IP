@@ -1,40 +1,15 @@
 import React from "react";
-//import { Redirect } from "react-router-dom";
 import {
   Container,
   List,
   Tab,
-  Input,
-  Form,
   Segment,
   Grid,
   Header,
-  Button,
   Divider,
-  Dropdown,
   Table
 } from "semantic-ui-react";
-import Cookies from "universal-cookie";
 import MyHeader from "../Header";
-//import ProgressButton from "./ProgressButton.js";
-import axios from "axios";
-//const baseurl = "http://localhost:8081";
-
-const baseUrl = "http://localhost:8081";
-const prenume = "prenume";
-const nume = "nume";
-const email = "email";
-const parola = "parola";
-
-const cookies = new Cookies();
-const userId = cookies.get("user_id");
-
-const selectOptions = [
-  { name: "relaxed", key: "relaxed", text: "Relaxed", value: "relaxed" },
-  { name: "focused", key: "focused", text: "Focused", value: "focused" },
-  { name: "tired", key: "fired", text: "Tired", value: "tired" }
-];
-
 class ViewProfile extends React.Component {
   constructor(props) {
     super(props);
