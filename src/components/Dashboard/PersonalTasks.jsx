@@ -61,6 +61,9 @@ class PersonalTask extends Component {
           }
         )
     }
+
+    if(param["sub-tasks"].length === 0)
+        window.location.reload();
 		console.log(param);
 		return fetch(baseUrl + "/" + param._id, {
 			method: "delete",
