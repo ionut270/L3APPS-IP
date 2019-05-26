@@ -141,9 +141,7 @@ class CreateSubTaskModal extends Component {
             return res.json();
         })
         .then(res => {
-
           console.log("Task created ..." , res, "\n\n", to_send );
-
           const task = { ...this.state.task };
           this.setState({
             subtask:{
@@ -167,12 +165,12 @@ class CreateSubTaskModal extends Component {
             .then(res=>{
               console.log("sent data:",task , "\n","recieved data:",res)
             })
+            .then(res=>{
+              window.location.reload();
+            })
             .catch(error => {
               console.log(error)
             })
-        })
-        .then(res=>{
-          window.location.reload();
         })
     }
     else {

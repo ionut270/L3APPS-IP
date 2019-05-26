@@ -479,7 +479,7 @@ class EditProfile extends React.Component {
         return resursa.json();
       })
       .then(resursa => {
-        if (resursa.exitCode == 0) {
+        if (resursa.exitCode === 0) {
           fetch(
             "http://localhost:8081/add-preferences/" +
             cookies.get("user_id") +
