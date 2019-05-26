@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Divider, Segment, Icon, List, Button } from "semantic-ui-react";
+import {
+  Divider,
+  Segment,
+  Icon,
+  Button,
+  Label,
+  Header,
+  Card,
+  Container
+} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import { withRouter } from "react-router-dom";
 //import faker from "faker";
@@ -105,7 +114,7 @@ class PersonalTask extends Component {
 
   render() {
     return (
-      <div className="dashSubtask">
+      <Container justified>
         <Segment color="red">
           {/* <Header as="h3">
 						<Dropdown placeholder="Today" fluid selection options={options} />
@@ -127,44 +136,54 @@ class PersonalTask extends Component {
             Delete all tasks
           </Button>
           <Divider section />
-          <List divided relaxed>
+          <Card.Group>
             {this.state.tasks.map(data => {
               const url = "/task/" + data._id;
               return (
-                <List.Item>
-                  <List.Icon name="cogs" size="large" verticalAlign="middle" />
-
-                  <Button
-                    type="submit"
-                    floated="right"
-                    color="red"
-                    onClick={this.deleteTask.bind(this, data._id)}
-                  >
-                    X
-                  </Button>
-                  <Button
-                    type="submit"
-                    floated="right"
-                    color="blue"
-                    onClick={this.redirectToEditTask.bind(this, data._id)}
-                  >
-                    Edit
-                  </Button>
-
-                  <List.Content href={url}>
-                    <Segment.Group horizontal basic>
-                      <Segment basic>{data.name}</Segment>
-                      <Segment basic>Due date: {data.deadline}</Segment>
-                      <Segment basic>Status: {data.status}</Segment>
-                    </Segment.Group>
-                    <List.Header as="a">{data.description}</List.Header>
-                  </List.Content>
-                </List.Item>
+                <Card fluid>
+                  <Card.Content textAlign="center">
+                    <Label ribbon="left" className="CenteredTagTaskPage">
+                      <Header as="h3">{data.priority}</Header>
+                    </Label>
+                    <Card.Header href={url}>{data.name}</Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <Card.Meta textAlign="center">
+                      Departament:<strong> {data.department}</strong> Category:{" "}
+                      <strong>{data.category}</strong> Deadline:{" "}
+                      <strong>{data.deadline}</strong>
+                    </Card.Meta>
+                    <Card.Description>
+                      <Segment>
+                        <Header as="h4">Description</Header> {data.description}
+                      </Segment>
+                    </Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>
+                    <Button.Group floated="right">
+                      <Button
+                        type="submit"
+                        color="green"
+                        onClick={this.redirectToEditTask.bind(this, data._id)}
+                      >
+                        Edit
+                      </Button>
+                      <Button.Or />
+                      <Button
+                        type="submit"
+                        color="red"
+                        onClick={this.deleteTask.bind(this, data._id)}
+                      >
+                        X
+                      </Button>
+                    </Button.Group>
+                  </Card.Content>
+                </Card>
               );
             })}
-          </List>
+          </Card.Group>
         </Segment>
-      </div>
+      </Container>
     );
   }
 }
