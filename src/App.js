@@ -5,7 +5,7 @@ import Register from "./components/Auth/SignupForm.jsx";
 import Dashboard from "./components/dashboard";
 import Task from "./components/View/task";
 import Profile from "./components/View/Profile";
-import EditTask from "./components/Dashboard/EditTask.jsx";
+import EditTask from "./components/Dashboard/EditTask.js";
 // import Underlings from "./components/View/Underlings.js";
 import MyTasks from "./components/Dashboard/My_tasks.jsx";
 
