@@ -49,7 +49,7 @@ export default class Header extends Component {
                     return res.json();
                 })
                 .then(res => {
-                    if (res.error_code === "0") {
+                    if (res.body.valid === true) {
                         console.log("Gud session", res);
                         this.setState({
                             redirect: false
