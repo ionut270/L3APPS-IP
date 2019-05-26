@@ -7,7 +7,8 @@ import {
     Progress,
     Responsive,
     Label,
-    Card
+    Card,
+    Button
 } from "semantic-ui-react";
 import MyHeader from "../Header";
 import CreateSubtaskModal from "../Comp/CreateSubTaskModal";
@@ -178,6 +179,7 @@ class ViewTask extends React.Component {
                                 <Container className="ButtonContainer"><CreateSubtaskModal task={this.state.task}/></Container>
                                 <Divider horizontal>
                                     <Header as="h3">Participants</Header>
+                                    <Button color="green">Add participants</Button>
                                 </Divider>
                                 <Divider hidden />
                                 <Label.Group size="large" className="ListParticipants">
@@ -200,6 +202,7 @@ class ViewTask extends React.Component {
                         </Container>
                     </div>
                 )}
+
             </div>
         );
     }
