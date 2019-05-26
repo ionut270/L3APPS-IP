@@ -96,12 +96,12 @@ class PersonalTask extends Component {
       }).then(response => response.json());
     });
   };
-  redirectToEditTask(param, e) {
-    this.props.history.push({
-      pathname: "/edittask",
-      state: { id: param }
-    });
-  }
+  // redirectToEditTask(param, e) {
+  //   this.props.history.push({
+  //     pathname: "/edittask",
+  //     state: { id: param }
+  //   });
+  // }
 
   render() {
     return (
@@ -142,14 +142,7 @@ class PersonalTask extends Component {
                   >
                     X
                   </Button>
-                  <Button
-                    type="submit"
-                    floated="right"
-                    color="blue "
-                    onClick={this.redirectToEditTask.bind(this, data._id)}
-                  >
-                    Edit
-                  </Button>
+
                   <List.Content href={url}>
                     <Segment.Group horizontal basic>
                       <Segment basic>{data.name}</Segment>
