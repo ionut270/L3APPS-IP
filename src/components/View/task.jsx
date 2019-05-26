@@ -153,13 +153,22 @@ class ViewTask extends React.Component {
                                     {this.state.subtasks.map(data => {
                                         console.log(data);
                                         dataKey ++;
+                                        var color;
+                                        if (data.status === "Done") {
+                                            color = "green";
+                                        } else if (data.status === "Doing") {
+                                            color = "yellow";
+                                        } else if (data.status === "Starting") {
+                                            color = "teal";
+                                        } else if (data.status === "Postponed") {
+                                            color = "red";
+                                        }
                                         return (
                                             <Card key={dataKey}>
-                                                <Card.Content>
-                                                    <Card.Header>{data.name}</Card.Header>
+                                                <Card.Content href = {"/task/"+data._id}>
+                                                    <Card.Header>{data.name} </Card.Header>
                                                     <Card.Meta>{data.deadline}</Card.Meta>
-                                                    <Card.Meta>{data.priority}</Card.Meta>
-                                                    <Card.Meta>{data.status}</Card.Meta>
+                                                    <Card.Meta>{data.priority}<Label color = {color} className="statusInTaskLabel">Status: {data.status}</Label></Card.Meta>
                                                 </Card.Content>
                                             </Card>
                                         );
