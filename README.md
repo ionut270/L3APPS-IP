@@ -21,9 +21,9 @@ More on [React](https://reactjs.org/) and [React Semantuc ui](https://react.sema
 - [x] Delete task
 - [x] Edit task
 - [x] Edit profile
-- [ ] Edit subordinates
+- [x] Edit subordinates
 - [x] Preferences
-- [ ] View other profiles
+- [x] View other profiles
 - [x] Rearange tasks by preferences
 - [ ] Report button 
 
