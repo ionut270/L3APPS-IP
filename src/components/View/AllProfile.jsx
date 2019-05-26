@@ -138,7 +138,7 @@ class ViewProfile extends React.Component {
           });
       })
       .catch(err => {
-        alert("No profile's for you !");
+        alert("You can't view this profile...");
       });
     }
   }

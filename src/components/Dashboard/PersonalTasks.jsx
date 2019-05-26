@@ -40,9 +40,18 @@ class PersonalTask extends Component {
 	}
 
 	deleteTask(param, e) {
-    console.log("ASDasdas Andi cel mai tare ", param["sub-tasks"]);
-    for(let i  = 0; i < param["sub-tasks"].length; i++) {
-      console.log(baseUrl + "/" + param["sub-tasks"][i]._id);
+    // if(param["sub-tasks"].length === 0)
+    //     window.location.reload();
+		return fetch(baseUrl + "/" + param._id, {
+			method: "delete",
+    }).then(response => {
+			response.json()
+		})
+		.then(res=>{
+			if(param["sub-tasks"].length === 0){
+				window.location.reload();
+			}
+			for(let i  = 0; i < param["sub-tasks"].length; i++) {
         fetch(baseUrl + "/" + param["sub-tasks"][i]._id, {
           method: "delete",
         })
@@ -61,13 +70,7 @@ class PersonalTask extends Component {
           }
         )
     }
-
-    if(param["sub-tasks"].length === 0)
-        window.location.reload();
-		console.log(param);
-		return fetch(baseUrl + "/" + param._id, {
-			method: "delete",
-    }).then(response => response.json())
+		})
     .catch(e => {console.log("Exception deleting task")});
 	}
 	rearrenge = () => {
