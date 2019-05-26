@@ -12,28 +12,45 @@ import {
 } from "semantic-ui-react";
 import MyHeader from "../Header";
 import CreateSubtaskModal from "../Comp/CreateSubTaskModal";
+import Cookies from "universal-cookie";
+var cookies = new Cookies();
 
 var dataKey = 0;
 
 class ViewTask extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
     state = {
         loading: true,
         task: [],
         tasks: [],
         subtasks: [],
-        profile: []
+        profile: [],
+        imIn: false
     };
     async componentDidMount() {
+
+        /**
+         * We check if we are participants
+         * 
+         */
+
+
+
         var currentUrl = window.location.href.split(/\//)["4"];
         const url = "http://localhost:8081/tasks/" + currentUrl;
         console.log("URL IS ", url);
         const response = await fetch(url);
-        console.log(response.status)
+        ///console.log(response.status)
         if(response.status === 200) {
         const data = await response.json();
+        //console.log("Data",data.participants);
+        for(let i = 0; i<data.participants.length; i++){
+            if(data.participants[i]._id === cookies.get("user_id")){
+                console.log("Mine!");
+                this.setState({
+                    imIn: true
+                })
+            }
+        }
         this.setState({ task: data, loading: false });
         //console.log(data);
         const urltasks = "http://localhost:8081/tasks";
@@ -80,7 +97,10 @@ class ViewTask extends React.Component {
                                     this.forceUpdate();
                                 }
                             });
-                    });
+                    })
+                    .catch(res=>{
+                        console.log(res);
+                    })
             }
         }
         for (var i = 0; i < this.state.task["sub-tasks"].length; i++) {
