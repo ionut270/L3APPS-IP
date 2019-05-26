@@ -38,13 +38,13 @@ export default class cardTask extends Component {
                             .map(data => {
                                 var url = "/task/" + data._id;
                                 var color;
-                                if (data.status === "Done") {
+                                if (data.status === "Done" || data.status === "done") {
                                     color = "green";
-                                } else if (data.status === "Doing") {
+                                } else if (data.status === "Doing" || data.status === "doing") {
                                     color = "yellow";
-                                } else if (data.status === "Starting") {
+                                } else if (data.status === "starting" || data.status === "Starting") {
                                     color = "teal";
-                                } else if (data.status === "Postponed") {
+                                } else if (data.status === "Postponed" || data.status === "postponed") {
                                     color = "red";
                                 }
 
