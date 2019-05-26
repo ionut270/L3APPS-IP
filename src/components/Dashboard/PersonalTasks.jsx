@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Divider, Segment, Icon, List, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-
+import { withRouter } from "react-router-dom";
 //import faker from "faker";
 
 import Cookies from "universal-cookie";
 const baseUrl = "http://vvtsoft.ddns.net:5123/tasks";
-export default class PersonalTask extends Component {
+class PersonalTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class PersonalTask extends Component {
     };
   }
   cookies = new Cookies();
-  myUserId = this.cookies.get('user_id');
+  myUserId = this.cookies.get("user_id");
   componentDidMount() {
     fetch("http://localhost:8081/tasks")
       .then(res => {
@@ -23,15 +23,18 @@ export default class PersonalTask extends Component {
       .then(res => {
         //this.state.tasks = res;
         this.setState({
-          tasks: res.reverse().filter((element) => {
+          tasks: res.reverse().filter(element => {
             if (element.participants) {
-              if (element.participants.find(el => el._id === this.myUserId)) { return element; }
+              if (element.participants.find(el => el._id === this.myUserId)) {
+                return element;
+              }
             }
           })
         });
         this.forceUpdate();
       });
   }
+
   deleteTask(param, e) {
     window.location.reload();
     console.log(param);
@@ -43,32 +46,62 @@ export default class PersonalTask extends Component {
     window.location.reload();
     let sortedTasks = this.state.tasks;
     sortedTasks = sortedTasks.sort((a, b) => {
-      if (a.status.toLowerCase() === 'not started' && b.status.toLowerCase() !== 'not started') {
+      if (
+        a.status.toLowerCase() === "not started" &&
+        b.status.toLowerCase() !== "not started"
+      ) {
         return -1;
-      } else if (a.status.toLowerCase() === 'starting' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting') {
+      } else if (
+        a.status.toLowerCase() === "starting" &&
+        b.status.toLowerCase() !== "not started" &&
+        b.status.toLowerCase() !== "starting"
+      ) {
         return -1;
-      } else if (a.status.toLowerCase() === 'doing' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing') {
+      } else if (
+        a.status.toLowerCase() === "doing" &&
+        b.status.toLowerCase() !== "not started" &&
+        b.status.toLowerCase() !== "starting" &&
+        b.status.toLowerCase() !== "doing"
+      ) {
         return -1;
-      } else if (a.status.toLowerCase() === 'done' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing' && b.status.toLowerCase() !== 'done') {
+      } else if (
+        a.status.toLowerCase() === "done" &&
+        b.status.toLowerCase() !== "not started" &&
+        b.status.toLowerCase() !== "starting" &&
+        b.status.toLowerCase() !== "doing" &&
+        b.status.toLowerCase() !== "done"
+      ) {
         return -1;
-      } else if (a.status.toLowerCase() === 'finished' && b.status.toLowerCase() !== 'not started' && b.status.toLowerCase() !== 'starting' && b.status.toLowerCase() !== 'doing' && b.status.toLowerCase() !== 'done' && b.status.toLowerCase() !== 'finished') {
+      } else if (
+        a.status.toLowerCase() === "finished" &&
+        b.status.toLowerCase() !== "not started" &&
+        b.status.toLowerCase() !== "starting" &&
+        b.status.toLowerCase() !== "doing" &&
+        b.status.toLowerCase() !== "done" &&
+        b.status.toLowerCase() !== "finished"
+      ) {
         return -1;
       } else {
         return 0;
       }
     });
     this.setState({ tasks: sortedTasks });
-  }
+  };
 
   deleteTasks = e => {
     window.location.reload();
-    this.state.tasks
-      .map(data => {
-        return fetch(baseUrl + "/" + data._id, {
-          method: "delete"
-        }).then(response => response.json());
-      });
+    this.state.tasks.map(data => {
+      return fetch(baseUrl + "/" + data._id, {
+        method: "delete"
+      }).then(response => response.json());
+    });
   };
+  redirectToEditTask(param, e) {
+    this.props.history.push({
+      pathname: "/edittask",
+      state: { id: param }
+    });
+  }
 
   render() {
     return (
@@ -96,14 +129,11 @@ export default class PersonalTask extends Component {
           <Divider section />
           <List divided relaxed>
             {this.state.tasks.map(data => {
-              const url = '/task/' + data._id;
+              const url = "/task/" + data._id;
               return (
                 <List.Item>
-                  <List.Icon
-                    name="cogs"
-                    size="large"
-                    verticalAlign="middle"
-                  />
+                  <List.Icon name="cogs" size="large" verticalAlign="middle" />
+
                   <Button
                     type="submit"
                     floated="right"
@@ -111,18 +141,22 @@ export default class PersonalTask extends Component {
                     onClick={this.deleteTask.bind(this, data._id)}
                   >
                     X
-                            </Button>
+                  </Button>
+                  <Button
+                    type="submit"
+                    floated="right"
+                    color="blue "
+                    onClick={this.redirectToEditTask.bind(this, data._id)}
+                  >
+                    Edit
+                  </Button>
                   <List.Content href={url}>
                     <Segment.Group horizontal basic>
                       <Segment basic>{data.name}</Segment>
-                      <Segment basic>
-                        Due date: {data.deadline}
-                      </Segment>
+                      <Segment basic>Due date: {data.deadline}</Segment>
                       <Segment basic>Status: {data.status}</Segment>
                     </Segment.Group>
-                    <List.Header as="a">
-                      {data.description}
-                    </List.Header>
+                    <List.Header as="a">{data.description}</List.Header>
                   </List.Content>
                 </List.Item>
               );
@@ -133,3 +167,5 @@ export default class PersonalTask extends Component {
     );
   }
 }
+
+export default withRouter(PersonalTask);
