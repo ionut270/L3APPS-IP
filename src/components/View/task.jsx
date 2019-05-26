@@ -12,6 +12,8 @@ import {
 import MyHeader from "../Header";
 import CreateSubtaskModal from "../Comp/CreateSubTaskModal";
 
+var dataKey = 0;
+
 class ViewTask extends React.Component {
     // constructor(props) {
     //     super(props);
@@ -25,12 +27,15 @@ class ViewTask extends React.Component {
     };
     async componentDidMount() {
         var currentUrl = window.location.href.split(/\//)["4"];
-        const url = "http://vvtsoft.ddns.net:5123/tasks/" + currentUrl;
+        const url = "http://localhost:8081/tasks/" + currentUrl;
         console.log("URL IS ", url);
         const response = await fetch(url);
+        console.log(response.status)
+        if(response.status === 200) {
         const data = await response.json();
         this.setState({ task: data, loading: false });
-        const urltasks = "http://vvtsoft.ddns.net:5123/tasks";
+        console.log(data);
+        const urltasks = "http://localhost:8081/tasks";
         const responsetasks = await fetch(urltasks);
         const datatasks = await responsetasks.json();
         this.setState({ tasks: datatasks, loading: false });
@@ -59,7 +64,6 @@ class ViewTask extends React.Component {
                             this.state.task.participants[i]._id
                         );
                     })
-                    /**problema la get! */
                     .then(url => {
                         fetch(url)
                             .then(data => {
@@ -71,26 +75,28 @@ class ViewTask extends React.Component {
                                 if (this.state.profile[i] !== undefined) {
                                     this.state.profile[i].position = res[1].position;
                                     this.forceUpdate();
-                                    //console.log(url);
                                 }
                             });
                     });
             }
         }
         for (var i = 0; i < this.state.task["sub-tasks"].length; i++) {
-            console.log("Count!");
-            var url2 = "http://vvtsoft.ddns.net:5123/tasks/" + this.state.task["sub-tasks"][i];
+            var url2 = "http://localhost:8081/tasks/" + this.state.task["sub-tasks"][i]._id;
             fetch(url2)
                 .then(res => {
                     return res.json();
                 })
                 .then(res => {
-                    //console.log("RES", res);
-                    this.state.subtasks.push(res);
-                    //console.log("NEW RES IS ", this.state.subtasks);
-                });
+                    if(res._id!==undefined){
+                        this.state.subtasks.push(res);
+                    }
+                })
+                .catch(res=>{
+                    console.log("No data avaiable for this task")
+                })
         }
         this.forceUpdate();
+    }
     }
     render() {
         return (
@@ -145,8 +151,10 @@ class ViewTask extends React.Component {
                                 <Divider hidden />
                                 <Card.Group>
                                     {this.state.subtasks.map(data => {
+                                        console.log(data);
+                                        dataKey ++;
                                         return (
-                                            <Card key={data._id}>
+                                            <Card key={dataKey}>
                                                 <Card.Content>
                                                     <Card.Header>{data.name}</Card.Header>
                                                     <Card.Meta>{data.deadline}</Card.Meta>
