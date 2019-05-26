@@ -58,6 +58,12 @@ class ViewProfile extends React.Component {
   }
 
   componentDidMount() {
+
+    var currentUrl = window.location.href.split(/\//)["4"];
+    console.log(currentUrl);
+
+    if(currentUrl === undefined){
+
     fetch("http://localhost:8081/get-profile/" + cookies.get("user_id"))
       .then(response => {
         return response.json();
@@ -132,6 +138,83 @@ class ViewProfile extends React.Component {
       .catch(err => {
         alert("No profile's for you !");
       });
+    } else 
+    {
+      fetch("http://localhost:8081/get-profile/" + currentUrl)
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        this.setState({
+          name: response[1][0].nume,
+          surname: response[1][0].prenume,
+          email: response[1][0].email
+        });
+
+        fetch("http://localhost:8081/get-position/" + currentUrl)
+          .then(res => {
+            return res.json();
+          })
+          .then(res => {
+            if (res[0].exitCode === 0) {
+              this.setState({
+                job: "undefined"
+              });
+            } else {
+              this.setState({
+                job: res[1].position
+              });
+            }
+          })
+          .catch(res => {
+            console.log(res);
+          });
+
+        //we fetch the rest then
+        fetch("http://localhost:8081/get-preferences/" + currentUrl)
+          .then(res => {
+            if (res.status !== 404) {
+              return res.json();
+            }
+          })
+          .then(res => {
+            if (res[0] === undefined || res[0] === null || res[0] === "") {
+              this.setState({
+                morning: "unset",
+                evening: "unset",
+                noon: "unset"
+              });
+            } else {
+              this.setState({
+                morning: res[1][0].morning,
+                evening: res[1][0].evening,
+                noon: res[1][0].afternoon
+              });
+            }
+          })
+          .catch(res => {
+            console.log("ERR returning preferences");
+          });
+        fetch("http://localhost:8081/viewUnderlings/" + currentUrl)
+          .then(res => {
+            return res.json();
+          })
+          .then(res => {
+            console.log("underling:", res[1].underlings);
+            if (res[1].underlings != null)
+              this.setState({
+                employees: res[1].underlings
+              });
+            this.forceUpdate();
+          })
+          .catch(res => {
+            console.log(res);
+          });
+      })
+      .catch(err => {
+        alert("No profile's for you !");
+      });
+    }
   }
   render() {
     return (

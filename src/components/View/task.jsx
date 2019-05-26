@@ -46,7 +46,7 @@ class ViewTask extends React.Component {
                 this.state.task.participants[i]._id !== null &&
                 this.state.task.participants[i]._id !== ""
             ) {
-                console.log("I'am", this.state.task.participants[i]);
+                //console.log("I'am", this.state.task.participants[i]);
                 const urlprofile =
                     "http://localhost:8081/get-profile/" + this.state.task.participants[i]._id;
                 fetch(urlprofile)
@@ -58,6 +58,7 @@ class ViewTask extends React.Component {
                         if (res === undefined) {
                         } else {
                             this.state.profile.push(res[1][0]);
+                            //this.state.profile.push(this.state.task.participants[i]._id)
                         }
                         this.forceUpdate();
                         return (
@@ -75,6 +76,7 @@ class ViewTask extends React.Component {
                                 console.log(res);
                                 if (this.state.profile[i] !== undefined) {
                                     this.state.profile[i].position = res[1].position;
+                                    this.state.profile[i]._id = this.state.task.participants[i]._id
                                     this.forceUpdate();
                                 }
                             });
@@ -184,6 +186,7 @@ class ViewTask extends React.Component {
                                 <Divider hidden />
                                 <Label.Group size="large" className="ListParticipants">
                                     {this.state.profile.map(data => {
+                                        console.log("Profile",data);
                                         return (
                                             <Label
                                                 key={data.email}
@@ -191,6 +194,7 @@ class ViewTask extends React.Component {
                                                 as="a"
                                                 color="blue"
                                                 image
+                                                href = {"/profileof/"+data._id}
                                             >
                                                 {data.nume} {data.prenume}
                                                 <Label.Detail>{data.position}</Label.Detail>
