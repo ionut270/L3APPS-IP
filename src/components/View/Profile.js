@@ -239,11 +239,11 @@ class ViewProfile extends React.Component {
                           });
                           fetch(
                             "http://localhost:8081/add-underling/" +
-                              this.state.underlingId +
-                              "/" +
-                              this.state.superiorId +
-                              "/" +
-                              this.state.underlingPos
+                            this.state.underlingId +
+                            "/" +
+                            this.state.superiorId +
+                            "/" +
+                            this.state.underlingPos
                           );
                         }}
                       >
@@ -281,7 +281,7 @@ class ViewProfile extends React.Component {
                           });
                           fetch(
                             "http://localhost:8081/remove-underling/" +
-                              this.state.underlingIdDelete
+                            this.state.underlingIdDelete
                           );
                         }}
                       >
@@ -332,9 +332,9 @@ class ViewProfile extends React.Component {
                           });
                           fetch(
                             "http://localhost:8081/change-position/" +
-                              this.state.underlingIdChange +
-                              "/" +
-                              this.state.underlingPosChange
+                            this.state.underlingIdChange +
+                            "/" +
+                            this.state.underlingPosChange
                           );
                         }}
                       >
@@ -472,42 +472,61 @@ class EditProfile extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    fetch(
+      "http://localhost:8081/get-preferences/" +
+      cookies.get("user_id"))
+      .then(resursa => {
+        return resursa.json();
+      })
+      .then(resursa => {
+        if (resursa.exitCode == 0) {
+          fetch(
+            "http://localhost:8081/add-preferences/" +
+            cookies.get("user_id") +
+            "/" + this.state1.morning + "/" + this.state1.evening + "/" + this.state1.noon
+          ).then(function (res2) {
+            return res2.json();
+          });
+        }
+        else {
+          fetch(
+            "http://localhost:8081/edit-preferences/" +
+            cookies.get("user_id") +
+            "/morning/" +
+            this.state1.morning
+          ) //localhost:8081/edit-preferences/20/morning/tired
+            .then(res => {
+              return res.json();
+            })
+            .then(res => {
+              console.log("prefferences response:", res);
+            });
+          fetch(
+            "http://localhost:8081/edit-preferences/" +
+            cookies.get("user_id") +
+            "/evening/" +
+            this.state1.evening
+          ) //localhost:8081/edit-preferences/20/morning/tired
+            .then(res => {
+              return res.json();
+            })
+            .then(res => {
+              console.log("prefferences response:", res);
+            });
+          fetch(
+            "http://localhost:8081/edit-preferences/" +
+            cookies.get("user_id") +
+            "/afternoon/" +
+            this.state1.noon
+          ) //localhost:8081/edit-preferences/20/morning/tired
+            .then(res => {
+              return res.json();
+            })
+            .then(res => {
+              console.log("prefferences response:", res);
+            });
 
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/morning/" +
-        this.state1.morning
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
-      });
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/evening/" +
-        this.state1.evening
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
-      });
-    fetch(
-      "http://localhost:8081/edit-preferences/" +
-        cookies.get("user_id") +
-        "/afternoon/" +
-        this.state1.noon
-    ) //localhost:8081/edit-preferences/20/morning/tired
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        console.log("prefferences response:", res);
+        }
       });
 
     alert("Datele au fost schimbate");
