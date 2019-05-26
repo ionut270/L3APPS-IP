@@ -18,13 +18,13 @@ More on [React](https://reactjs.org/) and [React Semantuc ui](https://react.sema
 - [x] Page for independent task working
 - [x] Profile page working
 - [x] Subordinates component working
-- [ ] Delete task
-- [ ] Edit task
-- [ ] Edit profile
+- [x] Delete task
+- [x] Edit task
+- [x] Edit profile
 - [ ] Edit subordinates
-- [ ] Preferences
+- [x] Preferences
 - [ ] View other profiles
-- [ ] Rearange tasks by preferences
+- [x] Rearange tasks by preferences
 - [ ] Report button 
 
 ## Known Bugs
