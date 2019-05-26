@@ -30,9 +30,6 @@ More on [React](https://reactjs.org/) and [React Semantuc ui](https://react.sema
 ## Known Bugs
 
 - Being logged in does not prevent you from going to login/signup
-- Cookie token microservice acepts any token as long as it gets the id
-- Creating a task sucesfully does not remove the create task component
 - Profile data gets loaded slowly
-- The app crashes if one of the microservices fails and sends a html instead of a json
 
 ### [Curent task page](https://onedrive.live.com/edit.aspx?resid=FA433C654EFFEE81!25217&ithint=file%2cxlsx&authkey=!ALu2HbVjqCEcBfc)
