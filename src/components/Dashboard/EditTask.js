@@ -162,22 +162,6 @@ class EditTask extends Component {
               </select>
               <Divider hidden />
 
-              <Divider horizontal>Change status</Divider>
-              <select
-                onChange={e => {
-                  this.setState({
-                    task: {
-                      ...this.state.task,
-                      status: e.target.value
-                    }
-                  });
-                }}
-              >
-              <option value="notStarted">Not started</option>
-                <option value="starting">Starting</option>
-                <option value="doing">Doing</option>
-                <option value="done">Done</option>
-              </select>
               <Divider horizontal>
                 <Form.Button
                   color="green"
