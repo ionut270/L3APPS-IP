@@ -360,7 +360,7 @@ class ViewProfile extends React.Component {
                   {this.state.employees.map(user => {
                     return (
                       <Table.Row key={user.email}>
-                        <Table.Cell>{user.email}</Table.Cell>
+                        <Table.Cell href={"localhost:3000/profileof/"+user._id} >{user.email}</Table.Cell>
                         <Table.Cell>{user.job}</Table.Cell>
                       </Table.Row>
                     );
@@ -573,7 +573,7 @@ class EditProfile extends React.Component {
                   />
                 </div>
               </Segment>
-              <Segment color="red">
+              {/* <Segment color="red">
                 <Header as="h4">Change Email:</Header>
                 <div className="ui fluid icon input">
                   <input
@@ -602,7 +602,7 @@ class EditProfile extends React.Component {
                   />
                   <i aria-hidden="true" className="lock icon" />
                 </div>
-              </Segment>
+              </Segment> */}
 
               <Header as="h4" attached="top">
                 Preferences

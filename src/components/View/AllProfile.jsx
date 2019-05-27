@@ -173,7 +173,7 @@ class ViewProfile extends React.Component {
                   {this.state.employees.map(user => {
                     return (
                       <Table.Row key={user.email}>
-                        <Table.Cell>{user.email}</Table.Cell>
+                        <Table.Cell href={"localhost:3000/profileof/"+user._id}>{user.email}</Table.Cell>
                         <Table.Cell>{user.job}</Table.Cell>
                       </Table.Row>
                     );

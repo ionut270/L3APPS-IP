@@ -142,10 +142,10 @@ class PersonalTask extends Component {
 						<Icon name="redo" />
 						Rearrange
 					</Button>
-					<Button icon labelPosition="right">
+					{/* <Button icon labelPosition="right">
 						<Icon name="warning sign" />
 						Report
-					</Button>
+					</Button> */}
 					<Button type="submit" floated="right" color="red" onClick={this.deleteTasks}>
 						Delete all tasks
 					</Button>
